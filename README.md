@@ -190,3 +190,10 @@ This value allows you to control dynamic offsets based on the width of the devic
 [opt-dep-status-badge-url]: https://david-dm.org/nicky-lenaers/ngx-scroll-to?type=optional
 [licence-badge]: https://img.shields.io/npm/l/@nicky-lenaers/ngx-scroll-to.svg?style=flat-square
 [licence-badge-url]: https://github.com/nicky-lenaers/ngx-scroll-to/blob/master/LICENSE
+
+<!--
+TODO:
+
+- testing
+  https://medium.com/@laco0416/setting-up-angular-2-testing-environment-with-karma-and-webpack-e9b833befd99
+-->

@@ -52,11 +52,15 @@
     "@angular/compiler": "^4.0.0",
     "@angular/compiler-cli": "^4.0.0",
     "@types/node": "^8.0.14",
+    "angular2-template-loader": "^0.6.2",
+    "awesome-typescript-loader": "^3.2.1",
     "copyfiles": "^1.2.0",
+    "raw-loader": "^0.5.1",
     "renamer": "^0.6.1",
     "rimraf": "^2.6.1",
     "rollup": "^0.45.2",
     "typescript": "^2.3.4",
-    "uglify-js": "^3.0.16"
+    "uglify-js": "^3.0.16",
+    "webpack": "^3.3.0"
   }
 }
