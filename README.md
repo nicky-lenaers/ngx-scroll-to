@@ -50,7 +50,7 @@ export class AppModule { }
 **my-component.html**
 
 ```html
-<button [ngx-scroll-to]="'destination">Go to destination</button>
+<button [ngx-scroll-to]="'destination'">Go to destination</button>
 
 <div id="destination">
   You've reached your destination.
