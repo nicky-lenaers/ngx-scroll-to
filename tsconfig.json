@@ -1,0 +1,43 @@
+{
+    "compilerOptions": {
+        "baseUrl": ".",
+        "declaration": true,
+        "stripInternal": true,
+        "experimentalDecorators": true,
+        "strictNullChecks": false,
+        "noImplicitAny": true,
+        "module": "es2015",
+        "moduleResolution": "node",
+        "paths": {
+            "@angular/core": [
+                "node_modules/@angular/core"
+            ],
+            "@angular/common": [
+                "node_modules/@angular/common"
+            ],
+            "@angular/platform-browser": [
+                "node_modules/@angular/platform-browser"
+            ],
+            "rxjs/*": [
+                "node_modules/rxjs/*"
+            ]
+        },
+        "rootDir": "src",
+        "outDir": "dist",
+        "sourceMap": true,
+        "inlineSources": true,
+        "target": "es5",
+        "skipLibCheck": true,
+        "lib": [
+            "es2015",
+            "dom"
+        ]
+    },
+    "files": [
+        "./src/index.ts"
+    ],
+    "angularCompilerOptions": {
+        "genDir": ".tmp",
+        "strictMetadataEmit": true
+    }
+}

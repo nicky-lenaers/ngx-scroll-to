@@ -1,0 +1,62 @@
+{
+  "name": "@nicky-lenaers/ngx-scroll-to",
+  "version": "0.2.2",
+  "description": "Angular X Scroll To",
+  "main": "dist/index.js",
+  "scripts": {
+    "clean": "rimraf .tmp && rimraf dist",
+    "copy": "copyfiles -u 1 ./src/package.json dist && copyfiles README.md dist",
+    "transpile": "ngc",
+    "package": "rollup -c rollup.config.ts",
+    "minify": "uglifyjs dist/bundles/ngx-scroll-to.umd.js --screw-ie8 --compress --mangle --comments --output dist/bundles/ngx-scroll-to.umd.min.js",
+    "build": "npm run clean && npm run transpile && npm run package && npm run minify && npm run copy",
+    "prepublish": "npm run build",
+    "publish": "cd ./dist && npm publish --access=public",
+    "test": "echo \"No test command\""
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nicky-lenaers/ngx-scroll-to.git"
+  },
+  "keywords": [
+    "ngx",
+    "ngx-scroll-to",
+    "angular",
+    "angular2",
+    "angular 2",
+    "angular4",
+    "angular 4"
+  ],
+  "author": {
+    "name": "Nicky Lenaers",
+    "email": "nicky@nite-dev.nl"
+  },
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/nicky-lenaers/ngx-scroll-to/issues"
+  },
+  "homepage": "https://github.com/nicky-lenaers/ngx-scroll-to#readme",
+  "engines": {
+    "node": ">=7.10.0",
+    "npm": ">=4.2.0"
+  },
+  "private": false,
+  "dependencies": {
+    "@angular/common": "^4.2.2",
+    "@angular/core": "^4.2.2",
+    "@angular/platform-browser": "^4.2.2",
+    "rxjs": "^5.4.0",
+    "zone.js": "^0.8.12"
+  },
+  "devDependencies": {
+    "@angular/compiler": "^4.2.2",
+    "@angular/compiler-cli": "^4.2.2",
+    "@types/node": "^7.0.31",
+    "copyfiles": "^1.2.0",
+    "renamer": "^0.6.1",
+    "rimraf": "^2.6.1",
+    "rollup": "^0.43.0",
+    "typescript": "^2.3.4",
+    "uglify-js": "^3.0.16"
+  }
+}

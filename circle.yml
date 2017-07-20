@@ -1,0 +1,23 @@
+dependencies:
+  override:
+    - wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
+    - sudo dpkg -i google-chrome-stable_current_amd64.deb
+    - npm install
+
+general:
+  branches:
+    only:
+      - master
+      - /release-.*/
+      - /upgrade-.*/
+      - /feature-.*/
+      - develop
+
+machine:
+  node:
+    version: 7.10.0
+
+test:
+  override:
+    - google-chrome --version
+    - npm run test

@@ -1,0 +1,37 @@
+{
+  "name": "@nicky-lenaers/ngx-scroll-to",
+  "version": "0.2.2",
+  "description": "Angular X Scroll To",
+  "main": "bundles/ngx-scroll-to.umd.min.js",
+  "module": "index.js",
+  "typings": "index.d.ts",
+  "keywords": [
+    "ngx",
+    "ngx-scroll-to",
+    "angular",
+    "angular2",
+    "angular 2",
+    "angular4",
+    "angular 4"
+  ],
+  "author": {
+    "name": "Nicky Lenaers",
+    "email": "nicky@nite-dev.nl"
+  },
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nicky-lenaers/ngx-scroll-to.git"
+  },
+  "homepage": "https://github.com/nicky-lenaers/ngx-scroll-to#readme",
+  "bugs": {
+    "url": "https://github.com/nicky-lenaers/ngx-scroll-to/issues"
+  },
+  "peerDependencies": {
+    "@angular/common": "^4.2.2",
+    "@angular/core": "^4.2.2",
+    "@angular/platform-browser": "^4.2.2",
+    "rxjs": "^5.4.0",
+    "zone.js": "^0.8.12"
+  }
+}
