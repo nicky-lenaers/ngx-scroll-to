@@ -4,6 +4,7 @@ import { isPlatformServer } from '@angular/common';
 import { ScrollToService } from './scroll-to.service';
 import { ScrollToAnimationEasing } from './models/scroll-to-easing.model';
 import { ScrollToAnimationOptions, ScrollToOffsetMap } from './models/scroll-to-options.model';
+import { ScrollToEvent } from './models/scroll-to-event.model';
 
 @Directive({
 	selector: '[ngx-scroll-to]'
@@ -11,10 +12,10 @@ import { ScrollToAnimationOptions, ScrollToOffsetMap } from './models/scroll-to-
 export class ScrollToDirective implements AfterViewInit {
 
 	@Input('ngx-scroll-to')
-	public ngxScrollTo: string | ElementRef;
+	public ngxScrollTo: string | ElementRef = '';
 
 	@Input('ngx-scroll-to-event')
-	public ngxScrollToEvent = 'click';
+	public ngxScrollToEvent: ScrollToEvent = 'click';
 
 	@Input('ngx-scroll-to-duration')
 	public ngxScrollToDuration = 650;
