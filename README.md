@@ -30,7 +30,7 @@ export class AppModule { }
 ```
 
 ## Basic Usage
-**component.html**
+**my-component.html**
 
 ```html
 <button [ngx-scroll-to]="'destination">Go to destination</button>
@@ -41,7 +41,7 @@ export class AppModule { }
 ```
 
 ## Advanced Usage
-**component.ts**
+**my-component.ts**
 ```ts
 import { ScrollToAnimationEasing, ScrollToEvent, ScrollToOffsetMap } from '@nicky-lenaers/ngx-scroll-to';
 
@@ -81,7 +81,7 @@ export class MyComponent {
 ```
 
 
-**component.html**
+**my-component.html**
 ```html
 <button (click)="toggleDestination()">Toggle Destination</button>
 
