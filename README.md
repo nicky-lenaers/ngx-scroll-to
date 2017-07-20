@@ -50,6 +50,10 @@ export class AppModule { }
 **my-component.html**
 
 ```html
+<!-- Works for including '#' -->
+<button [ngx-scroll-to]="'#destination'">Go to destination</button>
+
+<!-- Works for excluding '#' -->
 <button [ngx-scroll-to]="'destination'">Go to destination</button>
 
 <div id="destination">
