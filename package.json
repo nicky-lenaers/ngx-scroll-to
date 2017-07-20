@@ -1,6 +1,6 @@
 {
   "name": "@nicky-lenaers/ngx-scroll-to",
-  "version": "0.1.4",
+  "version": "0.1.5",
   "description": "Angular X Scroll To",
   "main": "dist/index.js",
   "scripts": {
