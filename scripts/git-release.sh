@@ -29,7 +29,7 @@ if [[ ! ${TAG} ]]; then printf "\nError: Tag not set.\nSet a tag by passing the 
 
 # Build Command
 CMD="curl -H \"Content-Type: application/json\" -u \"${USER}\" -X POST"
-CMD="${CMD} --data '{ \"tag_name\": \"${TAG}\", \"target_commitish\": \"master\", \"name\": \"${TAG}\", \"body\": \"Release ${tag}\", \"draft\": false, \"prerelease\": false }'"
+CMD="${CMD} --data '{ \"tag_name\": \"${TAG}\", \"target_commitish\": \"master\", \"name\": \"${TAG}\", \"body\": \"Release ${TAG}\", \"draft\": false, \"prerelease\": false }'"
 CMD="${CMD} https://api.github.com/repos/${USER}/${REPO}/releases"
 
 # Execute Command
