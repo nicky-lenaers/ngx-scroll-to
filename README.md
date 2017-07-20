@@ -3,13 +3,19 @@
 Scroll to any element to enhance scroll-based features in you app.<br>
 Works for **Angular 4+**, both **AoT** and **SSR**. No dependencies.
 
-[![npm version](https://badge.fury.io/js/%40nicky-lenaers%2Fngx-scroll-to.svg)](https://badge.fury.io/js/%40nicky-lenaers%2Fngx-scroll-to)
-[![Dependency Status](https://david-dm.org/nicky-lenaers/ngx-scroll-to.svg)](https://david-dm.org/nicky-lenaers/ngx-scroll-to)
-[![devDependency Status](https://david-dm.org/nicky-lenaers/ngx-scroll-to/dev-status.svg)](https://david-dm.org/nicky-lenaers/ngx-scroll-to#info=devDependencies)
+| Type                  | Badge                                                                           |
+|-----------------------|---------------------------------------------------------------------------------|
+| GitHub Release        | [![GitHub Release][github-release-badge]][github-release-badge-url]             |
+| NPM Version           | [![NPM Version][npm-version-badge]][npm-version-badge-url]                      |
+| Dependencies          | [![Dependency Status][dep-status-badge]][dep-status-badge-url]                  |
+| Dev Dependencies      | [![Dev Dependency Status][dev-dep-status-badge]][dev-dep-status-badge-url]      |
+| Peer Dependencies     | [![Peer Dependency Status][peer-dep-status-badge]][peer-dep-status-badge-url]   |
+| Optional Dependencies | [![Optional Dependency Status][opt-dep-status-badge]][opt-dep-status-badge-url] |
+| Licence               | [![Licence][licence-badge]][licence-badge-url]                                  |
 
 Current Angular Version
 
-[![npm version](https://badge.fury.io/js/%40angular%2Fcore.svg)](https://www.npmjs.com/~angular)
+[![npm version](https://img.shields.io/npm/v/%40angular%2Fcore.svg?style=flat-square)](https://www.npmjs.com/~angular)  
 
 ## Installation
 ```sh
@@ -162,3 +168,18 @@ This value allows you to control dynamic offsets based on the width of the devic
 
 # License
  [MIT](/LICENSE)
+
+[github-release-badge]: https://img.shields.io/github/release/nicky-lenaers/ngx-scroll-to.svg?style=flat-square
+[github-release-badge-url]: https://img.shields.io/github/release/nicky-lenaers/ngx-scroll-to
+[npm-version-badge]: https://img.shields.io/npm/v/@nicky-lenaers/ngx-scroll-to.svg?style=flat-square
+[npm-version-badge-url]: https://www.npmjs.com/package/@nicky-lenaers/ngx-scroll-to
+[dep-status-badge]: https://img.shields.io/david/nicky-lenaers/ngx-scroll-to.svg?style=flat-square
+[dep-status-badge-url]: https://david-dm.org/nicky-lenaers/ngx-scroll-to
+[dev-dep-status-badge]: https://img.shields.io/david/dev/nicky-lenaers/ngx-scroll-to.svg?style=flat-square
+[dev-dep-status-badge-url]: https://david-dm.org/nicky-lenaers/ngx-scroll-to?type=dev
+[peer-dep-status-badge]: https://img.shields.io/david/peer/nicky-lenaers/ngx-scroll-to.svg?style=flat-square
+[peer-dep-status-badge-url]: https://david-dm.org/nicky-lenaers/ngx-scroll-to?type=peer
+[opt-dep-status-badge]: https://img.shields.io/david/optional/nicky-lenaers/ngx-scroll-to.svg?style=flat-square
+[opt-dep-status-badge-url]: https://david-dm.org/nicky-lenaers/ngx-scroll-to?type=optional
+[licence-badge]: https://img.shields.io/npm/l/@nicky-lenaers/ngx-scroll-to.svg?style=flat-square
+[licence-badge-url]: https://github.com/nicky-lenaers/ngx-scroll-to/blob/master/LICENSE
