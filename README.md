@@ -23,7 +23,7 @@ $ npm install @nicky-lenaers/ngx-scroll-to
 ```
 
 ## Setup
-```ts
+```js
 ...
 import { ScrollToModule } from '@nicky-lenaers/ngx-scroll-to';
 ...
@@ -52,7 +52,7 @@ export class AppModule { }
 
 ## Advanced Usage
 **my-component.ts**
-```ts
+```js
 import { ScrollToAnimationEasing, ScrollToEvent, ScrollToOffsetMap } from '@nicky-lenaers/ngx-scroll-to';
 
 @Component({
