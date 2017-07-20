@@ -43,6 +43,8 @@ export class AppModule { }
 ## Advanced Usage
 **component.ts**
 ```ts
+import { ScrollToAnimationEasing, ScrollToEvent, ScrollToOffsetMap } from '@nicky-lenaers/ngx-scroll-to';
+
 @Component({
   selector: 'my-component'
   templateUrl: './component.html'
@@ -50,16 +52,16 @@ export class AppModule { }
 export class MyComponent {
 
   public ngxScrollToDestination: string;
-  public ngxScrollToEvent: string;
+  public ngxScrollToEvent: ScrollToEvent;
   public ngxScrollToDuration: number;
-  public ngxScrollToEasing: string;
+  public ngxScrollToEasing: ScrollToAnimationEasing;
   public ngxScrollToOffset: number;
-  public ngxScrollToOffsetMap: Map<>
+  public ngxScrollToOffsetMap: ScrollToOffsetMap;
 
   constructor() {
 
     this.ngxScrollToDestination = 'destination-1';
-    this.ngxScrollToEvent = 'mouseover';
+    this.ngxScrollToEvent = 'mouseenter';
     this.ngxScrollToDuration = 1500;
     this.ngxScrollToEasing = 'easeOutElastic';
     this.ngxScrollToOffset = 300;
