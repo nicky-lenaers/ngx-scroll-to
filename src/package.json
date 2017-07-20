@@ -1,6 +1,6 @@
 {
   "name": "@nicky-lenaers/ngx-scroll-to",
-  "version": "0.2.2",
+  "version": "0.0.1",
   "description": "Angular X Scroll To",
   "main": "bundles/ngx-scroll-to.umd.min.js",
   "module": "index.js",
@@ -28,9 +28,9 @@
     "url": "https://github.com/nicky-lenaers/ngx-scroll-to/issues"
   },
   "peerDependencies": {
-    "@angular/common": "^4.2.2",
-    "@angular/core": "^4.2.2",
-    "@angular/platform-browser": "^4.2.2",
+    "@angular/common": "^4.0.0",
+    "@angular/core": "^4.0.0",
+    "@angular/platform-browser": "^4.0.0",
     "rxjs": "^5.4.0",
     "zone.js": "^0.8.12"
   }
