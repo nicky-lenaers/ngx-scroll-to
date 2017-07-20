@@ -3,6 +3,10 @@
 Scroll to any element to enhance scroll-based features in you app.<br>
 Works for **Angular 4+**, both **AoT** and **SSR**. No dependencies.
 
+[![npm version](https://badge.fury.io/js/%40nicky-lenaers%2Fngx-scroll-to.svg)](https://badge.fury.io/js/%40nicky-lenaers%2Fngx-scroll-to)
+[![Dependency Status](https://david-dm.org/nicky-lenaers/ngx-scroll-to.svg)](https://david-dm.org/nicky-lenaers/ngx-scroll-to)
+[![devDependency Status](https://david-dm.org/nicky-lenaers/ngx-scroll-to/dev-status.svg)](https://david-dm.org/nicky-lenaers/ngx-scroll-to#info=devDependencies)
+
 Current Angular Version
 
 [![npm version](https://badge.fury.io/js/%40angular%2Fcore.svg)](https://www.npmjs.com/~angular)
