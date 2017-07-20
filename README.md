@@ -194,3 +194,9 @@ This value allows you to control dynamic offsets based on the width of the devic
 [opt-dep-status-badge-url]: https://david-dm.org/nicky-lenaers/ngx-scroll-to?type=optional
 [license-badge]: https://img.shields.io/npm/l/@nicky-lenaers/ngx-scroll-to.svg?style=flat-square
 [license-badge-url]: https://github.com/nicky-lenaers/ngx-scroll-to/blob/master/LICENSE
+
+<!--
+TODO:
+- docs on Github Pages
+- notifications on new issues
+-->
