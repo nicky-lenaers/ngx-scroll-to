@@ -18,7 +18,7 @@
 | Dev Dependencies      | [![Dev Dependency Status][dev-dep-status-badge]][dev-dep-status-badge-url]      |
 | Peer Dependencies     | [![Peer Dependency Status][peer-dep-status-badge]][peer-dep-status-badge-url]   |
 | Optional Dependencies | [![Optional Dependency Status][opt-dep-status-badge]][opt-dep-status-badge-url] |
-| Licence               | [![Licence][licence-badge]][licence-badge-url]                                  |
+| License               | [![License][license-badge]][license-badge-url]                                  |
 
 Current Angular Version
 
@@ -181,7 +181,7 @@ This value allows you to control dynamic offsets based on the width of the devic
  [MIT](/LICENSE)
 
 [github-release-badge]: https://img.shields.io/github/release/nicky-lenaers/ngx-scroll-to.svg?style=flat-square
-[github-release-badge-url]: https://img.shields.io/github/release/nicky-lenaers/ngx-scroll-to
+[github-release-badge-url]: https://github.com/nicky-lenaers/ngx-scroll-to/releases
 [npm-version-badge]: https://img.shields.io/npm/v/@nicky-lenaers/ngx-scroll-to.svg?style=flat-square
 [npm-version-badge-url]: https://www.npmjs.com/package/@nicky-lenaers/ngx-scroll-to
 [dep-status-badge]: https://img.shields.io/david/nicky-lenaers/ngx-scroll-to.svg?style=flat-square
@@ -192,5 +192,5 @@ This value allows you to control dynamic offsets based on the width of the devic
 [peer-dep-status-badge-url]: https://david-dm.org/nicky-lenaers/ngx-scroll-to?type=peer
 [opt-dep-status-badge]: https://img.shields.io/david/optional/nicky-lenaers/ngx-scroll-to.svg?style=flat-square
 [opt-dep-status-badge-url]: https://david-dm.org/nicky-lenaers/ngx-scroll-to?type=optional
-[licence-badge]: https://img.shields.io/npm/l/@nicky-lenaers/ngx-scroll-to.svg?style=flat-square
-[licence-badge-url]: https://github.com/nicky-lenaers/ngx-scroll-to/blob/master/LICENSE
+[license-badge]: https://img.shields.io/npm/l/@nicky-lenaers/ngx-scroll-to.svg?style=flat-square
+[license-badge-url]: https://github.com/nicky-lenaers/ngx-scroll-to/blob/master/LICENSE
