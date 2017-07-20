@@ -6,7 +6,7 @@
   <h1>ngx-scroll-to</h1>
   <p>
     Scroll to any element to enhance scroll-based features in you app.<br>
-    Works for **Angular 4+**, both **AoT** and **SSR**. No dependencies.
+    Works for <strong>Angular 4+</strong>, both <strong>AoT</strong> and <strong>SSR</strong>. No dependencies.
   </p>
 </div>
 
