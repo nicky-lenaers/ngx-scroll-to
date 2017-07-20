@@ -1,7 +1,14 @@
-# ngx-scroll-to
 
-Scroll to any element to enhance scroll-based features in you app.<br>
-Works for **Angular 4+**, both **AoT** and **SSR**. No dependencies.
+<div align="center">
+  <img src="https://user-images.githubusercontent.com/2785350/28428760-ae908006-6d7a-11e7-92ec-174bec80740e.png">
+</div>
+<div align="center">
+  <h1>ngx-scroll-to</h1>
+  <p>
+    Scroll to any element to enhance scroll-based features in you app.<br>
+    Works for **Angular 4+**, both **AoT** and **SSR**. No dependencies.
+  </p>
+</div>
 
 | Type                  | Badge                                                                           |
 |-----------------------|---------------------------------------------------------------------------------|
