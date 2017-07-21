@@ -28,21 +28,21 @@ export class ScrollToService {
 	public onTrigger(event: Event, target: HTMLElement, renderer2: Renderer2, config: ScrollToAnimationOptions): void {
 
 		const container = this.getFirstScrollableParent(<HTMLElement>event.target);
+		const listenerTarget = this._getListenerTarget(container);
 
 		if (this._animation) this._animation.stop();
 
-		// Set ScrollTop
-		const windowScrollTop = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop || 0;
-		const is_window = isWindow(this._getListenerTarget(container));
+		const is_window = isWindow(listenerTarget);
+		const to: number = is_window ? target.offsetTop : target.getBoundingClientRect().top;
 
-		this._animation = new ScrollAnimation(container, is_window, target.offsetTop, config, isPlatformBrowser(this._platform_id));
+		this._animation = new ScrollAnimation(container, listenerTarget, is_window, to, config, isPlatformBrowser(this._platform_id));
 		const animation$: Observable<number> = this._animation.start();
 
 		const stop_events: string[] = ['mousewheel', 'DOMMouseScroll', 'touchstart'];
 
 		// Listen for Stop Events
 		stop_events.forEach(_event => {
-			renderer2.listen(this._getListenerTarget(container), _event, () => this._animation && this._animation.stop());
+			renderer2.listen(listenerTarget, _event, () => this._animation && this._animation.stop());
 		});
 	}
 
