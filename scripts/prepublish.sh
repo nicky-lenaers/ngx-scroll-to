@@ -39,7 +39,7 @@ PACKAGE_VERSION=$(cat package.json \
 git add .
 
 # Commit
-eval "git commit -m=\"Release ${PACKAGE_VERSION}\""
+eval "git commit -m \"Release ${PACKAGE_VERSION}\""
 
 # Tag
 eval "git tag ${PACKAGE_VERSION}"
@@ -62,3 +62,5 @@ USER=$(printf '%s\n' "$PARSED_REMOTE_URL")
 CMD="curl -H \"Content-Type: application/json\" -u \"${USER}\" -X POST"
 CMD="${CMD} --data '{ \"tag_name\": \"${PACKAGE_VERSION}\", \"target_commitish\": \"master\", \"name\": \"${PACKAGE_VERSION}\", \"body\": \"Release ${PACKAGE_VERSION}\", \"draft\": false, \"prerelease\": false }'"
 CMD="${CMD} https://api.github.com/repos/${USER}/${REPO}/releases"
+
+eval "${CMD}"
