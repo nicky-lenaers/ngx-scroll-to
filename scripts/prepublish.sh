@@ -6,7 +6,7 @@ do
 key="$1"
 
 case $key in
-    -v|--version)
+    -pv|--publish-version)
     VERSION="$2"
     shift
     ;;
@@ -14,7 +14,7 @@ esac
 shift
 done
 
-if [[ ! ${VERSION} ]]; then printf "\nError: Version not set.\nSet a version by passing the '-version' (-v) argument" && exit 0; fi
+if [[ ! ${VERSION} ]]; then printf "\nError: Version not set.\nSet a version by passing the '-publish-version' (-pv) argument" && exit 1; fi
 
 NPM_VERSION_CMD="npm version ${VERSION} --no-git-tag-version"
 
