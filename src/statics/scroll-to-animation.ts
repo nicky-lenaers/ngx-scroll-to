@@ -6,7 +6,7 @@ import { ScrollToAnimationOptions } from '../models/scroll-to-options.model';
 export class ScrollAnimation {
 
 	private _tick: number;
-	private _interval: NodeJS.Timer;
+	private _interval: any;
 	private _time_lapsed: number;
 	private _percentage: number;
 	private _position: number;
