@@ -1,10 +1,13 @@
 <a name="0.2.0"></a>
 # 0.2.0 (2017-07-21)
 
+* =Release 0.2.0 ([52ccdb7](https://github.com/nicky-lenaers/ngx-scroll-to/commit/52ccdb7))
 * Add Publish Script ([f755650](https://github.com/nicky-lenaers/ngx-scroll-to/commit/f755650))
 * Change Command for Publish Version ([deea855](https://github.com/nicky-lenaers/ngx-scroll-to/commit/deea855))
+* Fix Commit Message ([89d9669](https://github.com/nicky-lenaers/ngx-scroll-to/commit/89d9669))
 * Remove shell script ([362174a](https://github.com/nicky-lenaers/ngx-scroll-to/commit/362174a))
 * Reverse Script Order ([a34949b](https://github.com/nicky-lenaers/ngx-scroll-to/commit/a34949b))
+* Revert Version Update ([93490d1](https://github.com/nicky-lenaers/ngx-scroll-to/commit/93490d1))
 * Support for nested scrolling ([da68855](https://github.com/nicky-lenaers/ngx-scroll-to/commit/da68855)), closes [#2](https://github.com/nicky-lenaers/ngx-scroll-to/issues/2)
 * Update Packages ([9e3f592](https://github.com/nicky-lenaers/ngx-scroll-to/commit/9e3f592))
 * Update README ([54791de](https://github.com/nicky-lenaers/ngx-scroll-to/commit/54791de))
