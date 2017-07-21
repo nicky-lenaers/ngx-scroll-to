@@ -12,6 +12,7 @@
     "build": "npm run clean && npm run transpile && npm run package && npm run minify && npm run copy",
     "prepublish": "npm run build",
     "publish": "cd ./dist && npm publish --access=public",
+    "changelog": "conventional-changelog -i CHANGELOG.md -s -r 0",
     "test": "echo \"No test command\""
   },
   "repository": {
@@ -52,6 +53,7 @@
     "@angular/compiler": "^4.0.0",
     "@angular/compiler-cli": "^4.0.0",
     "@types/node": "^8.0.14",
+    "conventional-changelog-cli": "^1.3.2",
     "copyfiles": "^1.2.0",
     "renamer": "^0.6.1",
     "rimraf": "^2.6.1",
