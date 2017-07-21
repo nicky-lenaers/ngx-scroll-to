@@ -58,6 +58,10 @@ export class ScrollToDirective implements AfterViewInit {
 
 		// Listen for the trigger...
 		this._renderer2.listen(this._elementRef.nativeElement, this.ngxScrollToEvent,
-			(event) => this._scrollToService.onTrigger(event, this._scrollToService.getTargetNode(this.ngxScrollTo), this._renderer2, this._config));
+			(event) => {
+				setTimeout((__HACK__: any) => {
+					this._scrollToService.onTrigger(event, this._scrollToService.getTargetNode(this.ngxScrollTo), this._renderer2, this._config)
+				});
+			});
 	}
 }
