@@ -46,6 +46,7 @@ eval "git tag ${PACKAGE_VERSION}"
 
 # Push
 git push
+git push --tags
 
 # Get Repo Name
 REPO=$(git config --local remote.origin.url|sed -n 's#.*/\([^.]*\)\.git#\1#p')
