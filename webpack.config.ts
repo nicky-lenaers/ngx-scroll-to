@@ -3,6 +3,11 @@ import { resolve } from 'path';
 import { AotPlugin } from '@ngtools/webpack';
 import * as HtmlWebpackPlugin from 'html-webpack-plugin';
 
+/**
+ * @todo generic 'stats'
+ * @todo seperate files
+ * @todo webpack helper file
+ */
 export = function () {
 
 	let config: webpack.Configuration = {
@@ -25,7 +30,21 @@ export = function () {
 				{
 					test: /\.html$/,
 					loader: 'raw-loader'
-				}
+				},
+				{
+					test: /\.scss$/,
+					include: [
+						resolve(__dirname, './', './demo/app')
+					],
+					use: [
+						{
+							loader: 'raw-loader'
+						},
+						{
+							loader: 'sass-loader'
+						}
+					]
+				},
 			]
 		},
 		devtool: 'inline-source-map',
@@ -54,10 +73,22 @@ export = function () {
 		devServer: {
 			publicPath: '/',
 			contentBase: resolve(__dirname, './', './demo'),
-			port: 3000
+			port: 3000,
+			stats: {
+				colors: true,
+				hash: true,
+				timings: true,
+				chunks: true,
+				chunkModules: false,
+				children: false,
+				modules: false,
+				reasons: false,
+				warnings: true,
+				assets: false,
+				version: false
+			}
 		}
 	};
 
 	return config;
 };
-// https://stackoverflow.com/questions/42152223/webpack-dev-server-serves-one-version-old-bundle
