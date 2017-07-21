@@ -1,4 +1,3 @@
-
 <div align="center">
   <img src="https://user-images.githubusercontent.com/2785350/28428760-ae908006-6d7a-11e7-92ec-174bec80740e.png">
 </div>
@@ -18,7 +17,7 @@
 | Dev Dependencies      | [![Dev Dependency Status][dev-dep-status-badge]][dev-dep-status-badge-url]      |
 | Peer Dependencies     | [![Peer Dependency Status][peer-dep-status-badge]][peer-dep-status-badge-url]   |
 | Optional Dependencies | [![Optional Dependency Status][opt-dep-status-badge]][opt-dep-status-badge-url] |
-| Licence               | [![Licence][licence-badge]][licence-badge-url]                                  |
+| License               | [![License][license-badge]][license-badge-url]                                  |
 
 Current Angular Version
 
@@ -50,6 +49,10 @@ export class AppModule { }
 **my-component.html**
 
 ```html
+<!-- Works for including '#' -->
+<button [ngx-scroll-to]="'#destination'">Go to destination</button>
+
+<!-- Works for excluding '#' -->
 <button [ngx-scroll-to]="'destination'">Go to destination</button>
 
 <div id="destination">
@@ -171,13 +174,13 @@ This value controls a named easing logic function to control your animation easi
 This value controls the offset with respect to the top of the destination HTML element. Note that this value is in pixels.
 
 #### <a name="ngx-scroll-to-offset-map-details"></a>`[ngx-scroll-to-offset-map]`
-This value allows you to control dynamic offsets based on the width of the device screen. The Map get's iterated over internally in a sequential fashion, meaning you need to supply key values in the order from low to high. The `key` of the `Map` defines the width treshold. The `value` of the `Map` defines the offset. Note that the this value is in pixels.
+This value allows you to control dynamic offsets based on the width of the device screen. The Map get's iterated over internally in a sequential fashion, meaning you need to supply key values in the order from low to high. The `key` of the `Map` defines the width treshold. The `value` of the `Map` defines the offset. Note that this value is in pixels.
 
 # License
  [MIT](/LICENSE)
 
 [github-release-badge]: https://img.shields.io/github/release/nicky-lenaers/ngx-scroll-to.svg?style=flat-square
-[github-release-badge-url]: https://img.shields.io/github/release/nicky-lenaers/ngx-scroll-to
+[github-release-badge-url]: https://github.com/nicky-lenaers/ngx-scroll-to/releases
 [npm-version-badge]: https://img.shields.io/npm/v/@nicky-lenaers/ngx-scroll-to.svg?style=flat-square
 [npm-version-badge-url]: https://www.npmjs.com/package/@nicky-lenaers/ngx-scroll-to
 [dep-status-badge]: https://img.shields.io/david/nicky-lenaers/ngx-scroll-to.svg?style=flat-square
@@ -188,5 +191,5 @@ This value allows you to control dynamic offsets based on the width of the devic
 [peer-dep-status-badge-url]: https://david-dm.org/nicky-lenaers/ngx-scroll-to?type=peer
 [opt-dep-status-badge]: https://img.shields.io/david/optional/nicky-lenaers/ngx-scroll-to.svg?style=flat-square
 [opt-dep-status-badge-url]: https://david-dm.org/nicky-lenaers/ngx-scroll-to?type=optional
-[licence-badge]: https://img.shields.io/npm/l/@nicky-lenaers/ngx-scroll-to.svg?style=flat-square
-[licence-badge-url]: https://github.com/nicky-lenaers/ngx-scroll-to/blob/master/LICENSE
+[license-badge]: https://img.shields.io/npm/l/@nicky-lenaers/ngx-scroll-to.svg?style=flat-square
+[license-badge-url]: https://github.com/nicky-lenaers/ngx-scroll-to/blob/master/LICENSE

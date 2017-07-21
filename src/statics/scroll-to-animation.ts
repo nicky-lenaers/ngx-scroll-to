@@ -5,7 +5,7 @@ import { ScrollToAnimationOptions } from '../models/scroll-to-options.model';
 
 export class ScrollAnimation {
 
-	private readonly _tick: number;
+	private _tick: number;
 	private _interval: NodeJS.Timer;
 	private _time_lapsed: number;
 	private _percentage: number;
@@ -17,6 +17,7 @@ export class ScrollAnimation {
 
 	constructor(
 		private _container: HTMLElement,
+		private _listenerTarget: HTMLElement | Window,
 		private readonly _is_window: boolean,
 		private readonly _to: number,
 		private readonly _options: ScrollToAnimationOptions,
@@ -28,8 +29,12 @@ export class ScrollAnimation {
 
 		this._windowScrollTop = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop || 0;
 		this._start_position = this._is_window ? this._windowScrollTop : this._container.scrollTop;
-		this._distance = Math.abs(this._start_position - this._to);
 
+		// Correction for Starting Position of nested HTML Elements
+		if (!this._is_window) this._to = this._to - this._container.getBoundingClientRect().top + this._start_position;
+
+		// Set Distance
+		this._distance = Math.abs(this._start_position - this._to);
 		let offset = this._options.offset;
 
 		// Set offset from Offset Map
@@ -67,7 +72,7 @@ export class ScrollAnimation {
 		this._position = this._start_position
 			+ ((this._start_position - this._to < 0 ? 1 : -1) * this._distance * easing[this._options.easing](this._percentage));
 		this._source$.next(this._position);
-		window.scrollTo(0, Math.floor(this._position));
+		this._is_window ? this._listenerTarget.scrollTo(0, Math.floor(this._position)) : this._container.scrollTop = Math.floor(this._position);
 		this.stop(false);
 	}
 
