@@ -10,7 +10,7 @@
     "package": "rollup -c rollup.config.ts",
     "minify": "uglifyjs dist/bundles/ngx-scroll-to.umd.js --screw-ie8 --compress --mangle --comments --output dist/bundles/ngx-scroll-to.umd.min.js",
     "build": "npm run clean && npm run transpile && npm run package && npm run minify && npm run copy",
-    "prepublish": "npm run build",
+    "prepublish": "npm run build && sh ./scripts/prepublish.sh",
     "publish": "cd ./dist && npm publish --access=public",
     "changelog": "conventional-changelog -i CHANGELOG.md -s -r 0",
     "test": "echo \"No test command\""
