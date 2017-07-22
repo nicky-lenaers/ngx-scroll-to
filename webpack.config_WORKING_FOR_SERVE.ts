@@ -51,13 +51,20 @@ export = function (webpackEnvOptions, webpackOptions) {
 		stats: stats,
 		plugins: [
 			new AotPlugin({
-				tsConfigPath: resolve(__dirname, './', './tsconfig.spec.json'),
+				tsConfigPath: resolve(__dirname, './', './demo/tsconfig.demo.json'),
+				// tsConfigPath: resolve(__dirname, './', './tsconfig.spec.json'),
 				skipCodeGeneration: true
 			}),
 			new HtmlWebpackPlugin({
 				template: resolve(__dirname, './', './demo/index.html')
 			})
-		]
+		],
+		devServer: {
+			publicPath: '/',
+			contentBase: resolve(__dirname, './', './demo'),
+			port: 3000,
+			stats: stats
+		}
 	};
 
 	return config;
