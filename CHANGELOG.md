@@ -1,6 +1,17 @@
+<a name="0.2.2"></a>
+## 0.2.2 (2017-07-22)
+
+* Added Sass ([405ad75](https://github.com/nicky-lenaers/ngx-scroll-to/commit/405ad75))
+* Demo Update ([5e2cb9c](https://github.com/nicky-lenaers/ngx-scroll-to/commit/5e2cb9c))
+* Handle hidden overflow ([9ccae5b](https://github.com/nicky-lenaers/ngx-scroll-to/commit/9ccae5b)), closes [#11](https://github.com/nicky-lenaers/ngx-scroll-to/issues/11)
+* Working Development Server ([76c0004](https://github.com/nicky-lenaers/ngx-scroll-to/commit/76c0004))
+
+
+
 <a name="0.2.1"></a>
 ## 0.2.1 (2017-07-21)
 
+* Release 0.2.1 ([9020872](https://github.com/nicky-lenaers/ngx-scroll-to/commit/9020872))
 * Support for *ngIf ([c8567dc](https://github.com/nicky-lenaers/ngx-scroll-to/commit/c8567dc)), closes [#6](https://github.com/nicky-lenaers/ngx-scroll-to/issues/6)
 
 
@@ -16,6 +27,7 @@
 * Remove shell script ([362174a](https://github.com/nicky-lenaers/ngx-scroll-to/commit/362174a))
 * Reverse Script Order ([a34949b](https://github.com/nicky-lenaers/ngx-scroll-to/commit/a34949b))
 * Revert Version Update ([93490d1](https://github.com/nicky-lenaers/ngx-scroll-to/commit/93490d1))
+* Started adding first Deps ([9c371cf](https://github.com/nicky-lenaers/ngx-scroll-to/commit/9c371cf))
 * Support for nested scrolling ([da68855](https://github.com/nicky-lenaers/ngx-scroll-to/commit/da68855)), closes [#2](https://github.com/nicky-lenaers/ngx-scroll-to/issues/2)
 * Update Packages ([9e3f592](https://github.com/nicky-lenaers/ngx-scroll-to/commit/9e3f592))
 * Update README ([54791de](https://github.com/nicky-lenaers/ngx-scroll-to/commit/54791de))
