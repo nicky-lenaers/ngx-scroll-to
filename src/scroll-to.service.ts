@@ -70,6 +70,9 @@ export class ScrollToService {
 			// Skip Absolute Positioning
 			if (style.position === 'absolute') continue;
 
+			// Skip Hidden Overflow
+			if (style.overflow === 'hidden' || style.overflowY === 'hidden') continue;
+
 			// Return Body
 			if (parent.tagName === 'BODY') return parent;
 
