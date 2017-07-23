@@ -4,10 +4,6 @@ import { AotPlugin } from '@ngtools/webpack';
 import * as HtmlWebpackPlugin from 'html-webpack-plugin';
 import { stats } from './config/webpack/webpack.helpers';
 
-/**
- * @todo seperate files
- * @todo webpack helper file
- */
 export = function (webpackEnvOptions, webpackOptions) {
 
 	let config: webpack.Configuration = {
@@ -19,7 +15,7 @@ export = function (webpackEnvOptions, webpackOptions) {
 			filename: '[name].bundle.js'
 		},
 		resolve: {
-			extensions: ['.js', '.ts']
+			extensions: ['.js', '.ts', '.json']
 		},
 		module: {
 			rules: [
@@ -51,14 +47,19 @@ export = function (webpackEnvOptions, webpackOptions) {
 		stats: stats,
 		plugins: [
 			new AotPlugin({
-				tsConfigPath: resolve(__dirname, './', './tsconfig.spec.json'),
-				// tsConfigPath: resolve(__dirname, './', './demo/tsconfig.demo.json'),
+				tsConfigPath: resolve(__dirname, './', './demo/tsconfig.demo.json'),
 				skipCodeGeneration: true
 			}),
 			new HtmlWebpackPlugin({
 				template: resolve(__dirname, './', './demo/index.html')
 			})
-		]
+		],
+		devServer: {
+			publicPath: '/',
+			contentBase: resolve(__dirname, './', './demo'),
+			port: 3000,
+			stats: stats
+		}
 	};
 
 	return config;

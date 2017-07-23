@@ -17,12 +17,12 @@ module.exports = function (config: karma.Config) {
 			require('karma-sourcemap-loader')
 		],
 		files: [
-			'./config/karma/entry.ts'
+			'./config/karma/karma.entry.ts'
 		],
 		exclude: [
 		],
 		preprocessors: {
-			'./config/karma/entry.ts': ['webpack', 'sourcemap']
+			'./config/karma/karma.entry.ts': ['webpack', 'sourcemap']
 		},
 		mime: {
 			'text/x-typescript': ['ts', 'tsx']
