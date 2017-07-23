@@ -2,68 +2,60 @@ import * as karma from 'karma';
 import * as webpack from 'webpack';
 import { resolve } from 'path';
 import { stats } from './config/webpack/webpack.helpers';
+import { getConfig as getWebpackTestConfig } from './config/webpack/webpack.test';
+
+interface CustomKarmaConfigOptions {
+	mime?: any;
+	webpack?: any;
+}
 
 module.exports = function (config: karma.Config) {
 
-	config.set(<karma.ConfigOptions>{
+	let configOptions: karma.ConfigOptions | CustomKarmaConfigOptions = {
 		basePath: '.',
 		frameworks: [
 			'jasmine'
 		],
 		plugins: [
 			require('karma-jasmine'),
+			require('karma-jasmine-html-reporter'),
 			require('karma-webpack'),
 			require('karma-chrome-launcher'),
 			require('karma-sourcemap-loader')
 		],
+		client: {
+			clearContext: false
+		},
 		files: [
 			'./config/karma/karma.entry.ts'
 		],
 		exclude: [
 		],
 		preprocessors: {
-			'./config/karma/karma.entry.ts': ['webpack', 'sourcemap']
+			'./config/karma/karma.entry.ts': [
+				'webpack',
+				'sourcemap'
+			]
 		},
 		mime: {
-			'text/x-typescript': ['ts', 'tsx']
+			'text/x-typescript': [
+				'ts',
+				'tsx'
+			]
 		},
-		webpack: <webpack.Configuration>{
-			resolve: {
-				extensions: ['.js', '.ts'],
-			},
-			module: {
-				rules: [
-					{
-						test: /\.ts$/,
-						loader: 'awesome-typescript-loader',
-						options: {
-							configFileName: resolve(__dirname, './tsconfig.spec.json')
-						},
-						exclude: [
-							/\.(e2e)\.ts$/
-						]
-					}
-				]
-			},
-			devtool: 'inline-source-map',
-			plugins: [
-				new webpack.ContextReplacementPlugin(
-					/angular(\\|\/)core(\\|\/)@angular/,
-					resolve(__dirname, './src'),
-					{}
-				)
-			],
-			stats: stats
-		},
+		webpack: getWebpackTestConfig(),
 		reporters: [
-			'progress'
+			'progress',
+			'kjhtml'
 		],
 		port: 9876,
 		colors: true,
 		logLevel: config.LOG_INFO,
-		autoWatch: false,
+		autoWatch: true,
 		browsers: ['Chrome'],
 		singleRun: true,
 		concurrency: Infinity
-	})
+	};
+
+	config.set(<karma.ConfigOptions>configOptions);
 }

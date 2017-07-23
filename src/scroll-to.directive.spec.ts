@@ -28,13 +28,6 @@ describe('ScrollToDirective', () => {
 		expect(directive).toBeTruthy();
 	});
 
-	// it('should be able to test directive', async(() => {
-	// 	TestBed.overrideComponent(ScrollToTestComponent, {
-	// 		set: {
-	// 			template: '<div my-directive></div>'
-	// 		}
-	// 	});
-	// }));
 });
 
 @Component({

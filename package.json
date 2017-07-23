@@ -5,7 +5,7 @@
   "main": "dist/index.js",
   "scripts": {
     "prebuild:demo": "npm run clean",
-    "build:demo": "webpack --progress --watch",
+    "build:demo": "webpack --progress",
     "serve": "webpack-dev-server",
     "build": "npm run clean && npm run transpile && npm run package && npm run minify && npm run copy",
     "prepublish": "npm run build",
@@ -71,6 +71,7 @@
     "karma": "^1.7.0",
     "karma-chrome-launcher": "^2.2.0",
     "karma-jasmine": "^1.1.0",
+    "karma-jasmine-html-reporter": "^0.2.2",
     "karma-sourcemap-loader": "^0.3.7",
     "karma-webpack": "^2.0.4",
     "loglevel": "^1.4.1",

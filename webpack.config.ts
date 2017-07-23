@@ -57,7 +57,6 @@ export = function (webpackEnvOptions, webpackOptions) {
 		devServer: {
 			publicPath: '/',
 			contentBase: resolve(__dirname, './', './demo'),
-			port: 3000,
 			stats: stats
 		}
 	};

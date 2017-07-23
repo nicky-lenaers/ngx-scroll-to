@@ -17,18 +17,18 @@
       "webpack-env"
     ],
     "typeRoots": [
-      "./node_modules/@types"
+      "../../node_modules/@types"
     ]
   },
   "exclude": [
-    "node_modules"
+    "../../node_modules"
   ],
   "files": [
-    "./config/karma/karma.entry.ts"
+    "../karma/karma.entry.ts"
   ],
   "include": [
-    "./src/**/*.spec.ts",
-    "./src/**/*.d.ts"
+    "../../src/**/*.spec.ts",
+    "../../src/**/*.d.ts"
   ],
   "awesomeTypeScriptLoaderOptions": {
     "useWebpackText": true
