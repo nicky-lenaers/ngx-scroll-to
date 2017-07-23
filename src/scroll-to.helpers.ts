@@ -47,6 +47,16 @@ export let easing: ScrollToAnimationEasingCollection = {
 };
 
 /**
+ * Strip hash (#) from value.
+ *
+ * @param value 				The given string value
+ * @returns 					The stripped string value
+ */
+export function stripHash(value: string): string {
+	return value.substring(0, 1) === '#' ? value.substring(1) : value;
+}
+
+/**
  * Test if a given value is a string.
  *
  * @param value 					The given value
@@ -64,4 +74,24 @@ export function isString(value: string | ElementRef): value is string {
  */
 export function isWindow(container: HTMLElement | Window): container is Window {
 	return container === window;
+}
+
+/**
+ * Test if a given value is of type ElementRef.
+ *
+ * @param value 					The given value
+ * @returns 						Whether the given value is a number
+ */
+export function isElementRef(value: any): value is ElementRef {
+	return value instanceof ElementRef;
+}
+
+/**
+ * Test if a given value is type number.
+ *
+ * @param value 					The given value
+ * @returns 						Whether the given value is a number
+ */
+export function isNumber(value: any): value is number {
+	return !isNaN(parseFloat(value)) && isFinite(value);
 }

@@ -1,11 +1,11 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppComponent } from './app.component';
-// import { ScrollToModule } from '../../src/scroll-to.module';
+import { ScrollToModule } from '../../src/scroll-to.module';
 
 @NgModule({
 	imports: [
-		// ScrollToModule.forRoot(),
+		ScrollToModule.forRoot(),
 		BrowserModule
 	],
 	declarations: [

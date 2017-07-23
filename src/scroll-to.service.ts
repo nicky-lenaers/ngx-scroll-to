@@ -5,7 +5,7 @@ import { ScrollToAnimationEasing } from './models/scroll-to-easing.model';
 import { ScrollToAnimationOptions } from './models/scroll-to-options.model';
 import { Observable } from 'rxjs/Observable';
 import { ReplaySubject } from 'rxjs/ReplaySubject';
-import { isString, isWindow } from './scroll-to.helpers';
+import { stripHash, isString, isNumber, isElementRef, isWindow } from './scroll-to.helpers';
 import { ScrollAnimation } from './statics/scroll-to-animation';
 
 @Injectable()
@@ -95,12 +95,18 @@ export class ScrollToService {
 
 		if (isString(id)) {
 
-			// Strip hashtag from ID
-			if (id.substring(0, 1) === '#') id = id.substring(1);
+			node = this._document.getElementById(stripHash(id));
 
-			node = this._document.getElementById(id);
-		} else {
+		} else if (isNumber(id)) {
+
+			node = this._document.getElementById(String(id));
+
+		} else if(isElementRef(id)) {
+
 			node = id.nativeElement;
+
+		} else {
+			throw new Error(`Unable to find target Element with value ${id}`);
 		}
 
 		return node;
