@@ -1,9 +1,24 @@
+<a name="0.2.3"></a>
+## 0.2.3 (2017-07-23)
+
+* Add Build Status ([263af57](https://github.com/nicky-lenaers/ngx-scroll-to/commit/263af57))
+* Add GitHub Issue Template ([1a39cde](https://github.com/nicky-lenaers/ngx-scroll-to/commit/1a39cde))
+* File Renaming & File Cleanup ([489eb45](https://github.com/nicky-lenaers/ngx-scroll-to/commit/489eb45))
+* File Reordering ([4899c28](https://github.com/nicky-lenaers/ngx-scroll-to/commit/4899c28))
+* Integrating Karma ([b60f1a6](https://github.com/nicky-lenaers/ngx-scroll-to/commit/b60f1a6))
+* Trigger Test ([ffbe950](https://github.com/nicky-lenaers/ngx-scroll-to/commit/ffbe950))
+* Update Descriptions ([384e895](https://github.com/nicky-lenaers/ngx-scroll-to/commit/384e895))
+* Working Tests ([4020d66](https://github.com/nicky-lenaers/ngx-scroll-to/commit/4020d66))
+
+
+
 <a name="0.2.2"></a>
 ## 0.2.2 (2017-07-22)
 
 * Added Sass ([405ad75](https://github.com/nicky-lenaers/ngx-scroll-to/commit/405ad75))
 * Demo Update ([5e2cb9c](https://github.com/nicky-lenaers/ngx-scroll-to/commit/5e2cb9c))
 * Handle hidden overflow ([9ccae5b](https://github.com/nicky-lenaers/ngx-scroll-to/commit/9ccae5b)), closes [#11](https://github.com/nicky-lenaers/ngx-scroll-to/issues/11)
+* Release 0.2.2 ([b5219d4](https://github.com/nicky-lenaers/ngx-scroll-to/commit/b5219d4))
 * Working Development Server ([76c0004](https://github.com/nicky-lenaers/ngx-scroll-to/commit/76c0004))
 
 
