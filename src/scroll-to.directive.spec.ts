@@ -39,4 +39,7 @@ describe('ScrollToDirective', () => {
 })
 export class ScrollToTestComponent {
 
+	constructor() {
+
+	}
 }
