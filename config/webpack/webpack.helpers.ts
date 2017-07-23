@@ -7,6 +7,8 @@ export const stats: webpack.Options.Stats = {
 	chunks: true,
 	chunkModules: false,
 	children: false,
+	errors: true,
+	errorDetails: true,
 	modules: false,
 	reasons: false,
 	warnings: true,

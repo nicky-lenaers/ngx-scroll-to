@@ -1,21 +1,23 @@
 {
   "compilerOptions": {
+    "module": "es2015",
+    "target": "es5",
+    "noImplicitAny": false,
     "sourceMap": true,
-    "declaration": false,
     "moduleResolution": "node",
-    "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
+    "emitDecoratorMetadata": true,
     "lib": [
-      "es2016",
+      "es2015",
       "dom"
     ],
-    "outDir": "./out-tsc/spec",
-    "module": "commonjs",
-    "target": "es5",
-    "baseUrl": "",
     "types": [
+      "node",
       "jasmine",
-      "node"
+      "webpack-env"
+    ],
+    "typeRoots": [
+      "./node_modules/@types"
     ]
   },
   "exclude": [
@@ -25,7 +27,9 @@
     "./config/karma/entry.ts"
   ],
   "include": [
-    "./src/**/*.spec.ts",
-    "./src/**/*.d.ts"
-  ]
+    "./src/**/*.spec.ts"
+  ],
+  "awesomeTypeScriptLoaderOptions": {
+    "useWebpackText": true
+  }
 }

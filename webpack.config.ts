@@ -19,7 +19,7 @@ export = function (webpackEnvOptions, webpackOptions) {
 			filename: '[name].bundle.js'
 		},
 		resolve: {
-			extensions: ['.js', '.ts', '.json']
+			extensions: ['.js', '.ts']
 		},
 		module: {
 			rules: [
@@ -52,6 +52,7 @@ export = function (webpackEnvOptions, webpackOptions) {
 		plugins: [
 			new AotPlugin({
 				tsConfigPath: resolve(__dirname, './', './tsconfig.spec.json'),
+				// tsConfigPath: resolve(__dirname, './', './demo/tsconfig.demo.json'),
 				skipCodeGeneration: true
 			}),
 			new HtmlWebpackPlugin({

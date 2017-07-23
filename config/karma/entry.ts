@@ -1,6 +1,10 @@
 /// <reference path="./entry.d.ts" />
 
 // This file is required by karma.conf.js and loads recursively all the .spec and framework files
+import 'core-js/es6/reflect';
+import 'core-js/es7/reflect';
+import 'zone.js/dist/zone';
+
 import 'zone.js/dist/long-stack-trace-zone';
 import 'zone.js/dist/proxy.js';
 import 'zone.js/dist/sync-test';
@@ -21,7 +25,7 @@ getTestBed()
 	);
 
 // Find all the Tests
-const context = require.context('../../src', true, /\.spec\.ts$/);
+const context = require.context('../../src/', true, /\.spec\.ts$/);
 
 // Load Modules.
 context.keys().map(context);
