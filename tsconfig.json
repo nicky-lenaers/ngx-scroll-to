@@ -9,8 +9,9 @@
 		"lib": [
 			"es2016",
 			"dom"
-		],
-    "skipLibCheck": true,
-    "noStrictGenericChecks": true
-	}
+		]
+  },
+  "exclude": [
+    "node_modules"
+  ]
 }
