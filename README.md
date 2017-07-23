@@ -4,13 +4,14 @@
 <div align="center">
   <h1>ngx-scroll-to</h1>
   <p>
-    Scroll to any element to enhance scroll-based features in you app.<br>
+    A simple Angular 4+ plugin enabling you to smooth scroll to any element on your page and enhance scroll-based features in your app.<br>
     Works for <strong>Angular 4+</strong>, both <strong>AoT</strong> and <strong>SSR</strong>. No dependencies.
   </p>
 </div>
 
 | Type                  | Badge                                                                           |
 |-----------------------|---------------------------------------------------------------------------------|
+| Circle CI Build       | [![Circle CI Build Status][circle-ci-badge]][circle-ci-badge-url]               |
 | GitHub Release        | [![GitHub Release][github-release-badge]][github-release-badge-url]             |
 | NPM Version           | [![NPM Version][npm-version-badge]][npm-version-badge-url]                      |
 | Dependencies          | [![Dependency Status][dep-status-badge]][dep-status-badge-url]                  |
@@ -46,7 +47,7 @@ export class AppModule { }
 ```
 
 ## Basic Usage
-**my-component.html**
+**my.component.html**
 
 ```html
 <!-- Works for including '#' -->
@@ -61,7 +62,7 @@ export class AppModule { }
 ```
 
 ## Advanced Usage
-**my-component.ts**
+**my.component.ts**
 ```js
 import { ScrollToAnimationEasing, ScrollToEvent, ScrollToOffsetMap } from '@nicky-lenaers/ngx-scroll-to';
 
@@ -101,7 +102,7 @@ export class MyComponent {
 ```
 
 
-**my-component.html**
+**my.component.html**
 ```html
 <button (click)="toggleDestination()">Toggle Destination</button>
 
@@ -125,18 +126,18 @@ export class MyComponent {
 ```
 
 ## Attributes Map
-| Options                                                       | Type                  | Default         | Accepts                                            |
-|---------------------------------------------------------------|-----------------------|-----------------|----------------------------------------------------|
-| [ngx-scroll-to](#ngx-scroll-to-details)                       | `string`              | `''`            | Any `string` value                                 |
-| [ngx-scroll-to-event](#ngx-scroll-to-event-details)           | `string`              | `click`         | `ScrollToEvent`                                    |
-| [ngx-scroll-to-duration](#ngx-scroll-to-duration-details)     | `number`              | `650`           | Any `number` value                                 |
-| [ngx-scroll-to-easing](#ngx-scroll-to-easing-details)         | `string`              | `easeInOutQuad` | `ScrollToAnimationEasing`                          |
-| [ngx-scroll-to-offset](#ngx-scroll-to-offset-details)         | `number`              | `0`             | Any `number` value                                 |
-| [ngx-scroll-to-offset-map](#ngx-scroll-to-offset-map-details) | `Map<number, number>` | `new Map()`     | Any `Map` with a key `number` and a value `number` |
+| Options                                                       | Type                                   | Default         | Accepts                                            |
+|---------------------------------------------------------------|----------------------------------------|-----------------|----------------------------------------------------|
+| [ngx-scroll-to](#ngx-scroll-to-details)                       | `string`                               | `''`            | Any `string` value                                 |
+| [ngx-scroll-to-event](#ngx-scroll-to-event-details)           | `ScrollToEvent`                        | `click`         | `ScrollToEvent`                                    |
+| [ngx-scroll-to-duration](#ngx-scroll-to-duration-details)     | `number`                               | `650`           | Any `number` value                                 |
+| [ngx-scroll-to-easing](#ngx-scroll-to-easing-details)         | `ScrollToAnimationEasing`              | `easeInOutQuad` | `ScrollToAnimationEasing`                          |
+| [ngx-scroll-to-offset](#ngx-scroll-to-offset-details)         | `number`                               | `0`             | Any `number` value                                 |
+| [ngx-scroll-to-offset-map](#ngx-scroll-to-offset-map-details) | `ScrollToOffsetMap`                    | `new Map()`     | `ScrollToOffsetMap`                                |
 
 ## Attribue Map Details
 #### <a name="ngx-scroll-to-details"></a>`[ngx-scroll-to]`
-This value specifies the ID of the HTML Element to scroll to. Note the outer double quotes `""` and the inner single quotes `''` in the above examples. This enables you to dynamically set the string value based on a class property of your Component.
+This value specifies the ID of the HTML Element to scroll to. Note the outer double quotes `""` and the inner single quotes `''` in the above example(s). This enables you to dynamically set the string value based on a class property of your Component.
 
 #### <a name="ngx-scroll-to-event-details"></a>`[ngx-scroll-to-event]`
 This value controls to event on which to trigger the scroll animation. Allowed values are:
@@ -179,6 +180,8 @@ This value allows you to control dynamic offsets based on the width of the devic
 # License
  [MIT](/LICENSE)
 
+[circle-ci-badge]: https://img.shields.io/circleci/project/github/nicky-lenaers/ngx-scroll-to.svg?style=flat-square
+[circle-ci-badge-url]: https://circleci.com/gh/nicky-lenaers/ngx-scroll-to
 [github-release-badge]: https://img.shields.io/github/release/nicky-lenaers/ngx-scroll-to.svg?style=flat-square
 [github-release-badge-url]: https://github.com/nicky-lenaers/ngx-scroll-to/releases
 [npm-version-badge]: https://img.shields.io/npm/v/@nicky-lenaers/ngx-scroll-to.svg?style=flat-square
