@@ -11,6 +11,7 @@
 
 | Type                  | Badge                                                                           |
 |-----------------------|---------------------------------------------------------------------------------|
+| Circle CI Build       | [![Circle CI Build Status][circle-ci-badge]][circle-ci-badge-url]               |
 | GitHub Release        | [![GitHub Release][github-release-badge]][github-release-badge-url]             |
 | NPM Version           | [![NPM Version][npm-version-badge]][npm-version-badge-url]                      |
 | Dependencies          | [![Dependency Status][dep-status-badge]][dep-status-badge-url]                  |
@@ -179,6 +180,8 @@ This value allows you to control dynamic offsets based on the width of the devic
 # License
  [MIT](/LICENSE)
 
+[circle-ci-badge]: https://img.shields.io/circleci/project/github/nicky-lenaers/ngx-scroll-to.svg?style=flat-square
+[circle-ci-badge-url]: https://circleci.com/gh/nicky-lenaers/ngx-scroll-to
 [github-release-badge]: https://img.shields.io/github/release/nicky-lenaers/ngx-scroll-to.svg?style=flat-square
 [github-release-badge-url]: https://github.com/nicky-lenaers/ngx-scroll-to/releases
 [npm-version-badge]: https://img.shields.io/npm/v/@nicky-lenaers/ngx-scroll-to.svg?style=flat-square
