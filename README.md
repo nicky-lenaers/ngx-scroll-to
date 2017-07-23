@@ -68,7 +68,7 @@ import { ScrollToAnimationEasing, ScrollToEvent, ScrollToOffsetMap } from '@nick
 
 @Component({
   selector: 'my-component'
-  templateUrl: './component.html'
+  templateUrl: './my.component.html'
 })
 export class MyComponent {
 
