@@ -1,12 +1,16 @@
-import { Component } from '@angular/core';
-import { async, TestBed } from '@angular/core/testing';
+import { Component, DebugElement, OnInit } from '@angular/core';
+import { async, TestBed, fakeAsync, tick } from '@angular/core/testing';
 import { Observable } from 'rxjs/Observable';
 import { By } from '@angular/platform-browser';
-
+import { ComponentFixture } from '@angular/core/testing';
 import { ScrollToModule } from './scroll-to.module';
 import { ScrollToDirective } from './scroll-to.directive';
 
 describe('ScrollToDirective', () => {
+
+	let fixture: ComponentFixture<DummyComponent>;
+	let dummy: DummyComponent;
+	let directive: DebugElement;
 
 	beforeEach(async(() => {
 
@@ -16,15 +20,19 @@ describe('ScrollToDirective', () => {
 					ScrollToModule.forRoot()
 				],
 				declarations: [
-					ScrollToTestComponent
+					DummyComponent
 				]
 			})
 			.compileComponents();
+
+		fixture = TestBed.createComponent(DummyComponent);
+		dummy = fixture.componentInstance;
+		directive = fixture.debugElement.query(By.directive(ScrollToDirective));
+
+		fixture.detectChanges();
 	}));
 
 	it('should be created', () => {
-		const fixture = TestBed.createComponent(ScrollToTestComponent);
-		const directive = fixture.debugElement.query(By.directive(ScrollToDirective));
 		expect(directive).toBeTruthy();
 	});
 
@@ -33,13 +41,13 @@ describe('ScrollToDirective', () => {
 @Component({
 	selector: 'ngx-scroll-to',
 	template: `
-		<div [ngx-scroll-to]="'destination'">Go to destination</div>
+		<button [ngx-scroll-to]="'destination'">Go to destination</button>
 		<div id="destination">You've reached your destination</div>
 	`
 })
-export class ScrollToTestComponent {
+export class DummyComponent implements OnInit {
 
-	constructor() {
+	constructor() { }
 
-	}
+	public ngOnInit() { }
 }

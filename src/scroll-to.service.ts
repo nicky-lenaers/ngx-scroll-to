@@ -9,6 +9,9 @@ import { stripHash, isString, isNumber, isElementRef, isWindow } from './scroll-
 import { ScrollAnimation } from './statics/scroll-to-animation';
 
 @Injectable()
+/**
+ * @todo rename ScrollAnimation to 'ScrollToAnimation'
+ */
 export class ScrollToService {
 
 	private _animation: ScrollAnimation;
@@ -27,7 +30,7 @@ export class ScrollToService {
 	 */
 	public onTrigger(event: Event, target: HTMLElement, renderer2: Renderer2, config: ScrollToAnimationOptions): void {
 
-		const container = this.getFirstScrollableParent(<HTMLElement>event.target);
+		const container = this._getFirstScrollableParent(<HTMLElement>event.target);
 		const listenerTarget = this._getListenerTarget(container);
 
 		if (this._animation) this._animation.stop();
@@ -53,7 +56,7 @@ export class ScrollToService {
 	 * @param includeHidden 			Whether to include hidden elements or not
 	 * @return 							The first scrollable parent element
 	 */
-	public getFirstScrollableParent(nativeElement: HTMLElement, includeHidden: boolean = true): HTMLElement {
+	private _getFirstScrollableParent(nativeElement: HTMLElement, includeHidden: boolean = true): HTMLElement {
 
 		let style: CSSStyleDeclaration = window.getComputedStyle(nativeElement);
 

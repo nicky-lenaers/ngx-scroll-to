@@ -9,6 +9,10 @@ import { ScrollToEvent } from './models/scroll-to-event.model';
 @Directive({
 	selector: '[ngx-scroll-to]'
 })
+/**
+ * @todo: custom type for ngx-scroll-to using these string | number | ElementRef
+ * @todo: make getTargetNode private for service and just send 'this.ngxScrollTo' over to the service (using the type that is defined after doing the above @todo)
+ */
 export class ScrollToDirective implements AfterViewInit {
 
 	@Input('ngx-scroll-to')
