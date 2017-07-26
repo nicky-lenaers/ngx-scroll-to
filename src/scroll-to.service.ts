@@ -30,7 +30,7 @@ export class ScrollToService {
 
 		const target_node = this._getTargetNode(target)
 
-		const container = this._getFirstScrollableParent(<HTMLElement>event.target);
+		const container = this._getFirstScrollableParent(event.target as HTMLElement);
 		const listenerTarget = this._getListenerTarget(container);
 
 		if (this._animation) this._animation.stop();
