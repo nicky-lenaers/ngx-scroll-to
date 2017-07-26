@@ -6,15 +6,13 @@ import { ScrollToAnimationOptions } from './models/scroll-to-options.model';
 import { Observable } from 'rxjs/Observable';
 import { ReplaySubject } from 'rxjs/ReplaySubject';
 import { stripHash, isString, isNumber, isElementRef, isWindow } from './scroll-to.helpers';
-import { ScrollAnimation } from './statics/scroll-to-animation';
+import { ScrollToTarget } from './models/scroll-to-target.model';
+import { ScrollToAnimation } from './statics/scroll-to-animation';
 
 @Injectable()
-/**
- * @todo rename ScrollAnimation to 'ScrollToAnimation'
- */
 export class ScrollToService {
 
-	private _animation: ScrollAnimation;
+	private _animation: ScrollToAnimation;
 
 	constructor(
 		@Inject(DOCUMENT) private _document: any,
@@ -28,7 +26,9 @@ export class ScrollToService {
 	 * @param event 				Native Browser Event
 	 * @returns void
 	 */
-	public onTrigger(event: Event, target: HTMLElement, renderer2: Renderer2, config: ScrollToAnimationOptions): void {
+	public ɵonTrigger(event: Event, target: ScrollToTarget, renderer2: Renderer2, config: ScrollToAnimationOptions): void {
+
+		const target_node = this._getTargetNode(target)
 
 		const container = this._getFirstScrollableParent(<HTMLElement>event.target);
 		const listenerTarget = this._getListenerTarget(container);
@@ -36,9 +36,9 @@ export class ScrollToService {
 		if (this._animation) this._animation.stop();
 
 		const is_window = isWindow(listenerTarget);
-		const to: number = is_window ? target.offsetTop : target.getBoundingClientRect().top;
+		const to: number = is_window ? target_node.offsetTop : target_node.getBoundingClientRect().top;
 
-		this._animation = new ScrollAnimation(container, listenerTarget, is_window, to, config, isPlatformBrowser(this._platform_id));
+		this._animation = new ScrollToAnimation(container, listenerTarget, is_window, to, config, isPlatformBrowser(this._platform_id));
 		const animation$: Observable<number> = this._animation.start();
 
 		const stop_events: string[] = ['mousewheel', 'DOMMouseScroll', 'touchstart'];
@@ -92,7 +92,7 @@ export class ScrollToService {
 	 * @param id 			The given ID of the node, either a string or an element reference
 	 * @returns 			Target Node
 	 */
-	public getTargetNode(id: string | ElementRef): HTMLElement {
+	private _getTargetNode(id: ScrollToTarget): HTMLElement {
 
 		let node: HTMLElement;
 

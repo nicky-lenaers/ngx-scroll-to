@@ -1,13 +1,11 @@
-import { Inject } from '@angular/core';
+import { Inject, PLATFORM_ID } from '@angular/core';
 import { DOCUMENT } from '@angular/platform-browser';
 import { TestBed, async } from '@angular/core/testing';
 import { ScrollToService } from './scroll-to.service';
 
 class MockDocument { }
+class MockPlatform { }
 
-/**
- * @todo provide platform ID aswell
- */
 describe('ScrollToService', () => {
 
 	let service: ScrollToService;
@@ -17,6 +15,9 @@ describe('ScrollToService', () => {
 			providers: [
 				{
 					provide: DOCUMENT, useClass: MockDocument
+				},
+				{
+					provide: PLATFORM_ID, useClass: MockPlatform
 				},
 				ScrollToService
 			]
@@ -29,7 +30,7 @@ describe('ScrollToService', () => {
 		expect(service).toBeTruthy();
 	});
 
-	it('should have a public function called `onTrigger`', () => {
-		expect(service.onTrigger instanceof Function).toBeTruthy();
+	it('should have a public function (private API) called `ɵonTrigger`', () => {
+		expect(service.ɵonTrigger instanceof Function).toBeTruthy();
 	});
 });

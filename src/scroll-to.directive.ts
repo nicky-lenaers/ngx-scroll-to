@@ -4,19 +4,16 @@ import { isPlatformServer } from '@angular/common';
 import { ScrollToService } from './scroll-to.service';
 import { ScrollToAnimationEasing } from './models/scroll-to-easing.model';
 import { ScrollToAnimationOptions, ScrollToOffsetMap } from './models/scroll-to-options.model';
+import { ScrollToTarget } from './models/scroll-to-target.model';
 import { ScrollToEvent } from './models/scroll-to-event.model';
 
 @Directive({
 	selector: '[ngx-scroll-to]'
 })
-/**
- * @todo: custom type for ngx-scroll-to using these string | number | ElementRef
- * @todo: make getTargetNode private for service and just send 'this.ngxScrollTo' over to the service (using the type that is defined after doing the above @todo)
- */
 export class ScrollToDirective implements AfterViewInit {
 
 	@Input('ngx-scroll-to')
-	public ngxScrollTo: string | ElementRef = '';
+	public ngxScrollTo: ScrollToTarget;
 
 	@Input('ngx-scroll-to-event')
 	public ngxScrollToEvent: ScrollToEvent = 'click';
@@ -62,10 +59,8 @@ export class ScrollToDirective implements AfterViewInit {
 
 		// Listen for the trigger...
 		this._renderer2.listen(this._elementRef.nativeElement, this.ngxScrollToEvent,
-			(event) => {
-				setTimeout((__HACK__: any) => {
-					this._scrollToService.onTrigger(event, this._scrollToService.getTargetNode(this.ngxScrollTo), this._renderer2, this._config)
-				});
+			(event: Event) => {
+				setTimeout((__HACK__: any) => this._scrollToService.ɵonTrigger(event, this.ngxScrollTo, this._renderer2, this._config));
 			});
 	}
 }

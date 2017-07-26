@@ -62,7 +62,7 @@ export function stripHash(value: string): string {
  * @param value 					The given value
  * @returns 						Whether the given value is a string
  */
-export function isString(value: string | ElementRef): value is string {
+export function isString(value: any): value is string {
 	return typeof value === 'string' || value instanceof String;
 }
 
