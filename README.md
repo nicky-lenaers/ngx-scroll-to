@@ -127,7 +127,7 @@ export class MyComponent {
 ## Attributes Map
 | Options                                                       | Type                                   | Default         | Accepts                                            |
 |---------------------------------------------------------------|----------------------------------------|-----------------|----------------------------------------------------|
-| [ngx-scroll-to](#ngx-scroll-to-details)                       | `string`                               | `''`            | Any `string` value                                 |
+| [ngx-scroll-to](#ngx-scroll-to-details)                       | `string` | `number` | `ElementRef`     | `''`            | Any `string`, `number` or `ElementRef` value       |
 | [ngx-scroll-to-event](#ngx-scroll-to-event-details)           | `ScrollToEvent`                        | `click`         | `ScrollToEvent`                                    |
 | [ngx-scroll-to-duration](#ngx-scroll-to-duration-details)     | `number`                               | `650`           | Any `number` value                                 |
 | [ngx-scroll-to-easing](#ngx-scroll-to-easing-details)         | `ScrollToAnimationEasing`              | `easeInOutQuad` | `ScrollToAnimationEasing`                          |
