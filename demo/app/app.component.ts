@@ -10,6 +10,8 @@ import { ScrollToConfigOptions } from '../../src/models/scroll-to-options.model'
 })
 export class AppComponent {
 
+	public DUR = 300;
+
 	constructor(private _scrollToService: ScrollToService) { }
 
 	public triggerScrollTo(target: ScrollToTarget) {

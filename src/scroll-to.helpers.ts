@@ -1,8 +1,21 @@
 import { ElementRef } from '@angular/core';
 import { ScrollToAnimationEasing, ScrollToAnimationEasingCollection } from './models/scroll-to-easing.model';
+import { ScrollToConfigOptions, ɵScrollToDefaultOptions } from './models/scroll-to-options.model';
 
 /**
- * Definition of Easing Colleciton.
+ * Default values for Component Input.
+ */
+export const DEFAULTS: ɵScrollToDefaultOptions = {
+	target: null,
+	event: 'click',
+	duration: 650,
+	easing: 'easeInOutQuad',
+	offset: 0,
+	offsetMap: new Map()
+};
+
+/**
+ * Easing Colleciton.
  */
 export let easing: ScrollToAnimationEasingCollection = {
 	easeInQuad: (time: number) => {
@@ -45,6 +58,23 @@ export let easing: ScrollToAnimationEasingCollection = {
 		return Math.pow(2, -10 * time) * Math.sin((time - 1 / 4) * (2 * Math.PI) / 1) + 1;
 	}
 };
+
+/**
+ * Merge user config with default config.
+ *
+ * @param config 				User Configuration Object
+ * @returns 					Merged Configuration Object
+ */
+export function mergeConfigWithDefaults(config: ScrollToConfigOptions): ScrollToConfigOptions {
+
+	let filtered: any = new Object();
+
+	Object.keys(config)
+		.filter((key) => config[key] !== undefined)
+		.forEach((key) => filtered[key] = config[key]);
+
+	return Object.assign({}, DEFAULTS, filtered) as ScrollToConfigOptions;
+}
 
 /**
  * Strip hash (#) from value.

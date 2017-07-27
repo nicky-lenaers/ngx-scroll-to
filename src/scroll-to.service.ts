@@ -7,9 +7,16 @@ import { ReplaySubject } from 'rxjs/ReplaySubject';
 
 import { ScrollToAnimationEasing } from './models/scroll-to-easing.model';
 import { ScrollToAnimationOptions, ScrollToConfigOptions } from './models/scroll-to-options.model';
-import { stripHash, isString, isNumber, isElementRef, isWindow } from './scroll-to.helpers';
 import { ScrollToTarget } from './models/scroll-to-target.model';
 import { ScrollToAnimation } from './statics/scroll-to-animation';
+import {
+	stripHash,
+	isString,
+	isNumber,
+	isElementRef,
+	isWindow,
+	mergeConfigWithDefaults
+} from './scroll-to.helpers';
 
 @Injectable()
 export class ScrollToService {
@@ -26,7 +33,7 @@ export class ScrollToService {
 	 * Target an Element to scroll to.
 	 *
 	 * @todo implement
-	 * @todo use setTimeout hack, because it is not triggered from inside directive (where the hack currently resides)
+	 * @todo use setTimeout hack here (or better yet, decorator), because it is not triggered from inside directive (where the hack currently resides)
 	 * @experimental
 	 *
 	 * @param config
@@ -35,7 +42,8 @@ export class ScrollToService {
 
 		let subject$ = new ReplaySubject<any>(); // @todo type 'any' should become ScrollToEvent (base class)
 
-
+		const merged_config = mergeConfigWithDefaults(config);
+		console.log('merged: ', merged_config);
 
 		return subject$.asObservable();
 	}

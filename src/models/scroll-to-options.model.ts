@@ -1,5 +1,6 @@
 import { ScrollToAnimationEasing } from './scroll-to-easing.model';
 import { ScrollToTarget } from './scroll-to-target.model';
+import { ScrollToEvent } from './scroll-to-event.model';
 
 export type ScrollToOffsetMap = Map<number, number>;
 
@@ -9,9 +10,19 @@ export type ScrollToOffsetMap = Map<number, number>;
  */
 export interface ScrollToAnimationOptions {
 	duration?: number;
+	event?: ScrollToEvent;
 	easing?: ScrollToAnimationEasing;
 	offset?: number;
 	offsetMap?: ScrollToOffsetMap;
+}
+
+export interface ɵScrollToDefaultOptions {
+	target: ScrollToTarget;
+	event: ScrollToEvent;
+	duration: number;
+	easing: ScrollToAnimationEasing;
+	offset: number;
+	offsetMap: ScrollToOffsetMap;
 }
 
 export interface ScrollToConfigOptions extends ScrollToAnimationOptions {
