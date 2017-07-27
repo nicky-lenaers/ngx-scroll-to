@@ -1,10 +1,12 @@
 import { Injectable, ElementRef, Renderer2, PLATFORM_ID, Inject } from '@angular/core';
 import { DOCUMENT } from '@angular/platform-browser';
 import { isPlatformBrowser } from '@angular/common';
-import { ScrollToAnimationEasing } from './models/scroll-to-easing.model';
-import { ScrollToAnimationOptions } from './models/scroll-to-options.model';
+
 import { Observable } from 'rxjs/Observable';
 import { ReplaySubject } from 'rxjs/ReplaySubject';
+
+import { ScrollToAnimationEasing } from './models/scroll-to-easing.model';
+import { ScrollToAnimationOptions, ScrollToConfigOptions } from './models/scroll-to-options.model';
 import { stripHash, isString, isNumber, isElementRef, isWindow } from './scroll-to.helpers';
 import { ScrollToTarget } from './models/scroll-to-target.model';
 import { ScrollToAnimation } from './statics/scroll-to-animation';
@@ -21,6 +23,24 @@ export class ScrollToService {
 	}
 
 	/**
+	 * Target an Element to scroll to.
+	 *
+	 * @todo implement
+	 * @todo use setTimeout hack, because it is not triggered from inside directive (where the hack currently resides)
+	 * @experimental
+	 *
+	 * @param config
+	 */
+	public scrollTo(config: ScrollToConfigOptions): Observable<any> {
+
+		let subject$ = new ReplaySubject<any>(); // @todo type 'any' should become ScrollToEvent (base class)
+
+
+
+		return subject$.asObservable();
+	}
+
+	/**
 	 * Fire when the event proposition if fulfilled/triggered.
 	 *
 	 * @param event 				Native Browser Event
@@ -28,7 +48,7 @@ export class ScrollToService {
 	 */
 	public ɵonTrigger(event: Event, target: ScrollToTarget, renderer2: Renderer2, config: ScrollToAnimationOptions): void {
 
-		const target_node = this._getTargetNode(target)
+		const target_node = this._getTargetNode(target);
 
 		const container = this._getFirstScrollableParent(event.target as HTMLElement);
 		const listenerTarget = this._getListenerTarget(container);
