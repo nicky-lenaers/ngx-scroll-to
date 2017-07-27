@@ -1,3 +1,18 @@
+<a name="0.2.4"></a>
+## 0.2.4 (2017-07-27)
+
+* Add Directive & Service Tests ([1af2cee](https://github.com/nicky-lenaers/ngx-scroll-to/commit/1af2cee))
+* Add Karma Test Watcher ([b680869](https://github.com/nicky-lenaers/ngx-scroll-to/commit/b680869))
+* Improved internal structure ([41220b6](https://github.com/nicky-lenaers/ngx-scroll-to/commit/41220b6))
+* Subsitute Type Casting ([74336a9](https://github.com/nicky-lenaers/ngx-scroll-to/commit/74336a9))
+* Support numeric ID ([1c6c021](https://github.com/nicky-lenaers/ngx-scroll-to/commit/1c6c021)), closes [#9](https://github.com/nicky-lenaers/ngx-scroll-to/issues/9)
+* Update Circle CI Badge URL ([617c621](https://github.com/nicky-lenaers/ngx-scroll-to/commit/617c621)), closes [#18](https://github.com/nicky-lenaers/ngx-scroll-to/issues/18)
+* Update README ([760e8d8](https://github.com/nicky-lenaers/ngx-scroll-to/commit/760e8d8))
+* Update README ([e40ebe5](https://github.com/nicky-lenaers/ngx-scroll-to/commit/e40ebe5))
+* Update README ([fc9c5fd](https://github.com/nicky-lenaers/ngx-scroll-to/commit/fc9c5fd))
+
+
+
 <a name="0.2.3"></a>
 ## 0.2.3 (2017-07-23)
 
@@ -6,6 +21,7 @@
 * File Renaming & File Cleanup ([489eb45](https://github.com/nicky-lenaers/ngx-scroll-to/commit/489eb45))
 * File Reordering ([4899c28](https://github.com/nicky-lenaers/ngx-scroll-to/commit/4899c28))
 * Integrating Karma ([b60f1a6](https://github.com/nicky-lenaers/ngx-scroll-to/commit/b60f1a6))
+* Release 0.2.3 ([6d1df91](https://github.com/nicky-lenaers/ngx-scroll-to/commit/6d1df91))
 * Trigger Test ([ffbe950](https://github.com/nicky-lenaers/ngx-scroll-to/commit/ffbe950))
 * Update Descriptions ([384e895](https://github.com/nicky-lenaers/ngx-scroll-to/commit/384e895))
 * Working Tests ([4020d66](https://github.com/nicky-lenaers/ngx-scroll-to/commit/4020d66))
