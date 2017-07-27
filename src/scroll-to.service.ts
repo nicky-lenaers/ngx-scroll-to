@@ -80,6 +80,9 @@ export class ScrollToService {
 	/**
 	 * Find the first scrollable parent node of an element.
 	 *
+	 * @todo remove overflow_regex pattern? this is just returning the parent even when it is hidden.
+	 * 	this test is done earlier in the function already.
+	 *
 	 * @param nativeElement 			The element to search from
 	 * @param includeHidden 			Whether to include hidden elements or not
 	 * @return 							The first scrollable parent element
