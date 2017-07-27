@@ -4,8 +4,7 @@
 <div align="center">
   <h1>ngx-scroll-to</h1>
   <p>
-    A simple Angular 4+ plugin enabling you to smooth scroll to any element on your page and enhance scroll-based features in your app.<br>
-    Works for <strong>Angular 4+</strong>, both <strong>AoT</strong> and <strong>SSR</strong>. No dependencies.
+    A simple Angular 4+ plugin enabling you to smooth scroll to any element on your page and enhance scroll-based features in your app. Works for <strong>Angular 4+</strong>, both <strong>AoT</strong> and <strong>SSR</strong>. No dependencies.
   </p>
 </div>
 
@@ -68,7 +67,7 @@ import { ScrollToAnimationEasing, ScrollToEvent, ScrollToOffsetMap } from '@nick
 
 @Component({
   selector: 'my-component'
-  templateUrl: './component.html'
+  templateUrl: './my.component.html'
 })
 export class MyComponent {
 
@@ -128,7 +127,7 @@ export class MyComponent {
 ## Attributes Map
 | Options                                                       | Type                                   | Default         | Accepts                                            |
 |---------------------------------------------------------------|----------------------------------------|-----------------|----------------------------------------------------|
-| [ngx-scroll-to](#ngx-scroll-to-details)                       | `string`                               | `''`            | Any `string` value                                 |
+| [ngx-scroll-to](#ngx-scroll-to-details)                       | `string` | `number` | `ElementRef`     | `''`            | Any `string`, `number` or `ElementRef` value       |
 | [ngx-scroll-to-event](#ngx-scroll-to-event-details)           | `ScrollToEvent`                        | `click`         | `ScrollToEvent`                                    |
 | [ngx-scroll-to-duration](#ngx-scroll-to-duration-details)     | `number`                               | `650`           | Any `number` value                                 |
 | [ngx-scroll-to-easing](#ngx-scroll-to-easing-details)         | `ScrollToAnimationEasing`              | `easeInOutQuad` | `ScrollToAnimationEasing`                          |
@@ -180,7 +179,7 @@ This value allows you to control dynamic offsets based on the width of the devic
 # License
  [MIT](/LICENSE)
 
-[circle-ci-badge]: https://img.shields.io/circleci/project/github/nicky-lenaers/ngx-scroll-to.svg?style=flat-square
+[circle-ci-badge]: https://img.shields.io/circleci/project/github/nicky-lenaers/ngx-scroll-to/master.svg?style=flat-square
 [circle-ci-badge-url]: https://circleci.com/gh/nicky-lenaers/ngx-scroll-to
 [github-release-badge]: https://img.shields.io/github/release/nicky-lenaers/ngx-scroll-to.svg?style=flat-square
 [github-release-badge-url]: https://github.com/nicky-lenaers/ngx-scroll-to/releases

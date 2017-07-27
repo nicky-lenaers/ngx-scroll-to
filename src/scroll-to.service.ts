@@ -5,13 +5,14 @@ import { ScrollToAnimationEasing } from './models/scroll-to-easing.model';
 import { ScrollToAnimationOptions } from './models/scroll-to-options.model';
 import { Observable } from 'rxjs/Observable';
 import { ReplaySubject } from 'rxjs/ReplaySubject';
-import { isString, isWindow } from './scroll-to.helpers';
-import { ScrollAnimation } from './statics/scroll-to-animation';
+import { stripHash, isString, isNumber, isElementRef, isWindow } from './scroll-to.helpers';
+import { ScrollToTarget } from './models/scroll-to-target.model';
+import { ScrollToAnimation } from './statics/scroll-to-animation';
 
 @Injectable()
 export class ScrollToService {
 
-	private _animation: ScrollAnimation;
+	private _animation: ScrollToAnimation;
 
 	constructor(
 		@Inject(DOCUMENT) private _document: any,
@@ -25,17 +26,19 @@ export class ScrollToService {
 	 * @param event 				Native Browser Event
 	 * @returns void
 	 */
-	public onTrigger(event: Event, target: HTMLElement, renderer2: Renderer2, config: ScrollToAnimationOptions): void {
+	public ɵonTrigger(event: Event, target: ScrollToTarget, renderer2: Renderer2, config: ScrollToAnimationOptions): void {
 
-		const container = this.getFirstScrollableParent(<HTMLElement>event.target);
+		const target_node = this._getTargetNode(target)
+
+		const container = this._getFirstScrollableParent(event.target as HTMLElement);
 		const listenerTarget = this._getListenerTarget(container);
 
 		if (this._animation) this._animation.stop();
 
 		const is_window = isWindow(listenerTarget);
-		const to: number = is_window ? target.offsetTop : target.getBoundingClientRect().top;
+		const to: number = is_window ? target_node.offsetTop : target_node.getBoundingClientRect().top;
 
-		this._animation = new ScrollAnimation(container, listenerTarget, is_window, to, config, isPlatformBrowser(this._platform_id));
+		this._animation = new ScrollToAnimation(container, listenerTarget, is_window, to, config, isPlatformBrowser(this._platform_id));
 		const animation$: Observable<number> = this._animation.start();
 
 		const stop_events: string[] = ['mousewheel', 'DOMMouseScroll', 'touchstart'];
@@ -53,7 +56,7 @@ export class ScrollToService {
 	 * @param includeHidden 			Whether to include hidden elements or not
 	 * @return 							The first scrollable parent element
 	 */
-	public getFirstScrollableParent(nativeElement: HTMLElement, includeHidden: boolean = true): HTMLElement {
+	private _getFirstScrollableParent(nativeElement: HTMLElement, includeHidden: boolean = true): HTMLElement {
 
 		let style: CSSStyleDeclaration = window.getComputedStyle(nativeElement);
 
@@ -89,18 +92,24 @@ export class ScrollToService {
 	 * @param id 			The given ID of the node, either a string or an element reference
 	 * @returns 			Target Node
 	 */
-	public getTargetNode(id: string | ElementRef): HTMLElement {
+	private _getTargetNode(id: ScrollToTarget): HTMLElement {
 
 		let node: HTMLElement;
 
 		if (isString(id)) {
 
-			// Strip hashtag from ID
-			if (id.substring(0, 1) === '#') id = id.substring(1);
+			node = this._document.getElementById(stripHash(id));
 
-			node = this._document.getElementById(id);
-		} else {
+		} else if (isNumber(id)) {
+
+			node = this._document.getElementById(String(id));
+
+		} else if(isElementRef(id)) {
+
 			node = id.nativeElement;
+
+		} else {
+			throw new Error(`Unable to find target Element with value ${id}`);
 		}
 
 		return node;

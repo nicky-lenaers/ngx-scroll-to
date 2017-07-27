@@ -3,7 +3,7 @@ import { Observable } from 'rxjs/Observable';
 import { easing } from '../scroll-to.helpers';
 import { ScrollToAnimationOptions } from '../models/scroll-to-options.model';
 
-export class ScrollAnimation {
+export class ScrollToAnimation {
 
 	private _tick: number;
 	private _interval: any;
@@ -52,12 +52,14 @@ export class ScrollAnimation {
 	/**
 	 * Start the new Scroll Animation.
 	 *
+	 * @todo enums for actiontypes
+	 *
 	 * @returns void
 	 */
 	public start(): Observable<any> {
 		clearInterval(this._interval);
 		this._interval = setInterval(this._loop, this._tick);
-		return this._source$.asObservable(); // todo: enums for actiontypes
+		return this._source$.asObservable();
 	}
 
 	/**

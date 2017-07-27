@@ -16,6 +16,7 @@
     "minify": "uglifyjs dist/bundles/ngx-scroll-to.umd.js --screw-ie8 --compress --mangle --comments --output dist/bundles/ngx-scroll-to.umd.min.js",
     "changelog": "conventional-changelog -i CHANGELOG.md -s -r 0",
     "test": "karma start",
+    "test:watch": "karma start --watch=true --single-run=false",
     "clean": "rimraf .tmp && rimraf dist"
   },
   "repository": {
