@@ -1,6 +1,6 @@
 import { ElementRef } from '@angular/core';
-import { ScrollToAnimationEasing, ScrollToAnimationEasingCollection } from './models/scroll-to-easing.model';
-import { ScrollToConfigOptions, ɵScrollToDefaultOptions } from './models/scroll-to-options.model';
+import { ScrollToAnimationEasing, ScrollToAnimationEasingCollection } from '../models/scroll-to-easing.model';
+import { ScrollToConfigOptions, ɵScrollToDefaultOptions } from '../models/scroll-to-options.model';
 
 /**
  * Default values for Component Input.

@@ -8,9 +8,9 @@ export type ScrollToOffsetMap = Map<number, number>;
  * @todo move ScrollToTarget to this file (no need for seperate file, since it is a config option)
  * @todo consider moving offset and offsetMap out of a type that has 'AnimationOptions' (both are not animation options)
  */
-export interface ScrollToAnimationOptions {
+export interface ScrollToConfigOptions {
+	target: ScrollToTarget;
 	duration?: number;
-	event?: ScrollToEvent;
 	easing?: ScrollToAnimationEasing;
 	offset?: number;
 	offsetMap?: ScrollToOffsetMap;
@@ -23,8 +23,4 @@ export interface ɵScrollToDefaultOptions {
 	easing: ScrollToAnimationEasing;
 	offset: number;
 	offsetMap: ScrollToOffsetMap;
-}
-
-export interface ScrollToConfigOptions extends ScrollToAnimationOptions {
-	target: ScrollToTarget;
 }

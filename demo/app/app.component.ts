@@ -10,16 +10,15 @@ import { ScrollToConfigOptions } from '../../src/models/scroll-to-options.model'
 })
 export class AppComponent {
 
-	public DUR = 300;
-
 	constructor(private _scrollToService: ScrollToService) { }
 
-	public triggerScrollTo(target: ScrollToTarget) {
+	public triggerScrollTo(event: Event) {
 
 		const config: ScrollToConfigOptions = {
-			target: target
+			target: 'end',
+			duration: 3000
 		}
 
-		this._scrollToService.scrollTo(config);
+		this._scrollToService.scrollTo(event, config);
 	}
 }

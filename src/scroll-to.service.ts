@@ -6,7 +6,7 @@ import { Observable } from 'rxjs/Observable';
 import { ReplaySubject } from 'rxjs/ReplaySubject';
 
 import { ScrollToAnimationEasing } from './models/scroll-to-easing.model';
-import { ScrollToAnimationOptions, ScrollToConfigOptions } from './models/scroll-to-options.model';
+import { ScrollToConfigOptions } from './models/scroll-to-options.model';
 import { ScrollToTarget } from './models/scroll-to-target.model';
 import { ScrollToAnimation } from './statics/scroll-to-animation';
 import {
@@ -16,7 +16,7 @@ import {
 	isElementRef,
 	isWindow,
 	mergeConfigWithDefaults
-} from './scroll-to.helpers';
+} from './statics/scroll-to-helpers';
 
 @Injectable()
 export class ScrollToService {
@@ -36,45 +36,50 @@ export class ScrollToService {
 	 * @todo use setTimeout hack here (or better yet, decorator), because it is not triggered from inside directive (where the hack currently resides)
 	 * @experimental
 	 *
-	 * @param config
+	 * @param event 				Native Browser Event
+	 * @param config 				Configuration Object
+	 * @returns 					Observable
 	 */
-	public scrollTo(config: ScrollToConfigOptions): Observable<any> {
+	public scrollTo(event: Event, config: ScrollToConfigOptions): Observable<any> { // @todo type 'any' should become ScrollToEvent (base class)
 
-		let subject$ = new ReplaySubject<any>(); // @todo type 'any' should become ScrollToEvent (base class)
+		if (!isPlatformBrowser(this._platform_id)) return new Observable();
 
-		const merged_config = mergeConfigWithDefaults(config);
-		console.log('merged: ', merged_config);
+		this._document.addEventListener('mousewheel', () => {
+			console.log('clicked');
+		});
 
-		return subject$.asObservable();
+		return this._start(event, config);
 	}
 
 	/**
-	 * Fire when the event proposition if fulfilled/triggered.
+	 * Start a new Animation.
 	 *
-	 * @param event 				Native Browser Event
-	 * @returns void
+	 * @todo fix listeners using NOT the renderer2, just native window event listeners
+	 * @todo pass events to 'start' function, s.t. in the animation the eventListeners can be removed
 	 */
-	public ɵonTrigger(event: Event, target: ScrollToTarget, renderer2: Renderer2, config: ScrollToAnimationOptions): void {
+	private _start(event: Event, config: ScrollToConfigOptions): Observable<number> {
 
-		const target_node = this._getTargetNode(target);
+		// Merge config with default values
+		const merged_config = mergeConfigWithDefaults(config);
 
-		const container = this._getFirstScrollableParent(event.target as HTMLElement);
-		const listenerTarget = this._getListenerTarget(container);
-
+		console.log(merged_config);
 		if (this._animation) this._animation.stop();
 
+		const container = this._getFirstScrollableParent(event.target as HTMLElement);
+		const target_node = this._getTargetNode(merged_config.target);
+		const listenerTarget = this._getListenerTarget(container);
 		const is_window = isWindow(listenerTarget);
 		const to: number = is_window ? target_node.offsetTop : target_node.getBoundingClientRect().top;
 
-		this._animation = new ScrollToAnimation(container, listenerTarget, is_window, to, config, isPlatformBrowser(this._platform_id));
-		const animation$: Observable<number> = this._animation.start();
+		this._animation = new ScrollToAnimation(container, listenerTarget, is_window, to, merged_config, isPlatformBrowser(this._platform_id));
 
 		const stop_events: string[] = ['mousewheel', 'DOMMouseScroll', 'touchstart'];
 
-		// Listen for Stop Events
 		stop_events.forEach(_event => {
-			renderer2.listen(listenerTarget, _event, () => this._animation && this._animation.stop());
+			// renderer2.listen(listenerTarget, _event, () => this._animation && this._animation.stop());
 		});
+
+		return this._animation.start();
 	}
 
 	/**
@@ -119,6 +124,8 @@ export class ScrollToService {
 
 	/**
 	 * Get the Target Node to scroll to.
+	 *
+	 * @todo support nativeElement too
 	 *
 	 * @param id 			The given ID of the node, either a string or an element reference
 	 * @returns 			Target Node
