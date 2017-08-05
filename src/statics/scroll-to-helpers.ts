@@ -1,4 +1,5 @@
 import { ElementRef } from '@angular/core';
+
 import { ScrollToAnimationEasing, ScrollToAnimationEasingCollection } from '../models/scroll-to-easing.model';
 import { ScrollToConfigOptions, ɵScrollToDefaultOptions } from '../models/scroll-to-options.model';
 
@@ -69,7 +70,7 @@ export function mergeConfigWithDefaults(config: ScrollToConfigOptions): ScrollTo
 
 	let filtered: any = new Object();
 
-	Object.keys(config)
+	Object.keys(config as ScrollToConfigOptions)
 		.filter((key) => config[key] !== undefined)
 		.forEach((key) => filtered[key] = config[key]);
 
@@ -102,7 +103,7 @@ export function isString(value: any): value is string {
  * @param container 				The given Element
  * @returns 						Whether the given Element is Window
  */
-export function isWindow(container: HTMLElement | Window): container is Window {
+export function isWindow(container: any): container is Window {
 	return container === window;
 }
 

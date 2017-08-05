@@ -15,7 +15,7 @@ export class AppComponent {
 	public triggerScrollTo(event: Event) {
 
 		const config: ScrollToConfigOptions = {
-			target: 'end',
+			target: 'end2',
 			duration: 3000
 		}
 

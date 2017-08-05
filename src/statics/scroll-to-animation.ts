@@ -1,7 +1,9 @@
 import { ReplaySubject } from 'rxjs/ReplaySubject';
 import { Observable } from 'rxjs/Observable';
+
 import { easing } from '../statics/scroll-to-helpers';
 import { ScrollToConfigOptions } from '../models/scroll-to-options.model';
+import { ScrollToListenerTarget } from '../models/scroll-to-listener-target.model';
 
 export class ScrollToAnimation {
 
@@ -17,7 +19,7 @@ export class ScrollToAnimation {
 
 	constructor(
 		private _container: HTMLElement,
-		private _listenerTarget: HTMLElement | Window,
+		private _listenerTarget: ScrollToListenerTarget,
 		private readonly _is_window: boolean,
 		private readonly _to: number,
 		private readonly _options: ScrollToConfigOptions,
@@ -52,7 +54,7 @@ export class ScrollToAnimation {
 	/**
 	 * Start the new Scroll Animation.
 	 *
-	 * @todo enums for actiontypes
+	 * @todo consider using enums for actiontypes
 	 *
 	 * @returns void
 	 */
