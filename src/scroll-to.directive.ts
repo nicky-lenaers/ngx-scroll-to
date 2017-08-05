@@ -43,9 +43,7 @@ export class ScrollToDirective implements AfterViewInit {
 	/**
 	 * Angular Lifecycle Hook - After View Init
 	 *
-	 * @todo test if event might be listened for with HostListener instead of renderer2 (for cleaner code)
 	 * @todo implement setTimeout as a decorator, maybe move to service
-	 * @todo emit events for 'start' and 'end', use 'subscribe' in listener method
 	 * @returns void
 	 */
 	public ngAfterViewInit(): void {

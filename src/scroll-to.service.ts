@@ -36,6 +36,7 @@ export class ScrollToService {
 	 * @todo type 'any' in Observable should become custom type like 'ScrollToEvent' (base class), see issue comment:
 	 * 	- https://github.com/nicky-lenaers/ngx-scroll-to/issues/10#issuecomment-317198481
 	 * @todo use setTimeout hack here (or better yet, decorator), because it is not triggered
+	 * 	from inside directive when used from a function (where the hack currently resides)
 	 *
 	 * @param event 				Native Browser Event
 	 * @param config 				Configuration Object
