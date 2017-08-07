@@ -1,6 +1,10 @@
 import { ElementRef } from '@angular/core';
 
-import { ScrollToAnimationEasing, ScrollToAnimationEasingCollection } from '../models/scroll-to-easing.model';
+import {
+	ScrollToAnimationEasing,
+	ScrollToAnimationEasingCollection
+} from '../models/scroll-to-easing.model';
+import { ScrollToEventCollection } from '../models/scroll-to-event.model';
 import { ScrollToConfigOptions, ɵScrollToDefaultOptions } from '../models/scroll-to-options.model';
 
 /**
@@ -18,7 +22,7 @@ export const DEFAULTS: ɵScrollToDefaultOptions = {
 /**
  * Easing Colleciton.
  */
-export let easing: ScrollToAnimationEasingCollection = {
+export const EASING: ScrollToAnimationEasingCollection = {
 	easeInQuad: (time: number) => {
 		return time * time;
 	},
@@ -60,6 +64,19 @@ export let easing: ScrollToAnimationEasingCollection = {
 	}
 };
 
+export const EVENTS: ScrollToEventCollection = [
+	'click',
+	'mouseenter',
+	'mouseover',
+	'mousedown',
+	'mouseup',
+	'dblclick',
+	'contextmenu',
+	'wheel',
+	'mouseleave',
+	'mouseout'
+];
+
 /**
  * Merge user config with default config.
  *
@@ -68,11 +85,11 @@ export let easing: ScrollToAnimationEasingCollection = {
  */
 export function mergeConfigWithDefaults(config: ScrollToConfigOptions): ScrollToConfigOptions {
 
-	let filtered: any = new Object();
+	let filtered: any = {};
 
 	Object.keys(config as ScrollToConfigOptions)
-		.filter((key) => config[key] !== undefined)
-		.forEach((key) => filtered[key] = config[key]);
+		.filter((key) => (<any>config[key]) !== undefined)
+		.forEach((key) => filtered[key] = (<any>config[key]));
 
 	return Object.assign({}, DEFAULTS, filtered) as ScrollToConfigOptions;
 }

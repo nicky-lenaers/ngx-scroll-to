@@ -1,18 +1,18 @@
 import { Component, DebugElement, OnInit } from '@angular/core';
-import { async, TestBed, fakeAsync, tick } from '@angular/core/testing';
+import { async, TestBed, fakeAsync, tick, getTestBed } from '@angular/core/testing';
 import { Observable } from 'rxjs/Observable';
 import { By } from '@angular/platform-browser';
 import { ComponentFixture } from '@angular/core/testing';
 import { ScrollToModule } from './scroll-to.module';
 import { ScrollToDirective } from './scroll-to.directive';
 import { ScrollToService } from './scroll-to.service';
+import { ScrollToConfigOptions } from './models/scroll-to-options.model';
+import { EVENTS, DEFAULTS } from './statics/scroll-to-helpers';
+import { DummyComponent, TARGET, BUTTON_ID } from './test/dummy.component';
+import { ScrollToMockService } from './test/mock.service';
+import { createFixtureWithTemplateOverride, CompileTemplateConfigOptions } from './test/helpers';
 
 describe('ScrollToDirective', () => {
-
-	let fixture: ComponentFixture<DummyComponent>;
-	let dummy: DummyComponent;
-	let directive: DebugElement;
-	let service: ScrollToService;
 
 	beforeEach(async(() => {
 
@@ -27,59 +27,86 @@ describe('ScrollToDirective', () => {
 				providers: [
 					{
 						provide: ScrollToService,
-						useClass: MockService
+						useClass: ScrollToMockService
 					}
 				]
-			})
-			.compileComponents();
+			});
 
-		fixture = TestBed.createComponent(DummyComponent);
-		dummy = fixture.componentInstance;
-		directive = fixture.debugElement.query(By.directive(ScrollToDirective));
-		service = TestBed.get(ScrollToService);
-		// service = fixture.debugElement.injector.get(ScrollToService);
-
-		fixture.detectChanges();
 	}));
 
 	it('should be created', () => {
+		const fixture = TestBed.createComponent(DummyComponent);
+		const directive = fixture.debugElement.query(By.directive(ScrollToDirective));
 		expect(directive).toBeTruthy();
 	});
 
-	it(`should handle 'click' event`, fakeAsync(() => {
+	it('should have default values', fakeAsync(() => {
+
+		const fixture: ComponentFixture<DummyComponent> = TestBed.createComponent(DummyComponent);
+		const service: ScrollToService = TestBed.get(ScrollToService);
+		const component: DummyComponent = fixture.componentInstance;
+
+		component.ngOnInit();
+
+		fixture.detectChanges();
 
 		spyOn(service, 'scrollTo');
 
-		let btn = fixture.debugElement.query(By.css('#btn-1'));
-		btn.triggerEventHandler('click', null);
+		const btn = fixture.debugElement.query(By.css(`#${BUTTON_ID}`));
+		const mouse_event: MouseEvent = new MouseEvent('click');
 
-		// Simulates the passage of time until all pending asynchronous activities finish
+		btn.triggerEventHandler('click', mouse_event);
 		tick();
 
-		expect(service.scrollTo).toHaveBeenCalledTimes(1);
+		expect(service.scrollTo).toHaveBeenCalledWith(mouse_event, {
+			target: TARGET,
+			duration: DEFAULTS.duration,
+			easing: DEFAULTS.easing,
+			offset: DEFAULTS.offset,
+			offsetMap: DEFAULTS.offsetMap
+		});
+
 	}));
 
+	const testMouseEvent = (event: string) => {
+
+		it(`should handle a '${event}' event`, fakeAsync(() => {
+
+			const template_config: CompileTemplateConfigOptions = {
+				target: TARGET,
+				event: event
+			}
+
+			const fixture: ComponentFixture<DummyComponent> = createFixtureWithTemplateOverride(DummyComponent, template_config);
+			const service: ScrollToService = TestBed.get(ScrollToService);
+			const component: DummyComponent = fixture.componentInstance;
+
+			component.ngOnInit();
+
+			fixture.detectChanges();
+
+			spyOn(service, 'scrollTo');
+
+			const btn = fixture.debugElement.query(By.css(`#${BUTTON_ID}`));
+			const mouse_event: MouseEvent = new MouseEvent('click');
+
+			btn.triggerEventHandler(template_config.event, mouse_event);
+			tick();
+
+			expect(service.scrollTo).toHaveBeenCalledTimes(1);
+			expect(service.scrollTo).toHaveBeenCalledWith(mouse_event, {
+				target: TARGET,
+				duration: DEFAULTS.duration,
+				easing: DEFAULTS.easing,
+				offset: DEFAULTS.offset,
+				offsetMap: DEFAULTS.offsetMap
+			});
+
+		}));
+	}
+
+	EVENTS.forEach((event) => {
+		testMouseEvent(event);
+	});
+
 });
-
-@Component({
-	selector: 'ngx-scroll-to',
-	styles: [`
-		#destination {
-			margin-top: 100vh;
-		}
-	`],
-	template: `
-		<button id="btn-1" [ngx-scroll-to]="'destination'">Go to destination</button>
-		<div id="destination">You've reached your destination</div>
-	`
-})
-export class DummyComponent implements OnInit {
-
-	constructor() { }
-
-	public ngOnInit() { }
-}
-
-export class MockService {
-	public scrollTo() { }
-}

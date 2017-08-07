@@ -1,7 +1,7 @@
 import { ReplaySubject } from 'rxjs/ReplaySubject';
 import { Observable } from 'rxjs/Observable';
 
-import { easing } from '../statics/scroll-to-helpers';
+import { EASING } from '../statics/scroll-to-helpers';
 import { ScrollToConfigOptions } from '../models/scroll-to-options.model';
 import { ScrollToListenerTarget } from '../models/scroll-to-listener-target.model';
 
@@ -74,7 +74,7 @@ export class ScrollToAnimation {
 		this._percentage = (this._time_lapsed / this._options.duration);
 		this._percentage = (this._percentage > 1) ? 1 : this._percentage;
 		this._position = this._start_position
-			+ ((this._start_position - this._to < 0 ? 1 : -1) * this._distance * easing[this._options.easing](this._percentage));
+			+ ((this._start_position - this._to < 0 ? 1 : -1) * this._distance * EASING[this._options.easing](this._percentage));
 		this._source$.next(this._position);
 		this._is_window ? this._listenerTarget.scrollTo(0, Math.floor(this._position)) : this._container.scrollTop = Math.floor(this._position);
 		this.stop(false);
