@@ -11,7 +11,7 @@
     "prepublish": "npm run build",
     "publish": "cd ./dist && npm publish --access=public",
     "copy": "copyfiles -u 1 ./src/package.json dist && copyfiles README.md dist",
-    "transpile": "ngc -p ./src/tsconfig.ngc.json",
+    "transpile": "ngc -p ./config/tsconfig/tsconfig.ngc.json",
     "package": "rollup -c rollup.config.ts",
     "minify": "uglifyjs dist/bundles/ngx-scroll-to.umd.js --screw-ie8 --compress --mangle --comments --output dist/bundles/ngx-scroll-to.umd.min.js",
     "changelog": "conventional-changelog -i CHANGELOG.md -s -r 0",
