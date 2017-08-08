@@ -1,4 +1,11 @@
-import { Directive, Input, Inject, ElementRef, Renderer2, AfterViewInit } from '@angular/core';
+import {
+	Directive,
+	Input,
+	Inject,
+	ElementRef,
+	Renderer2,
+	AfterViewInit
+} from '@angular/core';
 
 import { mergeConfigWithDefaults, DEFAULTS, EVENTS } from './statics/scroll-to-helpers';
 import { ScrollToConfig, ScrollToOffsetMap } from './models/scroll-to-config.model';
@@ -49,21 +56,22 @@ export class ScrollToDirective implements AfterViewInit {
 	 */
 	public ngAfterViewInit(): void {
 
-		this._config = {
-			target: this.ngxScrollTo,
-			duration: this.ngxScrollToDuration,
-			easing: this.ngxScrollToEasing,
-			offset: this.ngxScrollToOffset,
-			offsetMap: this.ngxScrollToOffsetMap
-		};
-
 		// Test Event Support
 		if (!EVENTS.includes(this.ngxScrollToEvent)) throw new Error(`Unsupported Event '${this.ngxScrollToEvent}'`);
 
 		// Listen for the trigger...
 		this._renderer2.listen(this._elementRef.nativeElement, this.ngxScrollToEvent,
 			(event: Event) => {
-				this._scrollToService.scrollTo(event, this._config)
+
+				this._config = {
+					target: this.ngxScrollTo,
+					duration: this.ngxScrollToDuration,
+					easing: this.ngxScrollToEasing,
+					offset: this.ngxScrollToOffset,
+					offsetMap: this.ngxScrollToOffsetMap
+				};
+
+				this._scrollToService.scrollTo(event, this._config);
 			});
 	}
 }
