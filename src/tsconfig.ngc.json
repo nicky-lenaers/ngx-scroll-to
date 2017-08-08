@@ -29,7 +29,7 @@
         "target": "es5",
         "skipLibCheck": true,
         "lib": [
-            "es2015",
+            "es7",
             "dom"
         ]
     },
