@@ -11,14 +11,4 @@ import { ScrollToConfigOptions } from '../../src/models/scroll-to-options.model'
 export class AppComponent {
 
 	constructor(private _scrollToService: ScrollToService) { }
-
-	public triggerScrollTo(event: Event) {
-
-		const config: ScrollToConfigOptions = {
-			target: 'end2',
-			duration: 3000
-		}
-
-		this._scrollToService.scrollTo(event, config);
-	}
 }
