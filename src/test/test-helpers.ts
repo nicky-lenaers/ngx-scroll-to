@@ -1,13 +1,13 @@
 import { Type } from '@angular/core';
 import { TestBed, ComponentFixture } from '@angular/core/testing';
-import { BUTTON_ID } from './dummy.component';
+import { BUTTON_ID } from './test-dummy.component';
 import { ScrollToConfigOptions } from '../models/scroll-to-options.model';
 import { ScrollToTarget } from '../models/scroll-to-target.model';
 
 export interface CompileTemplateConfigOptions extends ScrollToConfigOptions {
 	event?: string;
 }
-export function createFixtureWithTemplateOverride(component: Type<any>, config: CompileTemplateConfigOptions): ComponentFixture<any> {
+export function createTestComponent(component: Type<any>, config: CompileTemplateConfigOptions): ComponentFixture<any> {
 
 	const template = `
 		<button id="${BUTTON_ID}"

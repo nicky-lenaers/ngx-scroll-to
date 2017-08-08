@@ -1,6 +1,6 @@
 import { Directive, Input, Inject, ElementRef, Renderer2, AfterViewInit } from '@angular/core';
 
-import { mergeConfigWithDefaults, DEFAULTS } from './statics/scroll-to-helpers';
+import { mergeConfigWithDefaults, DEFAULTS, EVENTS } from './statics/scroll-to-helpers';
 import { ScrollToConfigOptions, ScrollToOffsetMap } from './models/scroll-to-options.model';
 import { ScrollToAnimationEasing } from './models/scroll-to-easing.model';
 import { ScrollToTarget } from './models/scroll-to-target.model';
@@ -55,6 +55,9 @@ export class ScrollToDirective implements AfterViewInit {
 			offset: this.ngxScrollToOffset,
 			offsetMap: this.ngxScrollToOffsetMap
 		};
+
+		// Test Event
+		if (!EVENTS.includes(this.ngxScrollToEvent)) throw new Error(`Unsupported Event '${this.ngxScrollToEvent}'`);
 
 		// Listen for the trigger...
 		this._renderer2.listen(this._elementRef.nativeElement, this.ngxScrollToEvent,

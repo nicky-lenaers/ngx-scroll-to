@@ -87,9 +87,9 @@ export function mergeConfigWithDefaults(config: ScrollToConfigOptions): ScrollTo
 
 	let filtered: any = {};
 
-	Object.keys(config as ScrollToConfigOptions)
-		.filter((key) => (<any>config[key]) !== undefined)
-		.forEach((key) => filtered[key] = (<any>config[key]));
+	Object.keys(config)
+		.filter((key) => config[key] !== undefined)
+		.forEach((key) => filtered[key] = config[key]);
 
 	return Object.assign({}, DEFAULTS, filtered) as ScrollToConfigOptions;
 }

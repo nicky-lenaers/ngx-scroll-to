@@ -8,9 +8,9 @@ import { ScrollToDirective } from './scroll-to.directive';
 import { ScrollToService } from './scroll-to.service';
 import { ScrollToConfigOptions } from './models/scroll-to-options.model';
 import { EVENTS, DEFAULTS } from './statics/scroll-to-helpers';
-import { DummyComponent, TARGET, BUTTON_ID } from './test/dummy.component';
+import { DummyComponent, TARGET, BUTTON_ID } from './test/test-dummy.component';
 import { ScrollToMockService } from './test/mock.service';
-import { createFixtureWithTemplateOverride, CompileTemplateConfigOptions } from './test/helpers';
+import { createTestComponent, CompileTemplateConfigOptions } from './test/test-helpers';
 
 describe('ScrollToDirective', () => {
 
@@ -77,7 +77,7 @@ describe('ScrollToDirective', () => {
 				event: event
 			}
 
-			const fixture: ComponentFixture<DummyComponent> = createFixtureWithTemplateOverride(DummyComponent, template_config);
+			const fixture: ComponentFixture<DummyComponent> = createTestComponent(DummyComponent, template_config);
 			const service: ScrollToService = TestBed.get(ScrollToService);
 			const component: DummyComponent = fixture.componentInstance;
 
