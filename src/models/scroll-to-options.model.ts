@@ -9,6 +9,7 @@ export type ScrollToOffsetMap = Map<number, number>;
  * @todo consider moving offset and offsetMap out of a type that has 'AnimationOptions' (both are not animation options)
  */
 export interface ScrollToConfigOptions {
+	[key: string]: any;
 	target: ScrollToTarget;
 	duration?: number;
 	easing?: ScrollToAnimationEasing;
