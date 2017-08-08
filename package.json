@@ -6,12 +6,12 @@
   "scripts": {
     "prebuild:demo": "npm run clean",
     "build:demo": "webpack --progress",
-    "serve": "webpack-dev-server",
+    "serve:demo": "webpack-dev-server",
     "build": "npm run clean && npm run transpile && npm run package && npm run minify && npm run copy",
     "prepublish": "npm run build",
     "publish": "cd ./dist && npm publish --access=public",
     "copy": "copyfiles -u 1 ./src/package.json dist && copyfiles README.md dist",
-    "transpile": "ngc -p ./src/tsconfig.ngc.json",
+    "transpile": "ngc -p ./config/tsconfig/tsconfig.ngc.json",
     "package": "rollup -c rollup.config.ts",
     "minify": "uglifyjs dist/bundles/ngx-scroll-to.umd.js --screw-ie8 --compress --mangle --comments --output dist/bundles/ngx-scroll-to.umd.min.js",
     "changelog": "conventional-changelog -i CHANGELOG.md -s -r 0",
@@ -88,6 +88,7 @@
     "ts-node": "^3.2.1",
     "typescript": "^2.3.4",
     "uglify-js": "^3.0.16",
+    "wallaby-webpack": "0.0.38",
     "webpack": "^3.3.0",
     "webpack-dev-server": "^2.5.1"
   }

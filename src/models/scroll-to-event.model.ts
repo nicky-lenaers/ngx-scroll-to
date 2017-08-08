@@ -8,3 +8,5 @@ export type ScrollToEvent = 'click'
 	| 'wheel'
 	| 'mouseleave'
 	| 'mouseout';
+
+export type ScrollToEventCollection = ScrollToEvent[];

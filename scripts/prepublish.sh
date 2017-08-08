@@ -17,6 +17,9 @@ done
 if [[ ! ${VERSION} ]]; then printf "\nError: Version not set.\nSet a version by passing the '-publish-version' (-pv) argument" && exit 1; fi
 
 NPM_VERSION_CMD="npm version ${VERSION} --no-git-tag-version"
+PRERELEASE=false
+
+if [[ $VERSION == "prerelease" ]]; then PRERELEASE=true; fi
 
 # Bump Root
 eval "${NPM_VERSION_CMD}"
@@ -61,7 +64,7 @@ USER=$(printf '%s\n' "$PARSED_REMOTE_URL")
 
 # Build Release Command
 CMD="curl -H \"Content-Type: application/json\" -u \"${USER}\" -X POST"
-CMD="${CMD} --data '{ \"tag_name\": \"${PACKAGE_VERSION}\", \"target_commitish\": \"master\", \"name\": \"${PACKAGE_VERSION}\", \"body\": \"Release ${PACKAGE_VERSION}\", \"draft\": false, \"prerelease\": false }'"
+CMD="${CMD} --data '{ \"tag_name\": \"${PACKAGE_VERSION}\", \"target_commitish\": \"master\", \"name\": \"${PACKAGE_VERSION}\", \"body\": \"Release ${PACKAGE_VERSION}\", \"draft\": false, \"prerelease\": ${PRERELEASE} }'"
 CMD="${CMD} https://api.github.com/repos/${USER}/${REPO}/releases"
 
 eval "${CMD}"

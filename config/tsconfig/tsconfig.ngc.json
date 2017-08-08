@@ -22,22 +22,22 @@
                 "node_modules/rxjs/*"
             ]
         },
-        "rootDir": "../src",
-        "outDir": "../dist",
+        "rootDir": "../../src",
+        "outDir": "../../dist",
         "sourceMap": true,
         "inlineSources": true,
         "target": "es5",
         "skipLibCheck": true,
         "lib": [
-            "es2015",
+            "es7",
             "dom"
         ]
     },
     "files": [
-        "../src/index.ts"
+        "../../src/index.ts"
     ],
     "angularCompilerOptions": {
-        "genDir": "../.tmp",
+        "genDir": "../../.tmp",
         "strictMetadataEmit": true
     }
 }

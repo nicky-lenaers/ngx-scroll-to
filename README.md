@@ -45,7 +45,7 @@ import { ScrollToModule } from '@nicky-lenaers/ngx-scroll-to';
 export class AppModule { }
 ```
 
-## Basic Usage
+## Basic Usage - Directive
 **my.component.html**
 
 ```html
@@ -60,7 +60,40 @@ export class AppModule { }
 </div>
 ```
 
-## Advanced Usage
+## Basic Usage - Service
+**my.component.html**
+```html
+<button (click)="triggerScrollTo($event)">Go to destination</button>
+
+<div id="destination">
+  You've reached your destination.
+</div>
+```
+
+**my.service.ts**
+
+```js
+import { Injectable } from '@angular/core';
+import { ScrollToService, ScrollToConfig } from '@nicky-lenaers/ngx-scroll-to';
+
+@Injectable()
+export class MyService {
+
+  constructor(private _scrollToService: ScrollToService) { }
+
+  public triggerScrollTo($event: Event) {
+    
+    const config: ScrollToConfig = {
+      target: 'destination'
+    }
+
+    this._scrollToService.scrollTo($event, config);
+  }
+}
+
+```
+
+## Advanced Usage - Directive
 **my.component.ts**
 ```js
 import { ScrollToAnimationEasing, ScrollToEvent, ScrollToOffsetMap } from '@nicky-lenaers/ngx-scroll-to';

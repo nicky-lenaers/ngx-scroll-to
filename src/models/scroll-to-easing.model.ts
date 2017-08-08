@@ -14,5 +14,5 @@ export type ScrollToAnimationEasing = 'easeInQuad'
 
 export type ScrollToAnimationEasingFunction = (time: number) => number;
 export interface ScrollToAnimationEasingCollection {
-	[ key: string ]: ScrollToAnimationEasingFunction
+	[ key: string ]: ScrollToAnimationEasingFunction;
 };

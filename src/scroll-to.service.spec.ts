@@ -30,7 +30,7 @@ describe('ScrollToService', () => {
 		expect(service).toBeTruthy();
 	});
 
-	it('should have a public function (private API) called `ɵonTrigger`', () => {
-		expect(service.ɵonTrigger instanceof Function).toBeTruthy();
+	it('should have a public function called `scrollTo`', () => {
+		expect(service.scrollTo instanceof Function).toBe(true);
 	});
 });
