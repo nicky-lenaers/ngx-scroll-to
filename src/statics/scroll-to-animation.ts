@@ -1,7 +1,9 @@
 import { ReplaySubject } from 'rxjs/ReplaySubject';
 import { Observable } from 'rxjs/Observable';
-import { easing } from '../scroll-to.helpers';
-import { ScrollToAnimationOptions } from '../models/scroll-to-options.model';
+
+import { EASING } from '../statics/scroll-to-helpers';
+import { ScrollToConfig } from '../models/scroll-to-config.model';
+import { ScrollToListenerTarget } from '../models/scroll-to-targets.model';
 
 export class ScrollToAnimation {
 
@@ -17,10 +19,10 @@ export class ScrollToAnimation {
 
 	constructor(
 		private _container: HTMLElement,
-		private _listenerTarget: HTMLElement | Window,
+		private _listenerTarget: ScrollToListenerTarget,
 		private readonly _is_window: boolean,
 		private readonly _to: number,
-		private readonly _options: ScrollToAnimationOptions,
+		private readonly _options: ScrollToConfig,
 		private _is_browser: boolean
 	) {
 		this._tick = 16;
@@ -52,7 +54,7 @@ export class ScrollToAnimation {
 	/**
 	 * Start the new Scroll Animation.
 	 *
-	 * @todo enums for actiontypes
+	 * @todo consider using enums for actiontypes
 	 *
 	 * @returns void
 	 */
@@ -72,7 +74,7 @@ export class ScrollToAnimation {
 		this._percentage = (this._time_lapsed / this._options.duration);
 		this._percentage = (this._percentage > 1) ? 1 : this._percentage;
 		this._position = this._start_position
-			+ ((this._start_position - this._to < 0 ? 1 : -1) * this._distance * easing[this._options.easing](this._percentage));
+			+ ((this._start_position - this._to < 0 ? 1 : -1) * this._distance * EASING[this._options.easing](this._percentage));
 		this._source$.next(this._position);
 		this._is_window ? this._listenerTarget.scrollTo(0, Math.floor(this._position)) : this._container.scrollTop = Math.floor(this._position);
 		this.stop(false);

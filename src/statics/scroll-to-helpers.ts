@@ -1,10 +1,28 @@
 import { ElementRef } from '@angular/core';
-import { ScrollToAnimationEasing, ScrollToAnimationEasingCollection } from './models/scroll-to-easing.model';
+
+import {
+	ScrollToAnimationEasing,
+	ScrollToAnimationEasingCollection
+} from '../models/scroll-to-easing.model';
+import { ScrollToEventCollection } from '../models/scroll-to-event.model';
+import { ScrollToConfig, ɵScrollToDefaultOptions } from '../models/scroll-to-config.model';
 
 /**
- * Definition of Easing Colleciton.
+ * Default values for Component Input.
  */
-export let easing: ScrollToAnimationEasingCollection = {
+export const DEFAULTS: ɵScrollToDefaultOptions = {
+	target: null,
+	event: 'click',
+	duration: 650,
+	easing: 'easeInOutQuad',
+	offset: 0,
+	offsetMap: new Map()
+};
+
+/**
+ * Easing Colleciton.
+ */
+export const EASING: ScrollToAnimationEasingCollection = {
 	easeInQuad: (time: number) => {
 		return time * time;
 	},
@@ -46,6 +64,36 @@ export let easing: ScrollToAnimationEasingCollection = {
 	}
 };
 
+export const EVENTS: ScrollToEventCollection = [
+	'click',
+	'mouseenter',
+	'mouseover',
+	'mousedown',
+	'mouseup',
+	'dblclick',
+	'contextmenu',
+	'wheel',
+	'mouseleave',
+	'mouseout'
+];
+
+/**
+ * Merge user config with default config.
+ *
+ * @param config 				User Configuration Object
+ * @returns 					Merged Configuration Object
+ */
+export function mergeConfigWithDefaults(config: ScrollToConfig): ScrollToConfig {
+
+	let filtered: any = {};
+
+	Object.keys(config)
+		.filter((key) => config[key] !== undefined)
+		.forEach((key) => filtered[key] = config[key]);
+
+	return Object.assign({}, DEFAULTS, filtered) as ScrollToConfig;
+}
+
 /**
  * Strip hash (#) from value.
  *
@@ -72,7 +120,7 @@ export function isString(value: any): value is string {
  * @param container 				The given Element
  * @returns 						Whether the given Element is Window
  */
-export function isWindow(container: HTMLElement | Window): container is Window {
+export function isWindow(container: any): container is Window {
 	return container === window;
 }
 
