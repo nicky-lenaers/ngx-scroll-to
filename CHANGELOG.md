@@ -1,3 +1,10 @@
+<a name="0.3.1"></a>
+## 0.3.1 (2017-08-08)
+
+* Fix updated Config ([4f2dac4](https://github.com/nicky-lenaers/ngx-scroll-to/commit/4f2dac4))
+
+
+
 <a name="0.3.0"></a>
 # 0.3.0 (2017-08-08)
 
@@ -9,6 +16,7 @@
 * Internal Config Merge ([c734669](https://github.com/nicky-lenaers/ngx-scroll-to/commit/c734669))
 * Move TS Config ([4e5d1b5](https://github.com/nicky-lenaers/ngx-scroll-to/commit/4e5d1b5))
 * Preset Wallaby for later usage ([45b5bb6](https://github.com/nicky-lenaers/ngx-scroll-to/commit/45b5bb6))
+* Release 0.3.0 ([4eca53e](https://github.com/nicky-lenaers/ngx-scroll-to/commit/4eca53e))
 * Reset Demo ([a1faea3](https://github.com/nicky-lenaers/ngx-scroll-to/commit/a1faea3))
 * TimeOut Decorator & Comment Updates ([0c49bfc](https://github.com/nicky-lenaers/ngx-scroll-to/commit/0c49bfc))
 * Triggering Scroll To Animations from within Services ([b9c9496](https://github.com/nicky-lenaers/ngx-scroll-to/commit/b9c9496)), closes [#10](https://github.com/nicky-lenaers/ngx-scroll-to/issues/10)
