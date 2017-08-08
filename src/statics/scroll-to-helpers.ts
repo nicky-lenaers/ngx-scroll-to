@@ -5,7 +5,7 @@ import {
 	ScrollToAnimationEasingCollection
 } from '../models/scroll-to-easing.model';
 import { ScrollToEventCollection } from '../models/scroll-to-event.model';
-import { ScrollToConfigOptions, ɵScrollToDefaultOptions } from '../models/scroll-to-options.model';
+import { ScrollToConfig, ɵScrollToDefaultOptions } from '../models/scroll-to-config.model';
 
 /**
  * Default values for Component Input.
@@ -83,7 +83,7 @@ export const EVENTS: ScrollToEventCollection = [
  * @param config 				User Configuration Object
  * @returns 					Merged Configuration Object
  */
-export function mergeConfigWithDefaults(config: ScrollToConfigOptions): ScrollToConfigOptions {
+export function mergeConfigWithDefaults(config: ScrollToConfig): ScrollToConfig {
 
 	let filtered: any = {};
 
@@ -91,7 +91,7 @@ export function mergeConfigWithDefaults(config: ScrollToConfigOptions): ScrollTo
 		.filter((key) => config[key] !== undefined)
 		.forEach((key) => filtered[key] = config[key]);
 
-	return Object.assign({}, DEFAULTS, filtered) as ScrollToConfigOptions;
+	return Object.assign({}, DEFAULTS, filtered) as ScrollToConfig;
 }
 
 /**

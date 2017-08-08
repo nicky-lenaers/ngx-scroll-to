@@ -6,9 +6,9 @@ import { Observable } from 'rxjs/Observable';
 import { ReplaySubject } from 'rxjs/ReplaySubject';
 
 import { ScrollToAnimationEasing } from './models/scroll-to-easing.model';
-import { ScrollToConfigOptions } from './models/scroll-to-options.model';
-import { ScrollToTarget } from './models/scroll-to-target.model';
-import { ScrollToListenerTarget } from './models/scroll-to-listener-target.model';
+import { ScrollToConfig } from './models/scroll-to-config.model';
+import { ScrollToTarget } from './models/scroll-to-targets.model';
+import { ScrollToListenerTarget } from './models/scroll-to-targets.model';
 import { ScrollToAnimation } from './statics/scroll-to-animation';
 import {
 	stripHash,
@@ -42,7 +42,7 @@ export class ScrollToService {
 	 * @param config 				Configuration Object
 	 * @returns 					Observable
 	 */
-	public scrollTo(event: Event, config: ScrollToConfigOptions): Observable<any> {
+	public scrollTo(event: Event, config: ScrollToConfig): Observable<any> {
 
 		if (!isPlatformBrowser(this._platform_id)) return new Observable();
 
@@ -56,7 +56,7 @@ export class ScrollToService {
 	 * @param config 				Configuration Object
 	 * @returns 					Observable
 	 */
-	private _start(event: Event, config: ScrollToConfigOptions): Observable<number> {
+	private _start(event: Event, config: ScrollToConfig): Observable<number> {
 
 		// Merge config with default values
 		const merged_config = mergeConfigWithDefaults(config);

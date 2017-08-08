@@ -6,7 +6,7 @@ import { ComponentFixture } from '@angular/core/testing';
 import { ScrollToModule } from './scroll-to.module';
 import { ScrollToDirective } from './scroll-to.directive';
 import { ScrollToService } from './scroll-to.service';
-import { ScrollToConfigOptions } from './models/scroll-to-options.model';
+import { ScrollToConfig } from './models/scroll-to-config.model';
 import { EVENTS, DEFAULTS } from './statics/scroll-to-helpers';
 import { DummyComponent, TARGET, BUTTON_ID } from './test/test-dummy.component';
 import { ScrollToMockService } from './test/mock.service';

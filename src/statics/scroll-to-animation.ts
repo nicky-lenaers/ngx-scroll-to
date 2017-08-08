@@ -2,8 +2,8 @@ import { ReplaySubject } from 'rxjs/ReplaySubject';
 import { Observable } from 'rxjs/Observable';
 
 import { EASING } from '../statics/scroll-to-helpers';
-import { ScrollToConfigOptions } from '../models/scroll-to-options.model';
-import { ScrollToListenerTarget } from '../models/scroll-to-listener-target.model';
+import { ScrollToConfig } from '../models/scroll-to-config.model';
+import { ScrollToListenerTarget } from '../models/scroll-to-targets.model';
 
 export class ScrollToAnimation {
 
@@ -22,7 +22,7 @@ export class ScrollToAnimation {
 		private _listenerTarget: ScrollToListenerTarget,
 		private readonly _is_window: boolean,
 		private readonly _to: number,
-		private readonly _options: ScrollToConfigOptions,
+		private readonly _options: ScrollToConfig,
 		private _is_browser: boolean
 	) {
 		this._tick = 16;

@@ -74,7 +74,7 @@ export class AppModule { }
 
 ```js
 import { Injectable } from '@angular/core';
-import { ScrollToService, ScrollToConfigOptions } from '@nicky-lenaers/ngx-scroll-to';
+import { ScrollToService, ScrollToConfig } from '@nicky-lenaers/ngx-scroll-to';
 
 @Injectable()
 export class MyService {
@@ -83,7 +83,7 @@ export class MyService {
 
   public triggerScrollTo($event: Event) {
     
-    const config: ScrollToConfigOptions = {
+    const config: ScrollToConfig = {
       target: 'destination'
     }
 

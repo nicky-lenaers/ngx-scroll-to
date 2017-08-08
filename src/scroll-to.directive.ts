@@ -1,9 +1,9 @@
 import { Directive, Input, Inject, ElementRef, Renderer2, AfterViewInit } from '@angular/core';
 
 import { mergeConfigWithDefaults, DEFAULTS, EVENTS } from './statics/scroll-to-helpers';
-import { ScrollToConfigOptions, ScrollToOffsetMap } from './models/scroll-to-options.model';
+import { ScrollToConfig, ScrollToOffsetMap } from './models/scroll-to-config.model';
 import { ScrollToAnimationEasing } from './models/scroll-to-easing.model';
-import { ScrollToTarget } from './models/scroll-to-target.model';
+import { ScrollToTarget } from './models/scroll-to-targets.model';
 import { ScrollToEvent } from './models/scroll-to-event.model';
 import { ScrollToService } from './scroll-to.service';
 
@@ -30,7 +30,7 @@ export class ScrollToDirective implements AfterViewInit {
 	@Input('ngx-scroll-to-offset-map')
 	public ngxScrollToOffsetMap: ScrollToOffsetMap = DEFAULTS.offsetMap;
 
-	private _config: ScrollToConfigOptions;
+	private _config: ScrollToConfig;
 	private _window_width: number;
 
 	constructor(

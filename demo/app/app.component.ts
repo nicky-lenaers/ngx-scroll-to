@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { ScrollToService } from '../../src/scroll-to.service';
-import { ScrollToTarget } from '../../src/models/scroll-to-target.model';
-import { ScrollToConfigOptions } from '../../src/models/scroll-to-options.model';
+import { ScrollToTarget } from '../../src/models/scroll-to-targets.model';
+import { ScrollToConfig } from '../../src/models/scroll-to-config.model';
 
 @Component({
     selector: 'my-app',
