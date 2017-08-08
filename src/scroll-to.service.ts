@@ -5,6 +5,7 @@ import { isPlatformBrowser } from '@angular/common';
 import { Observable } from 'rxjs/Observable';
 import { ReplaySubject } from 'rxjs/ReplaySubject';
 
+import { TimeOut } from './decorators/scroll-to-timeout.decorator';
 import { ScrollToAnimationEasing } from './models/scroll-to-easing.model';
 import { ScrollToConfig } from './models/scroll-to-config.model';
 import { ScrollToTarget } from './models/scroll-to-targets.model';
@@ -35,22 +36,23 @@ export class ScrollToService {
 	 *
 	 * @todo type 'any' in Observable should become custom type like 'ScrollToEvent' (base class), see issue comment:
 	 * 	- https://github.com/nicky-lenaers/ngx-scroll-to/issues/10#issuecomment-317198481
-	 * @todo use setTimeout hack here (or better yet, decorator), because it is not triggered
-	 * 	from inside directive when used from a function (where the hack currently resides)
 	 *
 	 * @param event 				Native Browser Event
 	 * @param config 				Configuration Object
 	 * @returns 					Observable
 	 */
+	@TimeOut()
 	public scrollTo(event: Event, config: ScrollToConfig): Observable<any> {
 
-		if (!isPlatformBrowser(this._platform_id)) return new Observable();
+		if (!isPlatformBrowser(this._platform_id)) return new ReplaySubject().asObservable();
 
 		return this._start(event, config);
 	}
 
 	/**
 	 * Start a new Animation.
+	 *
+	 * @todo Emit proper events from subscription
 	 *
 	 * @param event 				Native Browser Event
 	 * @param config 				Configuration Object
@@ -128,6 +130,8 @@ export class ScrollToService {
 
 		let style: CSSStyleDeclaration = window.getComputedStyle(nativeElement);
 
+		const overflow_regex: RegExp = /(auto|scroll)/;
+
 		if (style.position === 'fixed') throw new Error(`Scroll item cannot be positioned 'fixed'`);
 
 		// Recursive Loop Parents
@@ -141,6 +145,9 @@ export class ScrollToService {
 
 			// Skip Hidden Overflow
 			if (style.overflow === 'hidden' || style.overflowY === 'hidden') continue;
+
+			// Test Overflow
+			if (overflow_regex.test(style.overflow + style.overflowY + style.overflowX)) return parent;
 
 			// Return Body
 			if (parent.tagName === 'BODY') return parent;

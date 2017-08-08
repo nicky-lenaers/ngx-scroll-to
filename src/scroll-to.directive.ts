@@ -43,7 +43,8 @@ export class ScrollToDirective implements AfterViewInit {
 	/**
 	 * Angular Lifecycle Hook - After View Init
 	 *
-	 * @todo implement setTimeout as a decorator, maybe move to service
+	 * @todo Implement Subscription for Events
+	 *
 	 * @returns void
 	 */
 	public ngAfterViewInit(): void {
@@ -56,13 +57,13 @@ export class ScrollToDirective implements AfterViewInit {
 			offsetMap: this.ngxScrollToOffsetMap
 		};
 
-		// Test Event
+		// Test Event Support
 		if (!EVENTS.includes(this.ngxScrollToEvent)) throw new Error(`Unsupported Event '${this.ngxScrollToEvent}'`);
 
 		// Listen for the trigger...
 		this._renderer2.listen(this._elementRef.nativeElement, this.ngxScrollToEvent,
 			(event: Event) => {
-				setTimeout((__HACK__: any) => this._scrollToService.scrollTo(event, this._config));
+				this._scrollToService.scrollTo(event, this._config)
 			});
 	}
 }

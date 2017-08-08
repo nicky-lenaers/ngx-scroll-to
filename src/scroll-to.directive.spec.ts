@@ -9,7 +9,7 @@ import { ScrollToService } from './scroll-to.service';
 import { ScrollToConfig } from './models/scroll-to-config.model';
 import { EVENTS, DEFAULTS } from './statics/scroll-to-helpers';
 import { DummyComponent, TARGET, BUTTON_ID } from './test/test-dummy.component';
-import { ScrollToMockService } from './test/mock.service';
+import { ScrollToMockService } from './test/test-mock.service';
 import { createTestComponent, CompileTemplateConfigOptions } from './test/test-helpers';
 
 describe('ScrollToDirective', () => {

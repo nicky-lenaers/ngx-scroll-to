@@ -10,5 +10,24 @@ import { ScrollToConfig } from '../../src/models/scroll-to-config.model';
 })
 export class AppComponent {
 
-	constructor(private _scrollToService: ScrollToService) { }
+	public visible: boolean;
+	public show2: boolean;
+
+	constructor(private _scrollToService: ScrollToService) {
+		this.visible = false;
+		this.show2 = false;
+	}
+
+	public toggle() {
+		this.visible = ! this.visible;
+	}
+
+	public goto(event: Event) {
+
+		this.show2 = true;
+
+		this._scrollToService.scrollTo(event, {
+			target: 'end2'
+		})
+	}
 }
