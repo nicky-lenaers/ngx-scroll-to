@@ -8,16 +8,6 @@
 
 
 
-<a name="0.3.2"></a>
-## [0.3.2](https://github.com/nicky-lenaers/ngx-scroll-to/compare/0.3.1...0.3.2) (2017-10-03)
-
-
-### Features
-
-* **github:** Improved Issue Template ([4da3eae](https://github.com/nicky-lenaers/ngx-scroll-to/commit/4da3eae))
-
-
-
 <a name="0.3.1"></a>
 ## [0.3.1](https://github.com/nicky-lenaers/ngx-scroll-to/compare/0.3.0...0.3.1) (2017-08-08)
 
