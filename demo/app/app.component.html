@@ -1,0 +1,12 @@
+<h1>App Works!</h1>
+<h2>This demo is being worked on as we speak and will be available soon.</h2>
+
+<div style="height: 300px; border: 1px solid black; overflow-y: auto;">
+	<button (click)="goto($event)">End 2</button>
+	<div *ngIf="show2" id="end2" style="margin: 100vh 0;">this is end 2</div>
+
+</div>
+<button (click)="toggle()" [ngx-scroll-to]="'end'">yes</button>
+<div *ngIf="visible" id="end" style="margin-top: 200vh;">
+	this is the end
+</div>
