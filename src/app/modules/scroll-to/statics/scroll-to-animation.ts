@@ -56,7 +56,7 @@ export class ScrollToAnimation {
 	 *
 	 * @todo consider using enums for actiontypes
 	 *
-	 * @returns void
+	 * @returns       void
 	 */
   public start(): Observable<any> {
     clearInterval(this._interval);

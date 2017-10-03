@@ -4,6 +4,7 @@
 
 ### Features
 
+* **comments:** Set Proper Commenting ([db167a1](https://github.com/nicky-lenaers/ngx-scroll-to/commit/db167a1))
 * **github:** Improved Issue Template ([4da3eae](https://github.com/nicky-lenaers/ngx-scroll-to/commit/4da3eae))
 
 
