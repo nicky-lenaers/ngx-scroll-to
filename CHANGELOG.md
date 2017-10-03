@@ -1,9 +1,42 @@
+<a name="0.3.1"></a>
+## 0.3.1 (2017-08-08)
+
+* Fix updated Config ([4f2dac4](https://github.com/nicky-lenaers/ngx-scroll-to/commit/4f2dac4))
+
+
+
+<a name="0.3.0"></a>
+# 0.3.0 (2017-08-08)
+
+* Add Directe Tests ([1be0c33](https://github.com/nicky-lenaers/ngx-scroll-to/commit/1be0c33))
+* Add TODO Comment ([07b3082](https://github.com/nicky-lenaers/ngx-scroll-to/commit/07b3082))
+* Added Unit Tests for Directive Event Input ([a38e296](https://github.com/nicky-lenaers/ngx-scroll-to/commit/a38e296))
+* Apply TypeScript Index Signature ([e558b13](https://github.com/nicky-lenaers/ngx-scroll-to/commit/e558b13))
+* Improved TypeScript Interfaces ([6a63d92](https://github.com/nicky-lenaers/ngx-scroll-to/commit/6a63d92))
+* Internal Config Merge ([c734669](https://github.com/nicky-lenaers/ngx-scroll-to/commit/c734669))
+* Move TS Config ([4e5d1b5](https://github.com/nicky-lenaers/ngx-scroll-to/commit/4e5d1b5))
+* Preset Wallaby for later usage ([45b5bb6](https://github.com/nicky-lenaers/ngx-scroll-to/commit/45b5bb6))
+* Release 0.3.0 ([4eca53e](https://github.com/nicky-lenaers/ngx-scroll-to/commit/4eca53e))
+* Reset Demo ([a1faea3](https://github.com/nicky-lenaers/ngx-scroll-to/commit/a1faea3))
+* TimeOut Decorator & Comment Updates ([0c49bfc](https://github.com/nicky-lenaers/ngx-scroll-to/commit/0c49bfc))
+* Triggering Scroll To Animations from within Services ([b9c9496](https://github.com/nicky-lenaers/ngx-scroll-to/commit/b9c9496)), closes [#10](https://github.com/nicky-lenaers/ngx-scroll-to/issues/10)
+* Update Comments and ToDo's ([d067ae7](https://github.com/nicky-lenaers/ngx-scroll-to/commit/d067ae7))
+* Update Publish Script ([b96db54](https://github.com/nicky-lenaers/ngx-scroll-to/commit/b96db54))
+* Update README ([a3ee3be](https://github.com/nicky-lenaers/ngx-scroll-to/commit/a3ee3be))
+* Update Tests ([2a43c45](https://github.com/nicky-lenaers/ngx-scroll-to/commit/2a43c45))
+* Updated Service & Directive ([1f6848b](https://github.com/nicky-lenaers/ngx-scroll-to/commit/1f6848b))
+* Updated TS Config to ES7 ([c7f3424](https://github.com/nicky-lenaers/ngx-scroll-to/commit/c7f3424))
+
+
+
 <a name="0.2.4"></a>
 ## 0.2.4 (2017-07-27)
 
 * Add Directive & Service Tests ([1af2cee](https://github.com/nicky-lenaers/ngx-scroll-to/commit/1af2cee))
 * Add Karma Test Watcher ([b680869](https://github.com/nicky-lenaers/ngx-scroll-to/commit/b680869))
+* First work for service implementation ([d5b1a34](https://github.com/nicky-lenaers/ngx-scroll-to/commit/d5b1a34))
 * Improved internal structure ([41220b6](https://github.com/nicky-lenaers/ngx-scroll-to/commit/41220b6))
+* Release 0.2.4 ([2df6867](https://github.com/nicky-lenaers/ngx-scroll-to/commit/2df6867))
 * Subsitute Type Casting ([74336a9](https://github.com/nicky-lenaers/ngx-scroll-to/commit/74336a9))
 * Support numeric ID ([1c6c021](https://github.com/nicky-lenaers/ngx-scroll-to/commit/1c6c021)), closes [#9](https://github.com/nicky-lenaers/ngx-scroll-to/issues/9)
 * Update Circle CI Badge URL ([617c621](https://github.com/nicky-lenaers/ngx-scroll-to/commit/617c621)), closes [#18](https://github.com/nicky-lenaers/ngx-scroll-to/issues/18)
