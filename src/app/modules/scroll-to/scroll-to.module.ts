@@ -1,12 +1,28 @@
-import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { ScrollToComponent } from './scroll-to.component';
+import { NgModule, ModuleWithProviders } from '@angular/core';
+import { ScrollToDirective } from './scroll-to.directive';
+import { ScrollToService } from './scroll-to.service';
 
 @NgModule({
-  imports: [
-    CommonModule
+  imports: [],
+  declarations: [
+    ScrollToDirective
   ],
-  declarations: [ScrollToComponent],
-  exports: [ScrollToComponent]
+  exports: [
+    ScrollToDirective
+  ]
 })
-export class ScrollToModule { }
+export class ScrollToModule {
+	/**
+	 * Guaranteed singletons for provided Services across App.
+	 *
+	 * @return 				An Angular Module with Providers
+	 */
+  static forRoot(): ModuleWithProviders {
+    return {
+      ngModule: ScrollToModule,
+      providers: [
+        ScrollToService
+      ]
+    }
+  }
+}

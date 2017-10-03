@@ -1,10 +1,11 @@
 {
   "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
   "project": {
-    "name": "scroll-to"
+    "name": "@nicky-lenaers/ngx-scroll-to"
   },
   "apps": [
     {
+      "name": "browser",
       "root": "src",
       "outDir": "dist",
       "assets": [
