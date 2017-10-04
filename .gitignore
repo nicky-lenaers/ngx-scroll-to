@@ -43,3 +43,6 @@ Thumbs.db
 
 # ng-packagr
 .ng_build
+
+# Test Reports
+reports
