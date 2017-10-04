@@ -6,6 +6,7 @@
 
 * **comments:** Set Proper Commenting ([db167a1](https://github.com/nicky-lenaers/ngx-scroll-to/commit/db167a1))
 * **github:** Improved Issue Template ([4da3eae](https://github.com/nicky-lenaers/ngx-scroll-to/commit/4da3eae))
+* **github:** Proper PR merging for Changelog Generation ([c64b59d](https://github.com/nicky-lenaers/ngx-scroll-to/commit/c64b59d))
 
 
 
