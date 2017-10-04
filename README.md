@@ -8,16 +8,85 @@
   </p>
 </div>
 
-| Type                  | Badge                                                                           |
-|-----------------------|---------------------------------------------------------------------------------|
-| Circle CI Build       | [![Circle CI Build Status][circle-ci-badge]][circle-ci-badge-url]               |
-| GitHub Release        | [![GitHub Release][github-release-badge]][github-release-badge-url]             |
-| NPM Version           | [![NPM Version][npm-version-badge]][npm-version-badge-url]                      |
-| Dependencies          | [![Dependency Status][dep-status-badge]][dep-status-badge-url]                  |
-| Dev Dependencies      | [![Dev Dependency Status][dev-dep-status-badge]][dev-dep-status-badge-url]      |
-| Peer Dependencies     | [![Peer Dependency Status][peer-dep-status-badge]][peer-dep-status-badge-url]   |
-| Optional Dependencies | [![Optional Dependency Status][opt-dep-status-badge]][opt-dep-status-badge-url] |
-| License               | [![License][license-badge]][license-badge-url]                                  |
+<table>
+  <tr>
+    <th align="left">Subject</th>
+    <th align="left">Type</th>
+    <th align="left">Badge</th>
+  </tr>
+  <!-- <tr>
+    <th align="left">CI / CD</th>
+    <td align="left">Circle CI</td>
+    <td align="left">
+      <a href="https://circleci.com/gh/nicky-lenaers/ngx-scroll-to" target="_blank">
+        <img src="https://img.shields.io/circleci/project/github/nicky-lenaers/ngx-scroll-to/master.svg?style=flat-square" alt="Circle CI">
+      </a>
+    </td>
+  </tr> -->
+  <tr>
+    <th align="left">Releases</th>
+    <td align="left">GitHub</td>
+    <td align="left">
+      <a href="https://github.com/nicky-lenaers/ngx-scroll-to/releases" target="_blank">
+        <img src="https://img.shields.io/github/release/nicky-lenaers/ngx-scroll-to.svg?style=flat-square" alt="GitHub Release">
+      </a>
+    </td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>NPM</td>
+    <td align="left">
+      <a href="https://www.npmjs.com/package/@nicky-lenaers/ngx-scroll-to" target="_blank">
+        <img src="https://img.shields.io/npm/v/@nicky-lenaers/ngx-scroll-to.svg?style=flat-square" alt="NPM Release">
+      </a>
+    </td>
+  </tr>
+  <tr>
+    <th align="left" valign="top">Dependencies</th>
+    <td align="left">Production</td>
+    <td align="left">
+      <a href="https://david-dm.org/nicky-lenaers/ngx-scroll-to" target="_blank">
+        <img src="https://img.shields.io/david/nicky-lenaers/ngx-scroll-to.svg?style=flat-square" alt="Production Dependencies">
+      </a>
+    </td>
+  </tr>
+  <tr>
+    <td></td>
+    <td align="left">Peer</td>
+    <td align="left">
+      <a href="https://david-dm.org/nicky-lenaers/ngx-scroll-to?type=peer" target="_blank">
+        <img src="https://img.shields.io/david/peer/nicky-lenaers/ngx-scroll-to.svg?style=flat-square" alt="Peer Dependencies">
+      </a>
+    </td>
+  </tr>
+  <tr>
+    <td></td>
+    <td align="left">Development</td>
+    <td align="left">
+      <a href="https://david-dm.org/nicky-lenaers/ngx-scroll-to?type=dev" target="_blank">
+        <img src="https://img.shields.io/david/dev/nicky-lenaers/ngx-scroll-to.svg?style=flat-square" alt="Development Dependencies">
+      </a>
+    </td>
+  </tr>
+  <tr>
+    <td></td>
+    <td align="left">Optional</td>
+    <td align="left">
+      <a href="https://david-dm.org/nicky-lenaers/ngx-scroll-to?type=optional" target="_blank">
+        <img src="https://img.shields.io/david/optional/nicky-lenaers/ngx-scroll-to.svg?style=flat-square" alt="Optional Dependencies">
+      </a>
+    </td>
+  </tr>
+  <tr>
+    <th align="left" valign="top">License</th>
+    <td></td>
+    <td>
+      <a href="https://github.com/nicky-lenaers/ngx-scroll-to/blob/master/LICENSE" target="_blank">
+        <img src="https://img.shields.io/npm/l/@nicky-lenaers/ngx-scroll-to.svg?style=flat-square" alt="Optional Dependencies">
+      </a>
+    </td>
+  </tr>
+</table>
 
 Current Angular Version
 
@@ -209,6 +278,7 @@ This value controls the offset with respect to the top of the destination HTML e
 #### <a name="ngx-scroll-to-offset-map-details"></a>`[ngx-scroll-to-offset-map]`
 This value allows you to control dynamic offsets based on the width of the device screen. The Map get's iterated over internally in a sequential fashion, meaning you need to supply key values in the order from low to high. The `key` of the `Map` defines the width treshold. The `value` of the `Map` defines the offset. Note that this value is in pixels.
 
+<<<<<<< HEAD
 # License
  [MIT](/LICENSE)
 
@@ -228,3 +298,26 @@ This value allows you to control dynamic offsets based on the width of the devic
 [opt-dep-status-badge-url]: https://david-dm.org/nicky-lenaers/ngx-scroll-to?type=optional
 [license-badge]: https://img.shields.io/npm/l/@nicky-lenaers/ngx-scroll-to.svg?style=flat-square
 [license-badge-url]: https://github.com/nicky-lenaers/ngx-scroll-to/blob/master/LICENSE
+=======
+## Development
+
+### Install Peer Dependencies
+```sh
+$ npm run install:peers
+``` 
+
+# License
+ [MIT](/LICENSE)
+
+<!-- 
+
+TODO:
+- [ ] Guidelines
+- [ ] PR Template
+
+REFERENCES:
+- Library Starter
+  https://github.com/robisim74/angular-library-starter
+
+-->
+>>>>>>> develop
