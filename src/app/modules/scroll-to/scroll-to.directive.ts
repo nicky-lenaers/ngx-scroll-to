@@ -57,7 +57,6 @@ export class ScrollToDirective implements AfterViewInit {
 	 * Angular Lifecycle Hook - After View Init
 	 *
 	 * @todo Implement Subscription for Events
-   * @todo fix 'includes' as it is not working
 	 *
 	 * @returns void
 	 */
