@@ -51,24 +51,24 @@ export class ScrollToAnimation {
     this._source$ = new ReplaySubject();
   }
 
-	/**
-	 * Start the new Scroll Animation.
-	 *
-	 * @todo consider using enums for actiontypes
-	 *
-	 * @returns       void
-	 */
+  /**
+   * Start the new Scroll Animation.
+   *
+   * @todo consider using enums for actiontypes
+   *
+   * @returns       void
+   */
   public start(): Observable<any> {
     clearInterval(this._interval);
     this._interval = setInterval(this._loop, this._tick);
     return this._source$.asObservable();
   }
 
-	/**
-	 * Recursively loop over the Scroll Animation.
-	 *
-	 * @returns void
-	 */
+  /**
+   * Recursively loop over the Scroll Animation.
+   *
+   * @returns void
+   */
   private _loop = (): void => {
     this._time_lapsed += this._tick;
     this._percentage = (this._time_lapsed / this._options.duration);
@@ -80,11 +80,11 @@ export class ScrollToAnimation {
     this.stop(false);
   }
 
-	/**
-	 * Stop the current Scroll Animation Loop.
-	 *
-	 * @param force 			Force to stop
-	 */
+  /**
+   * Stop the current Scroll Animation Loop.
+   *
+   * @param force 			Force to stop
+   */
   public stop(force: boolean = true): void {
 
     const curr_position = this._is_window ? this._windowScrollTop : this._container.scrollTop;

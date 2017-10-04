@@ -12,17 +12,17 @@ import { ScrollToService } from './scroll-to.service';
   ]
 })
 export class ScrollToModule {
-	/**
-	 * Guaranteed singletons for provided Services across App.
-	 *
-	 * @return          An Angular Module with Providers
-	 */
+  /**
+   * Guaranteed singletons for provided Services across App.
+   *
+   * @return          An Angular Module with Providers
+   */
   static forRoot(): ModuleWithProviders {
     return {
       ngModule: ScrollToModule,
       providers: [
         ScrollToService
       ]
-    }
+    };
   }
 }

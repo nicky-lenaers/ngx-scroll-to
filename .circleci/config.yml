@@ -1,0 +1,91 @@
+# CircleCI Pre-Built Docker Images
+# - https://circleci.com/docs/2.0/circleci-images/
+
+# CirlceCI Configuration
+version: 2
+
+# References
+references:
+
+  working_directory: &working_directory
+    ~/app
+
+  image_node: &image_node
+    image: circleci/node:8.2.1
+
+  image_node_browsers: &image_node_browsers
+    image: circleci/node:8.2.1-browsers
+
+  job_defaults: &job_defaults
+    working_directory: *working_directory
+    docker:
+      - *image_node
+
+  job_defaults_browsers: &job_defaults_browsers
+    working_directory: *working_directory
+    docker:
+      - *image_node_browsers
+
+  restore_npm_cache: &restore_npm_cache
+    restore_cache:
+      key: dependency-cache-{{ checksum "package.json" }}
+
+# Jobs
+jobs:
+  build:
+    <<: *job_defaults
+    steps:
+      - checkout
+      - *restore_npm_cache
+      - run:
+          name: Install NodeJS Dependencies via NPM
+          command: npm install
+      - save_cache:
+          key: dependency-cache-{{ checksum "package.json" }}
+          paths:
+            - node_modules
+  test_spec:
+    <<: *job_defaults_browsers
+    steps:
+      - checkout
+      - *restore_npm_cache
+      - run:
+          name: Test Spec
+          command: npm run test -- --single-run=true --progress=false --code-coverage --log-level=DEBUG
+      - store_artifacts:
+          path: coverage/ts
+          destination: coverage
+  test_e2e:
+    <<: *job_defaults_browsers
+    steps:
+      - checkout
+      - *restore_npm_cache
+      - run:
+          name: Test End to End
+          command: npm run e2e
+      - store_test_results:
+          path: reports/e2e
+  lint:
+    <<: *job_defaults
+    steps:
+      - checkout
+      - *restore_npm_cache
+      - run:
+          name: Lint TypeScript
+          command: npm run lint
+
+# Workflows
+workflows:
+  version: 2
+  build_and_test:
+    jobs:
+      - build
+      - test_spec:
+          requires:
+            - build
+      - test_e2e:
+          requires:
+            - build
+      - lint:
+          requires:
+            - build
