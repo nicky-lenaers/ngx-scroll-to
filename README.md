@@ -278,27 +278,6 @@ This value controls the offset with respect to the top of the destination HTML e
 #### <a name="ngx-scroll-to-offset-map-details"></a>`[ngx-scroll-to-offset-map]`
 This value allows you to control dynamic offsets based on the width of the device screen. The Map get's iterated over internally in a sequential fashion, meaning you need to supply key values in the order from low to high. The `key` of the `Map` defines the width treshold. The `value` of the `Map` defines the offset. Note that this value is in pixels.
 
-<<<<<<< HEAD
-# License
- [MIT](/LICENSE)
-
-[circle-ci-badge]: https://img.shields.io/circleci/project/github/nicky-lenaers/ngx-scroll-to/master.svg?style=flat-square
-[circle-ci-badge-url]: https://circleci.com/gh/nicky-lenaers/ngx-scroll-to
-[github-release-badge]: https://img.shields.io/github/release/nicky-lenaers/ngx-scroll-to.svg?style=flat-square
-[github-release-badge-url]: https://github.com/nicky-lenaers/ngx-scroll-to/releases
-[npm-version-badge]: https://img.shields.io/npm/v/@nicky-lenaers/ngx-scroll-to.svg?style=flat-square
-[npm-version-badge-url]: https://www.npmjs.com/package/@nicky-lenaers/ngx-scroll-to
-[dep-status-badge]: https://img.shields.io/david/nicky-lenaers/ngx-scroll-to.svg?style=flat-square
-[dep-status-badge-url]: https://david-dm.org/nicky-lenaers/ngx-scroll-to
-[dev-dep-status-badge]: https://img.shields.io/david/dev/nicky-lenaers/ngx-scroll-to.svg?style=flat-square
-[dev-dep-status-badge-url]: https://david-dm.org/nicky-lenaers/ngx-scroll-to?type=dev
-[peer-dep-status-badge]: https://img.shields.io/david/peer/nicky-lenaers/ngx-scroll-to.svg?style=flat-square
-[peer-dep-status-badge-url]: https://david-dm.org/nicky-lenaers/ngx-scroll-to?type=peer
-[opt-dep-status-badge]: https://img.shields.io/david/optional/nicky-lenaers/ngx-scroll-to.svg?style=flat-square
-[opt-dep-status-badge-url]: https://david-dm.org/nicky-lenaers/ngx-scroll-to?type=optional
-[license-badge]: https://img.shields.io/npm/l/@nicky-lenaers/ngx-scroll-to.svg?style=flat-square
-[license-badge-url]: https://github.com/nicky-lenaers/ngx-scroll-to/blob/master/LICENSE
-=======
 ## Development
 
 ### Install Peer Dependencies
@@ -320,4 +299,3 @@ REFERENCES:
   https://github.com/robisim74/angular-library-starter
 
 -->
->>>>>>> develop
