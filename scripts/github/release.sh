@@ -32,6 +32,10 @@ case $key in
     VERSION="$2"
     shift
     ;;
+    -p|--prerelease)
+    SET_PRERELEASE="$2"
+    shift
+    ;;
 esac
 shift
 done
@@ -42,9 +46,9 @@ if [[ ! ${VERSION} ]]; then printf "\nError: Version not set.\nSet a version by 
 NPM_VERSION_CMD="npm version ${VERSION} --no-git-tag-version"
 PRERELEASE=false
 
-if [[ $VERSION == "prerelease" ]]; then PRERELEASE=true; fi
+if [[ $VERSION == "prerelease" ]] || [[ $SET_PRERELEASE ]]; then PRERELEASE=true; fi
 
-# Step 4 - Bump Version in `package.json`
+Step 4 - Bump Version in `package.json`
 eval "${NPM_VERSION_CMD}"
 
 # Step 5 - Generate Changelog
