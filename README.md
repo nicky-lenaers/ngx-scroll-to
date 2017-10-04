@@ -14,7 +14,7 @@
     <th align="left">Type</th>
     <th align="left">Badge</th>
   </tr>
-  <tr>
+  <!-- <tr>
     <th align="left">CI / CD</th>
     <td align="left">Circle CI</td>
     <td align="left">
@@ -22,7 +22,7 @@
         <img src="https://img.shields.io/circleci/project/github/nicky-lenaers/ngx-scroll-to/master.svg?style=flat-square" alt="Circle CI">
       </a>
     </td>
-  </tr>
+  </tr> -->
   <tr>
     <th align="left">Releases</th>
     <td align="left">GitHub</td>
