@@ -1,9 +1,14 @@
 <h1>ngx-scroll-to</h1>
 <div>
 
-  <button [ngx-scroll-to]="'dest'" [ngx-scroll-to-event]="'click'" style="margin-bottom: 200vh;">Go</button>
+  <h3 id="top" style="margin-top: 50vh;">Top</h3>
+
+  <button [ngx-scroll-to]="'dest'" [ngx-scroll-to-offset]="200" style="margin-bottom: 200vh;">Go</button>
   <div id="dest">
+
+
     Destination
+    <button [ngx-scroll-to]="'top'" [ngx-scroll-to-offset]="200" style="margin-bottom: 200vh;">To Top</button>
   </div>
 
 </div>

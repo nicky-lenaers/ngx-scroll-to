@@ -36,7 +36,11 @@ export class ScrollToAnimation {
     if (!this._is_window) this._to = this._to - this._container.getBoundingClientRect().top + this._start_position;
 
     // Set Distance
+    /**
+     * @todo test if non-abs distance is pos/neg and based on that add/subtract
+     */
     this._distance = Math.abs(this._start_position - this._to);
+    console.log('non-abs distance: ', this._start_position - this._to);
     let offset = this._options.offset;
 
     // Set offset from Offset Map
@@ -46,6 +50,9 @@ export class ScrollToAnimation {
         .offsetMap
         .forEach((value, key) => offset = window.innerWidth > key ? value : offset);
     }
+
+    console.log('container: ', this._container);
+    console.log('to: ', this._to);
 
     this._distance += offset;
     this._source$ = new ReplaySubject();
