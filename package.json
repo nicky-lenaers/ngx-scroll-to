@@ -9,7 +9,7 @@
     "build": "ng build",
     "changelog": "conventional-changelog -p angular -i CHANGELOG.md -s -r 0",
     "e2e": "ng e2e",
-    "install:peers": "sh ./scripts/install-peers.sh",
+    "install:peers": "sh ./scripts/npm/install-peers.sh",
     "lint": "ng lint",
     "ng": "ng",
     "package": "ng-packagr -p ng-package.json",
