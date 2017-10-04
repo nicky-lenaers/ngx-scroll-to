@@ -298,4 +298,6 @@ REFERENCES:
 - Library Starter
   https://github.com/robisim74/angular-library-starter
 
+- Test
+  https://www.atlassian.com/git/tutorials/merging-vs-rebasing
 -->
