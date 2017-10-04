@@ -1,5 +1,15 @@
-<a name="0.3.2"></a>
-## [0.3.2](https://github.com/nicky-lenaers/ngx-scroll-to/compare/0.3.1...0.3.2) (2017-10-03)
+<a name="0.4.0-alpha.3"></a>
+# [0.4.0-alpha.3](https://github.com/nicky-lenaers/ngx-scroll-to/compare/0.4.0-alpha.2...0.4.0-alpha.3) (2017-10-04)
+
+
+
+<a name="0.4.0-alpha.2"></a>
+# [0.4.0-alpha.2](https://github.com/nicky-lenaers/ngx-scroll-to/compare/0.4.0-alpha.1...0.4.0-alpha.2) (2017-10-04)
+
+
+
+<a name="0.4.0-alpha.1"></a>
+# [0.4.0-alpha.1](https://github.com/nicky-lenaers/ngx-scroll-to/compare/0.3.1...0.4.0-alpha.1) (2017-10-04)
 
 
 ### Features
