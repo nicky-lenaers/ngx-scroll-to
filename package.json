@@ -15,8 +15,8 @@
     "ng": "ng",
     "package": "ng-packagr -p ng-package.json",
     "package:tar": "cd ./dist && npm pack",
-    "prepublish": "npm run package",
-    "publish": "cd ./dist && npm publish --access=public",
+    "prenpm:publish": "npm run package",
+    "npm:publish": "cd ./dist && npm publish --access=public",
     "start": "ng serve",
     "test": "ng test"
   },
