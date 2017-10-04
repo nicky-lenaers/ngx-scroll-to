@@ -64,7 +64,7 @@ export class ScrollToDirective implements AfterViewInit {
   public ngAfterViewInit(): void {
 
     // Test Event Support
-    // if (!EVENTS.includes(this.ngxScrollToEvent)) throw new Error(`Unsupported Event '${this.ngxScrollToEvent}'`);
+    if (EVENTS.indexOf(this.ngxScrollToEvent) === -1) throw new Error(`Unsupported Event '${this.ngxScrollToEvent}'`);
 
     // Listen for the trigger...
     this._renderer2.listen(this._elementRef.nativeElement, this.ngxScrollToEvent,

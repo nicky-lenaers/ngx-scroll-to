@@ -10,7 +10,7 @@ import { ScrollToModule } from './modules/scroll-to/scroll-to.module';
   ],
   imports: [
     BrowserModule,
-    ScrollToModule
+    ScrollToModule.forRoot()
   ],
   providers: [],
   bootstrap: [AppComponent]
