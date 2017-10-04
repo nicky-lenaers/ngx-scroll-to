@@ -9,7 +9,7 @@ export type ScrollToOffsetMap = Map<number, number>;
  */
 export type ScrollToConfigOptional<T> = {
   [Option in keyof T]?: T[Option];
-}
+};
 
 export interface ScrollToConfigMandatory {
   target: ScrollToTarget;
@@ -29,6 +29,6 @@ export interface ScrollToConfigPartial {
 export interface ScrollToConfig extends ScrollToConfigOptional<ScrollToConfigPartial>, ScrollToConfigMandatory {
   [key: string]: ScrollToTarget | ScrollToAnimationEasing | ScrollToOffsetMap | number;
 }
-export interface ɵScrollToDefaultOptions extends ScrollToConfigMandatory, ScrollToConfigMandatoryPartial, ScrollToConfigPartial {
+export interface ScrollToDefaultOptions extends ScrollToConfigMandatory, ScrollToConfigMandatoryPartial, ScrollToConfigPartial {
   [key: string]: ScrollToTarget | ScrollToAnimationEasing | ScrollToOffsetMap | number;
 }

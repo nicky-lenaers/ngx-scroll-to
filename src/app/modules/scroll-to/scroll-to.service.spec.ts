@@ -8,29 +8,29 @@ class MockPlatform { }
 
 describe('ScrollToService', () => {
 
-	let service: ScrollToService;
+  let service: ScrollToService;
 
-	beforeEach(async(() => {
-		TestBed.configureTestingModule({
-			providers: [
-				{
-					provide: DOCUMENT, useClass: MockDocument
-				},
-				{
-					provide: PLATFORM_ID, useClass: MockPlatform
-				},
-				ScrollToService
-			]
-		});
+  beforeEach(async(() => {
+    TestBed.configureTestingModule({
+      providers: [
+        {
+          provide: DOCUMENT, useClass: MockDocument
+        },
+        {
+          provide: PLATFORM_ID, useClass: MockPlatform
+        },
+        ScrollToService
+      ]
+    });
 
-		service = TestBed.get(ScrollToService);
-	}));
+    service = TestBed.get(ScrollToService);
+  }));
 
-	it('should be created', () => {
-		expect(service).toBeTruthy();
-	});
+  it('should be created', () => {
+    expect(service).toBeTruthy();
+  });
 
-	it('should have a public function called `scrollTo`', () => {
-		expect(service.scrollTo instanceof Function).toBe(true);
-	});
+  it('should have a public function called `scrollTo`', () => {
+    expect(service.scrollTo instanceof Function).toBe(true);
+  });
 });
