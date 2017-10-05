@@ -85,12 +85,12 @@ export class ScrollToService {
 
     const subscription = animation$
       .subscribe(
-      () => { },
-      () => { },
-      () => {
-        this._removeStopEventListeners(stop_events, listenerTarget, stop_event_handler);
-        subscription.unsubscribe();
-      }
+        () => { },
+        () => { },
+        () => {
+          this._removeStopEventListeners(stop_events, listenerTarget, stop_event_handler);
+          subscription.unsubscribe();
+        }
       );
 
     return animation$;

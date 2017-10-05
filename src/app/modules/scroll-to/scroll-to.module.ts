@@ -3,7 +3,6 @@ import { ScrollToDirective } from './scroll-to.directive';
 import { ScrollToService } from './scroll-to.service';
 
 @NgModule({
-  imports: [],
   declarations: [
     ScrollToDirective
   ],
