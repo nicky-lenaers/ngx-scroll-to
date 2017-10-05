@@ -9,10 +9,10 @@ export class ScrollToAnimation {
 
   private _tick: number;
   private _interval: any;
-  private _time_lapsed: number;
+  private _timeLapsed: number;
   private _percentage: number;
   private _position: number;
-  private _start_position: number;
+  private _startPosition: number;
   private _distance: number;
   private _source$: ReplaySubject<number>;
   private _windowScrollTop: number;
@@ -20,74 +20,82 @@ export class ScrollToAnimation {
   constructor(
     private _container: HTMLElement,
     private _listenerTarget: ScrollToListenerTarget,
-    private readonly _is_window: boolean,
+    private readonly _isWindow: boolean,
     private readonly _to: number,
     private readonly _options: ScrollToConfig,
-    private _is_browser: boolean
+    private _isBrowser: boolean
   ) {
     this._tick = 16;
     this._interval = null;
-    this._time_lapsed = 0;
+    this._timeLapsed = 0;
 
     this._windowScrollTop = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop || 0;
-    this._start_position = this._is_window ? this._windowScrollTop : this._container.scrollTop;
+    this._startPosition = this._isWindow ? this._windowScrollTop : this._container.scrollTop;
 
     // Correction for Starting Position of nested HTML Elements
-    if (!this._is_window) this._to = this._to - this._container.getBoundingClientRect().top + this._start_position;
+    if (!this._isWindow) this._to = this._to - this._container.getBoundingClientRect().top + this._startPosition;
 
     // Set Distance
-    this._distance = Math.abs(this._start_position - this._to);
+    const directionalDistance = this._startPosition - this._to;
+    this._distance = Math.abs(this._startPosition - this._to);
+
     let offset = this._options.offset;
 
     // Set offset from Offset Map
-    if (this._is_browser) {
+    if (this._isBrowser) {
 
       this._options
         .offsetMap
         .forEach((value, key) => offset = window.innerWidth > key ? value : offset);
     }
 
-    this._distance += offset;
+    // this._distance += offset;
+    this._distance += offset * (directionalDistance <= 0 ? 1 : -1);
     this._source$ = new ReplaySubject();
   }
 
-	/**
-	 * Start the new Scroll Animation.
-	 *
-	 * @todo consider using enums for actiontypes
-	 *
-	 * @returns       void
-	 */
+  /**
+   * Start the new Scroll Animation.
+   *
+   * @todo consider using enums for actiontypes
+   *
+   * @returns       void
+   */
   public start(): Observable<any> {
     clearInterval(this._interval);
     this._interval = setInterval(this._loop, this._tick);
     return this._source$.asObservable();
   }
 
-	/**
-	 * Recursively loop over the Scroll Animation.
-	 *
-	 * @returns void
-	 */
+  /**
+   * Recursively loop over the Scroll Animation.
+   *
+   * @returns void
+   */
   private _loop = (): void => {
-    this._time_lapsed += this._tick;
-    this._percentage = (this._time_lapsed / this._options.duration);
+    this._timeLapsed += this._tick;
+    this._percentage = (this._timeLapsed / this._options.duration);
     this._percentage = (this._percentage > 1) ? 1 : this._percentage;
-    this._position = this._start_position
-      + ((this._start_position - this._to < 0 ? 1 : -1) * this._distance * EASING[this._options.easing](this._percentage));
+
+    // Position Update
+    this._position = this._startPosition +
+      ((this._startPosition - this._to < 0 ? 1 : -1) *
+      this._distance *
+      EASING[this._options.easing](this._percentage));
+
     this._source$.next(this._position);
-    this._is_window ? this._listenerTarget.scrollTo(0, Math.floor(this._position)) : this._container.scrollTop = Math.floor(this._position);
+    this._isWindow ? this._listenerTarget.scrollTo(0, Math.floor(this._position)) : this._container.scrollTop = Math.floor(this._position);
     this.stop(false);
   }
 
-	/**
-	 * Stop the current Scroll Animation Loop.
-	 *
-	 * @param force 			Force to stop
-	 */
+  /**
+   * Stop the current Scroll Animation Loop.
+   *
+   * @param force 			Force to stop
+   */
   public stop(force: boolean = true): void {
 
-    const curr_position = this._is_window ? this._windowScrollTop : this._container.scrollTop;
+    const curr_position = this._isWindow ? this._windowScrollTop : this._container.scrollTop;
 
     if (force || this._position === (this._to + this._options.offset) || curr_position === (this._to + this._options.offset)) {
       clearInterval(this._interval);

@@ -5,12 +5,12 @@ import {
   ScrollToAnimationEasingCollection
 } from '../models/scroll-to-easing.model';
 import { ScrollToEvent } from '../models/scroll-to-event.model';
-import { ScrollToConfig, ɵScrollToDefaultOptions } from '../models/scroll-to-config.model';
+import { ScrollToConfig, ScrollToDefaultOptions } from '../models/scroll-to-config.model';
 
 /**
  * Default values for Component Input.
  */
-export const DEFAULTS: ɵScrollToDefaultOptions = {
+export const DEFAULTS: ScrollToDefaultOptions = {
   target: null,
   event: 'click',
   duration: 650,
@@ -85,7 +85,7 @@ export const EVENTS: string[] = [
  */
 export function mergeConfigWithDefaults(config: ScrollToConfig): ScrollToConfig {
 
-  let filtered: any = {};
+  const filtered: any = {};
 
   Object.keys(config)
     .filter((key) => config[key] !== undefined)

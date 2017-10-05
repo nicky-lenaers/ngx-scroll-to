@@ -53,13 +53,13 @@ export class ScrollToDirective implements AfterViewInit {
 
   }
 
-	/**
-	 * Angular Lifecycle Hook - After View Init
-	 *
-	 * @todo Implement Subscription for Events
-	 *
-	 * @returns void
-	 */
+  /**
+   * Angular Lifecycle Hook - After View Init
+   *
+   * @todo Implement Subscription for Events
+   *
+   * @returns void
+   */
   public ngAfterViewInit(): void {
 
     // Test Event Support

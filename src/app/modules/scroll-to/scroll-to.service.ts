@@ -31,16 +31,16 @@ export class ScrollToService {
   ) {
   }
 
-	/**
-	 * Target an Element to scroll to.
-	 *
-	 * @todo type 'any' in Observable should become custom type like 'ScrollToEvent' (base class), see issue comment:
-	 * 	- https://github.com/nicky-lenaers/ngx-scroll-to/issues/10#issuecomment-317198481
-	 *
-	 * @param event         Native Browser Event
-	 * @param config        Configuration Object
-	 * @returns             Observable
-	 */
+  /**
+   * Target an Element to scroll to.
+   *
+   * @todo type 'any' in Observable should become custom type like 'ScrollToEvent' (base class), see issue comment:
+   * 	- https://github.com/nicky-lenaers/ngx-scroll-to/issues/10#issuecomment-317198481
+   *
+   * @param event         Native Browser Event
+   * @param config        Configuration Object
+   * @returns             Observable
+   */
   @TimeOut()
   public scrollTo(event: any, config: ScrollToConfig): Observable<any> {
 
@@ -49,15 +49,15 @@ export class ScrollToService {
     return this._start(event, config);
   }
 
-	/**
-	 * Start a new Animation.
-	 *
-	 * @todo Emit proper events from subscription
-	 *
-	 * @param event         Native Browser Event
-	 * @param config        Configuration Object
-	 * @returns             Observable
-	 */
+  /**
+   * Start a new Animation.
+   *
+   * @todo Emit proper events from subscription
+   *
+   * @param event         Native Browser Event
+   * @param config        Configuration Object
+   * @returns             Observable
+   */
   private _start(event: any, config: ScrollToConfig): Observable<number> {
 
     // Merge config with default values
@@ -85,47 +85,53 @@ export class ScrollToService {
 
     const subscription = animation$
       .subscribe(
-      () => { },
-      () => { },
-      () => {
-        this._removeStopEventListeners(stop_events, listenerTarget, stop_event_handler);
-        subscription.unsubscribe();
-      }
+        () => { },
+        () => { },
+        () => {
+          this._removeStopEventListeners(stop_events, listenerTarget, stop_event_handler);
+          subscription.unsubscribe();
+        }
       );
 
     return animation$;
   }
 
-	/**
-	 * Add listeners for the Animation Stop Event.
-	 *
-	 * @param events            List of events to listen to
-	 * @param listenerTarget    Target to attach the listener on
-	 * @param handler           Handler for when the listener fires
-	 * @returns                 void
-	 */
-  private _addStopEventListeners(events: string[], listenerTarget: ScrollToListenerTarget, handler: EventListenerOrEventListenerObject): void {
+  /**
+   * Add listeners for the Animation Stop Event.
+   *
+   * @param events            List of events to listen to
+   * @param listenerTarget    Target to attach the listener on
+   * @param handler           Handler for when the listener fires
+   * @returns                 void
+   */
+  private _addStopEventListeners(
+    events: string[],
+    listenerTarget: ScrollToListenerTarget,
+    handler: EventListenerOrEventListenerObject): void {
     events.forEach(event => listenerTarget.addEventListener(event, handler));
   }
 
-	/**
-	 * Remove listeners for the Animation Stop Event.
-	 *
-	 * @param events            List of events to listen to
-	 * @param listenerTarget    Target to attach the listener on
-	 * @param handler           Handler for when the listener fires
-	 * @returns                 void
-	 */
-  private _removeStopEventListeners(events: string[], listenerTarget: ScrollToListenerTarget, handler: EventListenerOrEventListenerObject): void {
+  /**
+   * Remove listeners for the Animation Stop Event.
+   *
+   * @param events            List of events to listen to
+   * @param listenerTarget    Target to attach the listener on
+   * @param handler           Handler for when the listener fires
+   * @returns                 void
+   */
+  private _removeStopEventListeners(
+    events: string[],
+    listenerTarget: ScrollToListenerTarget,
+    handler: EventListenerOrEventListenerObject): void {
     events.forEach(event => listenerTarget.removeEventListener(event, handler));
   }
 
-	/**
-	 * Find the first scrollable parent node of an element.
-	 *
-	 * @param nativeElement     The element to search from
-	 * @return                  The first scrollable parent element
-	 */
+  /**
+   * Find the first scrollable parent node of an element.
+   *
+   * @param nativeElement     The element to search from
+   * @return                  The first scrollable parent element
+   */
   private _getFirstScrollableParent(nativeElement: HTMLElement): HTMLElement {
 
     let style: CSSStyleDeclaration = window.getComputedStyle(nativeElement);
@@ -156,12 +162,12 @@ export class ScrollToService {
     throw new Error(`No scrollable parent found for element ${nativeElement.nodeName}`);
   }
 
-	/**
-	 * Get the Target Node to scroll to.
-	 *
-	 * @param id          The given ID of the node, either a string or an element reference
-	 * @returns           Target Node
-	 */
+  /**
+   * Get the Target Node to scroll to.
+   *
+   * @param id          The given ID of the node, either a string or an element reference
+   * @returns           Target Node
+   */
   private _getTargetNode(id: ScrollToTarget): HTMLElement {
 
     let target_node: HTMLElement;
@@ -186,12 +192,12 @@ export class ScrollToService {
 
   }
 
-	/**
-	 * Retrieve the Listener target.
-	 *
-	 * @param container           The HTML Container element
-	 * @returns                   Listener
-	 */
+  /**
+   * Retrieve the Listener target.
+   *
+   * @param container           The HTML Container element
+   * @returns                   Listener
+   */
   private _getListenerTarget(container: HTMLElement): ScrollToListenerTarget {
     return container.tagName.toUpperCase() === 'BODY' ? window : container;
   }
