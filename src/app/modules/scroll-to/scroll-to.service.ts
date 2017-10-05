@@ -20,16 +20,33 @@ import {
   mergeConfigWithDefaults
 } from './statics/scroll-to-helpers';
 
+/**
+ * The ScrollToService handles starting, interrupting
+ * and ending the actual Scroll Animation. It provides
+ * some utilities to find the proper HTML Element on a
+ * given page to setup Event Listeners and calculate
+ * distances for the Animation.
+ */
 @Injectable()
 export class ScrollToService {
 
+  /**
+   * The animation that provides the scrolling
+   * to happen smoothly over time. Defining it here
+   * allows for usage of e.g. `start` and `stop`
+   * methods within this Angular Service.
+   */
   private _animation: ScrollToAnimation;
 
+  /**
+   * Construct and setup required paratemeters
+   * @param _document         A Reference to the Document
+   * @param _platformId       Angular Platform ID
+   */
   constructor(
     @Inject(DOCUMENT) private _document: any,
     @Inject(PLATFORM_ID) private _platformId: any
-  ) {
-  }
+  ) { }
 
   /**
    * Target an Element to scroll to. Notice that the `TimeOut` decorator
@@ -94,11 +111,11 @@ export class ScrollToService {
     /**
      * @todo rename to interruptableEvents
      */
-    const stopEvents: string[] = ['mousewheel', 'DOMMouseScroll', 'touchstart'];
-    const onStopEvent = () => this._animation.stop();
+    const interruptiveEvents: string[] = ['mousewheel', 'DOMMouseScroll', 'touchstart'];
+    const onInterrupt = () => this._animation.stop();
 
     // Add Stop Event Listeners
-    this._addStopEventListeners(stopEvents, listenerTarget, onStopEvent);
+    this._addInterruptiveEventListeners(interruptiveEvents, listenerTarget, onInterrupt);
 
     // Start Animation
     const animation$ = this._animation.start();
@@ -108,7 +125,7 @@ export class ScrollToService {
         () => { },
         () => { },
         () => {
-          this._removeStopEventListeners(stopEvents, listenerTarget, onStopEvent);
+          this._removeInterruptiveEventListeners(interruptiveEvents, listenerTarget, onInterrupt);
           subscription.unsubscribe();
         }
       );
@@ -117,40 +134,47 @@ export class ScrollToService {
   }
 
   /**
-   * Add listeners for the Animation Stop Event.
+   * Add listeners for the Animation Interruptive Events
+   * to the Listener Target.
    *
    * @param events            List of events to listen to
    * @param listenerTarget    Target to attach the listener on
    * @param handler           Handler for when the listener fires
-   * @returns                 void
+   * @returns                 Void
    */
-  private _addStopEventListeners(
+  private _addInterruptiveEventListeners(
     events: string[],
     listenerTarget: ScrollToListenerTarget,
     handler: EventListenerOrEventListenerObject): void {
+
     events.forEach(event => listenerTarget.addEventListener(event, handler));
   }
 
   /**
-   * Remove listeners for the Animation Stop Event.
+   * Remove listeners for the Animation Interrupt Event from
+   * the Listener Target. Specifying the correct handler prevents
+   * memory leaks and makes the allocated memory available for
+   * Garbage Collection.
    *
-   * @param events            List of events to listen to
+   * @param events            List of Interruptive Events to remove
    * @param listenerTarget    Target to attach the listener on
    * @param handler           Handler for when the listener fires
-   * @returns                 void
+   * @returns                 Void
    */
-  private _removeStopEventListeners(
+  private _removeInterruptiveEventListeners(
     events: string[],
     listenerTarget: ScrollToListenerTarget,
     handler: EventListenerOrEventListenerObject): void {
+
     events.forEach(event => listenerTarget.removeEventListener(event, handler));
   }
 
   /**
-   * Find the first scrollable parent node of an element.
+   * Find the first scrollable parent Node of a
+   * given Element.
    *
-   * @param nativeElement     The element to search from
-   * @return                  The first scrollable parent element
+   * @param nativeElement     The Element to search the DOM Tree upwards from
+   * @returns                 The first scrollable parent HTML Element
    */
   private _getFirstScrollableParent(nativeElement: HTMLElement): HTMLElement {
 
@@ -182,7 +206,7 @@ export class ScrollToService {
    * Get the Target Node to scroll to.
    *
    * @param id          The given ID of the node, either a string or an element reference
-   * @returns           Target Node
+   * @returns           The Target Node to scroll to
    */
   private _getTargetNode(id: ScrollToTarget): HTMLElement {
 
@@ -209,10 +233,13 @@ export class ScrollToService {
   }
 
   /**
-   * Retrieve the Listener target.
+   * Retrieve the Listener target. This Listener Target is used
+   * to attach Event Listeners on. In case of the target being
+   * the Document Body, we need the actual `window` to listen
+   * for events.
    *
    * @param container           The HTML Container element
-   * @returns                   Listener
+   * @returns                   The Listener Target to attach events on
    */
   private _getListenerTarget(container: HTMLElement): ScrollToListenerTarget {
     return container.tagName.toUpperCase() === 'BODY' ? window : container;
