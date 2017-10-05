@@ -50,7 +50,7 @@ export class ScrollToAnimation {
     }
 
     // this._distance += offset;
-    this._distance += offset * (directionalDistance <= 0 ? -1 : 1);
+    this._distance += offset * (directionalDistance <= 0 ? 1 : -1);
     this._source$ = new ReplaySubject();
   }
 
