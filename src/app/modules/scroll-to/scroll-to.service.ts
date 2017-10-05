@@ -120,6 +120,12 @@ export class ScrollToService {
     // Start Animation
     const animation$ = this._animation.start();
 
+    /**
+     * @todo move into its own function. Since the `animation$` source
+     * is returned, we can listen for events in the Directive to emit
+     * to HTML attributes. The source can then be used inside a service
+     * to subscribe to.
+     */
     const subscription = animation$
       .subscribe(
         () => { },
