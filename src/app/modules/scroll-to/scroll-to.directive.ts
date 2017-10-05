@@ -77,7 +77,7 @@ export class ScrollToDirective implements AfterViewInit {
           offsetMap: this.ngxScrollToOffsetMap
         };
 
-        this._scrollToService.scrollTo(event, this._config);
+        this._scrollToService.scrollTo(this._config, event);
       });
   }
 }

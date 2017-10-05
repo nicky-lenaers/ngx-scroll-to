@@ -27,12 +27,15 @@ export class ScrollToService {
 
   constructor(
     @Inject(DOCUMENT) private _document: any,
-    @Inject(PLATFORM_ID) private _platform_id: any
+    @Inject(PLATFORM_ID) private _platformId: any
   ) {
   }
 
   /**
-   * Target an Element to scroll to.
+   * Target an Element to scroll to. Notice that the `TimeOut` decorator
+   * ensures the executing to take place in the next Angular lifecycle.
+   * This allows for scrolling to elements that are e.g. initially hidden
+   * by means of `*ngIf`, but ought to be scrolled to eventually.
    *
    * @todo type 'any' in Observable should become custom type like 'ScrollToEvent' (base class), see issue comment:
    * 	- https://github.com/nicky-lenaers/ngx-scroll-to/issues/10#issuecomment-317198481
@@ -42,9 +45,9 @@ export class ScrollToService {
    * @returns             Observable
    */
   @TimeOut()
-  public scrollTo(event: any, config: ScrollToConfig): Observable<any> {
+  public scrollTo(config: ScrollToConfig, event: any = null): Observable<any> {
 
-    if (!isPlatformBrowser(this._platform_id)) return new ReplaySubject().asObservable();
+    if (!isPlatformBrowser(this._platformId)) return new ReplaySubject().asObservable();
 
     return this._start(event, config);
   }
@@ -61,24 +64,41 @@ export class ScrollToService {
   private _start(event: any, config: ScrollToConfig): Observable<number> {
 
     // Merge config with default values
-    const merged_config = mergeConfigWithDefaults(config);
+    const mergedConfig = mergeConfigWithDefaults(config);
 
     if (this._animation) this._animation.stop();
 
-    const container = this._getFirstScrollableParent(event.target as HTMLElement);
-    const target_node = this._getTargetNode(merged_config.target);
+    /**
+     * @todo improve interface here, as it shouldn't allow ".container"
+     * @todo abstract into a function 'getContainer'
+     */
+    let container: HTMLElement;
+
+    if (mergedConfig.container) {
+      container = this._document.getElementById(container);
+      // always get container
+    } else if (event) {
+      container = this._getFirstScrollableParent(event.target as HTMLElement);
+    } else {
+      // no container and no event, throw error
+      throw new Error('Unable to get Container Element');
+    }
+
+    const targetNode = this._getTargetNode(mergedConfig.target);
     const listenerTarget = this._getListenerTarget(container);
-    const is_window = isWindow(listenerTarget);
-    const to: number = is_window ? target_node.offsetTop : target_node.getBoundingClientRect().top;
+    const to: number = isWindow(listenerTarget) ? targetNode.offsetTop : targetNode.getBoundingClientRect().top;
 
     // Create Animation
-    this._animation = new ScrollToAnimation(container, listenerTarget, is_window, to, merged_config, isPlatformBrowser(this._platform_id));
+    this._animation = new ScrollToAnimation(container, listenerTarget, isWindow(listenerTarget), to, mergedConfig, isPlatformBrowser(this._platformId));
 
-    const stop_events: string[] = ['mousewheel', 'DOMMouseScroll', 'touchstart'];
-    const stop_event_handler = () => this._animation.stop();
+    /**
+     * @todo rename to interruptableEvents
+     */
+    const stopEvents: string[] = ['mousewheel', 'DOMMouseScroll', 'touchstart'];
+    const onStopEvent = () => this._animation.stop();
 
     // Add Stop Event Listeners
-    this._addStopEventListeners(stop_events, listenerTarget, stop_event_handler);
+    this._addStopEventListeners(stopEvents, listenerTarget, onStopEvent);
 
     // Start Animation
     const animation$ = this._animation.start();
@@ -88,7 +108,7 @@ export class ScrollToService {
         () => { },
         () => { },
         () => {
-          this._removeStopEventListeners(stop_events, listenerTarget, stop_event_handler);
+          this._removeStopEventListeners(stopEvents, listenerTarget, onStopEvent);
           subscription.unsubscribe();
         }
       );
@@ -136,7 +156,7 @@ export class ScrollToService {
 
     let style: CSSStyleDeclaration = window.getComputedStyle(nativeElement);
 
-    const overflow_regex: RegExp = /(auto|scroll)/;
+    const overflowRegex: RegExp = /(auto|scroll)/;
 
     if (style.position === 'fixed') throw new Error(`Scroll item cannot be positioned 'fixed'`);
 
@@ -146,16 +166,12 @@ export class ScrollToService {
       // Recalculate Style
       style = window.getComputedStyle(parent);
 
-      // Skip Absolute Positioning
+      /**
+       * @todo simplify/combine if statements
+       */
       if (style.position === 'absolute') continue;
-
-      // Skip Hidden Overflow
       if (style.overflow === 'hidden' || style.overflowY === 'hidden') continue;
-
-      // Test Overflow
-      if (overflow_regex.test(style.overflow + style.overflowY + style.overflowX)) return parent;
-
-      // Return Body
+      if (overflowRegex.test(style.overflow + style.overflowY + style.overflowX)) return parent;
       if (parent.tagName === 'BODY') return parent;
     }
 
@@ -170,25 +186,25 @@ export class ScrollToService {
    */
   private _getTargetNode(id: ScrollToTarget): HTMLElement {
 
-    let target_node: HTMLElement;
+    let targetNode: HTMLElement;
 
     if (isString(id)) {
 
-      target_node = this._document.getElementById(stripHash(id));
+      targetNode = this._document.getElementById(stripHash(id));
 
     } else if (isNumber(id)) {
 
-      target_node = this._document.getElementById(String(id));
+      targetNode = this._document.getElementById(String(id));
 
     } else if (isElementRef(id)) {
 
-      target_node = id.nativeElement;
+      targetNode = id.nativeElement;
 
     }
 
-    if (!target_node) throw new Error('Unable to find Target Element');
+    if (!targetNode) throw new Error('Unable to find Target Element');
 
-    return target_node;
+    return targetNode;
 
   }
 
