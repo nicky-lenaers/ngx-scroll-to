@@ -1,8 +1,9 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { RouterModule } from '@angular/router';
 
+import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { ScrollToModule } from './modules/scroll-to/scroll-to.module';
 
 @NgModule({
   declarations: [
@@ -10,9 +11,12 @@ import { ScrollToModule } from './modules/scroll-to/scroll-to.module';
   ],
   imports: [
     BrowserModule,
-    ScrollToModule.forRoot()
+    RouterModule,
+    AppRoutingModule
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [
+    AppComponent
+  ]
 })
 export class AppModule { }
