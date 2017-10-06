@@ -88,7 +88,7 @@
   </tr>
   <tr>
     <th align="left" valign="top">License</th>
-    <td>&nbsp;</td>
+    <td>MIT</td>
     <td>
       <a href="https://github.com/nicky-lenaers/ngx-scroll-to/blob/master/LICENSE" target="_blank">
         <img src="https://img.shields.io/npm/l/@nicky-lenaers/ngx-scroll-to.svg?style=flat-square" alt="License">
