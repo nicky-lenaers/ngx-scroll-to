@@ -13,14 +13,14 @@ export class ContainerTargetComponent implements OnInit {
 
   public ngOnInit() {
 
-    setTimeout(() => {
+  }
 
-      this._scrollToService.scrollTo({
-        container: 'body',
-        target: '#content'
-      });
+  public scrollToElementInAnotherContainer(container, event) {
 
-    }, 2000);
+    this._scrollToService.scrollTo({
+      container: 'another-scroll-container',
+      target: 'another-scroll-container-destination'
+    }, event);
   }
 
 }
