@@ -5,14 +5,17 @@ import {
   ScrollToAnimationEasingCollection
 } from '../models/scroll-to-easing.model';
 import { ScrollToEvent } from '../models/scroll-to-event.model';
-import { ScrollToConfig, ScrollToDefaultOptions } from '../models/scroll-to-config.model';
+import {
+  ScrollToConfigOptions,
+  ScrollToDefaultConfigOptions
+} from '../models/scroll-to-config.model';
 
 /**
  * Default values for Component Input.
  */
-export const DEFAULTS: ScrollToDefaultOptions = {
+export const DEFAULTS: ScrollToDefaultConfigOptions = {
   target: null,
-  event: 'click',
+  action: 'click',
   duration: 650,
   easing: 'easeInOutQuad',
   offset: 0,
@@ -64,6 +67,10 @@ export const EASING: ScrollToAnimationEasingCollection = {
   }
 };
 
+/**
+ * Set of allowed events as triggers
+ * for the Animation to start.
+ */
 export const EVENTS: string[] = [
   'click',
   'mouseenter',
@@ -76,23 +83,6 @@ export const EVENTS: string[] = [
   'mouseleave',
   'mouseout'
 ];
-
-/**
- * Merge user config with default config.
- *
- * @param config 				User Configuration Object
- * @returns 					Merged Configuration Object
- */
-export function mergeConfigWithDefaults(config: ScrollToConfig): ScrollToConfig {
-
-  const filtered: any = {};
-
-  Object.keys(config)
-    .filter((key) => config[key] !== undefined)
-    .forEach((key) => filtered[key] = config[key]);
-
-  return Object.assign({}, DEFAULTS, filtered) as ScrollToConfig;
-}
 
 /**
  * Strip hash (#) from value.

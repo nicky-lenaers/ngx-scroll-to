@@ -19,9 +19,9 @@ export class ContainerTargetComponent implements OnInit {
 
     this._scrollToService.scrollTo({
       container: 'another-scroll-container',
+      event: event,
       target: 'another-scroll-container-destination',
-      easing: 'easeOutElastic'
-    }, event);
+    });
   }
 
 }

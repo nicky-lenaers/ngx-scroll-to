@@ -7,9 +7,11 @@ import { ReplaySubject } from 'rxjs/ReplaySubject';
 
 import { TimeOut } from './decorators/scroll-to-timeout.decorator';
 import { ScrollToAnimationEasing } from './models/scroll-to-easing.model';
-import { ScrollToConfig } from './models/scroll-to-config.model';
-import { ScrollToTarget } from './models/scroll-to-targets.model';
-import { ScrollToListenerTarget } from './models/scroll-to-targets.model';
+import {
+  ScrollToConfigOptions,
+  ScrollToTarget,
+  ScrollToListenerTarget
+} from './models/scroll-to-config.model';
 import { ScrollToAnimation } from './statics/scroll-to-animation';
 import {
   stripHash,
@@ -17,7 +19,7 @@ import {
   isNumber,
   isElementRef,
   isWindow,
-  mergeConfigWithDefaults
+  DEFAULTS
 } from './statics/scroll-to-helpers';
 
 /**
@@ -66,16 +68,15 @@ export class ScrollToService {
    * @todo type 'any' in Observable should become custom type like 'ScrollToEvent' (base class), see issue comment:
    * 	- https://github.com/nicky-lenaers/ngx-scroll-to/issues/10#issuecomment-317198481
    *
-   * @param event         Native Browser Event
-   * @param config        Configuration Object
-   * @returns             Observable
+   * @param options         Configuration Object
+   * @returns               Observable
    */
   @TimeOut()
-  public scrollTo(config: ScrollToConfig, event: any = null): Observable<any> {
+  public scrollTo(options: ScrollToConfigOptions): Observable<any> {
 
     if (!isPlatformBrowser(this._platformId)) return new ReplaySubject().asObservable();
 
-    return this._start(config, event);
+    return this._start(options);
   }
 
   /**
@@ -83,22 +84,21 @@ export class ScrollToService {
    *
    * @todo Emit proper events from subscription
    *
-   * @param event         Native Browser Event
-   * @param config        Configuration Object
-   * @returns             Observable
+   * @param options         Configuration Object
+   * @returns               Observable
    */
-  private _start(config: ScrollToConfig, event: any): Observable<number> {
+  private _start(options: ScrollToConfigOptions): Observable<number> {
 
     // Merge config with default values
-    const mergedConfig = mergeConfigWithDefaults(config);
+    const mergedConfigOptions = {
+      ...DEFAULTS as ScrollToConfigOptions,
+      ...options
+    };
 
     if (this._animation) this._animation.stop();
 
-    /**
-     * @todo improve interface here, as it shouldn't allow ".container"
-     */
-    const container: HTMLElement = this._getContainer(mergedConfig, event);
-    const targetNode = this._getTargetNode(mergedConfig.target);
+    const container: HTMLElement = this._getContainer(mergedConfigOptions);
+    const targetNode = this._getNode(mergedConfigOptions.target);
     const listenerTarget = this._getListenerTarget(container);
     const to: number = isWindow(listenerTarget) ? targetNode.offsetTop : targetNode.getBoundingClientRect().top;
 
@@ -108,7 +108,7 @@ export class ScrollToService {
       listenerTarget,
       isWindow(listenerTarget),
       to,
-      mergedConfig,
+      mergedConfigOptions,
       isPlatformBrowser(this._platformId)
     );
     const onInterrupt = () => this._animation.stop();
@@ -148,21 +148,20 @@ export class ScrollToService {
    * Get the container HTML Element in which
    * the scrolling should happen.
    *
-   * @param mergedConfig        The Merged Configuration Object
-   * @param event               A Native Browser Event
+   * @param options         The Merged Configuration Object
    * @returns
    */
-  private _getContainer(mergedConfig: ScrollToConfig, event: any): HTMLElement {
+  private _getContainer(options: ScrollToConfigOptions): HTMLElement {
 
     let container: HTMLElement;
 
-    if (mergedConfig.container) {
+    if (options.container) {
 
-      container = this._getTargetNode(mergedConfig.container as any, true);
+      container = this._getNode(options.container as any, true);
 
-    } else if (event) {
+    } else if (options.event && options.event instanceof Event) {
 
-      container = this._getFirstScrollableParent(event.target as HTMLElement);
+      container = this._getFirstScrollableParent(options.event.target as HTMLElement);
 
     } else {
 
@@ -249,7 +248,7 @@ export class ScrollToService {
    *                        considered a valid Target Node
    * @returns               The Target Node to scroll to
    */
-  private _getTargetNode(id: ScrollToTarget, allowBodyTag: boolean = false): HTMLElement {
+  private _getNode(id: ScrollToTarget, allowBodyTag: boolean = false): HTMLElement {
 
     let targetNode: HTMLElement;
 
