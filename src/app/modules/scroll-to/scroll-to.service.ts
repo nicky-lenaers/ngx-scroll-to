@@ -39,6 +39,13 @@ export class ScrollToService {
   private _animation: ScrollToAnimation;
 
   /**
+   * Interruptive Events allow to scrolling animation
+   * to be interrupted before it is finished. The list
+   * of Interruptive Events represents those.
+   */
+  private _interruptiveEvents: string[];
+
+  /**
    * Construct and setup required paratemeters
    * @param _document         A Reference to the Document
    * @param _platformId       Angular Platform ID
@@ -46,7 +53,9 @@ export class ScrollToService {
   constructor(
     @Inject(DOCUMENT) private _document: any,
     @Inject(PLATFORM_ID) private _platformId: any
-  ) { }
+  ) {
+    this._interruptiveEvents = ['mousewheel', 'DOMMouseScroll', 'touchstart'];
+  }
 
   /**
    * Target an Element to scroll to. Notice that the `TimeOut` decorator
@@ -66,7 +75,7 @@ export class ScrollToService {
 
     if (!isPlatformBrowser(this._platformId)) return new ReplaySubject().asObservable();
 
-    return this._start(event, config);
+    return this._start(config, event);
   }
 
   /**
@@ -78,7 +87,7 @@ export class ScrollToService {
    * @param config        Configuration Object
    * @returns             Observable
    */
-  private _start(event: any, config: ScrollToConfig): Observable<number> {
+  private _start(config: ScrollToConfig, event: any): Observable<number> {
 
     // Merge config with default values
     const mergedConfig = mergeConfigWithDefaults(config);
@@ -87,56 +96,81 @@ export class ScrollToService {
 
     /**
      * @todo improve interface here, as it shouldn't allow ".container"
-     * @todo abstract into a function 'getContainer'
      */
-    let container: HTMLElement;
-
-    if (mergedConfig.container) {
-      container = this._document.getElementById(container);
-      // always get container
-    } else if (event) {
-      container = this._getFirstScrollableParent(event.target as HTMLElement);
-    } else {
-      // no container and no event, throw error
-      throw new Error('Unable to get Container Element');
-    }
-
+    const container: HTMLElement = this._getContainer(mergedConfig, event);
     const targetNode = this._getTargetNode(mergedConfig.target);
     const listenerTarget = this._getListenerTarget(container);
     const to: number = isWindow(listenerTarget) ? targetNode.offsetTop : targetNode.getBoundingClientRect().top;
 
     // Create Animation
-    this._animation = new ScrollToAnimation(container, listenerTarget, isWindow(listenerTarget), to, mergedConfig, isPlatformBrowser(this._platformId));
-
-    /**
-     * @todo rename to interruptableEvents
-     */
-    const interruptiveEvents: string[] = ['mousewheel', 'DOMMouseScroll', 'touchstart'];
+    this._animation = new ScrollToAnimation(
+      container,
+      listenerTarget,
+      isWindow(listenerTarget),
+      to,
+      mergedConfig,
+      isPlatformBrowser(this._platformId)
+    );
     const onInterrupt = () => this._animation.stop();
-
-    // Add Stop Event Listeners
-    this._addInterruptiveEventListeners(interruptiveEvents, listenerTarget, onInterrupt);
+    this._addInterruptiveEventListeners(listenerTarget, onInterrupt);
 
     // Start Animation
     const animation$ = this._animation.start();
+    this._subscribeToAnimation(animation$, listenerTarget, onInterrupt);
 
-    /**
-     * @todo move into its own function. Since the `animation$` source
-     * is returned, we can listen for events in the Directive to emit
-     * to HTML attributes. The source can then be used inside a service
-     * to subscribe to.
-     */
+    return animation$;
+  }
+
+  /**
+   * Subscribe to the events emitted from the Scrolling
+   * Animation. Events might be used for e.g. unsubscribing
+   * once finished.
+   *
+   * @param animation$              The Animation Observable
+   * @param listenerTarget          The Listener Target for events
+   * @param onInterrupt             The handler for Interruptive Events
+   * @returns                       Void
+   */
+  private _subscribeToAnimation(animation$: Observable<any>, listenerTarget, onInterrupt) {
+
     const subscription = animation$
       .subscribe(
         () => { },
         () => { },
         () => {
-          this._removeInterruptiveEventListeners(interruptiveEvents, listenerTarget, onInterrupt);
+          this._removeInterruptiveEventListeners(this._interruptiveEvents, listenerTarget, onInterrupt);
           subscription.unsubscribe();
         }
       );
+  }
 
-    return animation$;
+  /**
+   * Get the container HTML Element in which
+   * the scrolling should happen.
+   *
+   * @param mergedConfig        The Merged Configuration Object
+   * @param event               A Native Browser Event
+   * @returns
+   */
+  private _getContainer(mergedConfig: ScrollToConfig, event: any): HTMLElement {
+
+    let container: HTMLElement;
+
+    if (mergedConfig.container) {
+
+      container = this._getTargetNode(mergedConfig.container as any, true);
+
+    } else if (event) {
+
+      container = this._getFirstScrollableParent(event.target as HTMLElement);
+
+    } else {
+
+      throw new Error('Unable to get Container Element');
+
+    }
+
+    return container;
   }
 
   /**
@@ -149,11 +183,10 @@ export class ScrollToService {
    * @returns                 Void
    */
   private _addInterruptiveEventListeners(
-    events: string[],
     listenerTarget: ScrollToListenerTarget,
     handler: EventListenerOrEventListenerObject): void {
 
-    events.forEach(event => listenerTarget.addEventListener(event, handler));
+    this._interruptiveEvents.forEach(event => listenerTarget.addEventListener(event, handler));
   }
 
   /**
@@ -176,8 +209,10 @@ export class ScrollToService {
   }
 
   /**
-   * Find the first scrollable parent Node of a
-   * given Element.
+   * Find the first scrollable parent Node of a given
+   * Element. The DOM Tree gets searched upwards
+   * to find this first scrollable parent. Parents might
+   * be ignored by CSS styles applied to the HTML Element.
    *
    * @param nativeElement     The Element to search the DOM Tree upwards from
    * @returns                 The first scrollable parent HTML Element
@@ -190,19 +225,16 @@ export class ScrollToService {
 
     if (style.position === 'fixed') throw new Error(`Scroll item cannot be positioned 'fixed'`);
 
-    // Recursive Loop Parents
     for (let parent = nativeElement; parent = parent.parentElement; null) {
 
-      // Recalculate Style
       style = window.getComputedStyle(parent);
 
-      /**
-       * @todo simplify/combine if statements
-       */
-      if (style.position === 'absolute') continue;
-      if (style.overflow === 'hidden' || style.overflowY === 'hidden') continue;
-      if (overflowRegex.test(style.overflow + style.overflowY + style.overflowX)) return parent;
-      if (parent.tagName === 'BODY') return parent;
+      if (style.position === 'absolute'
+        || style.overflow === 'hidden'
+        || style.overflowY === 'hidden') continue;
+
+      if (overflowRegex.test(style.overflow + style.overflowY + style.overflowX)
+        || parent.tagName === 'BODY') return parent;
     }
 
     throw new Error(`No scrollable parent found for element ${nativeElement.nodeName}`);
@@ -211,16 +243,27 @@ export class ScrollToService {
   /**
    * Get the Target Node to scroll to.
    *
-   * @param id          The given ID of the node, either a string or an element reference
-   * @returns           The Target Node to scroll to
+   * @param id              The given ID of the node, either a string or
+   *                        an element reference
+   * @param allowBodyTag    Indicate whether or not the Document Body is
+   *                        considered a valid Target Node
+   * @returns               The Target Node to scroll to
    */
-  private _getTargetNode(id: ScrollToTarget): HTMLElement {
+  private _getTargetNode(id: ScrollToTarget, allowBodyTag: boolean = false): HTMLElement {
 
     let targetNode: HTMLElement;
 
     if (isString(id)) {
 
-      targetNode = this._document.getElementById(stripHash(id));
+      if (allowBodyTag && (id === 'body' || id === 'BODY')) {
+
+        targetNode = this._document.body;
+
+      } else {
+
+        targetNode = this._document.getElementById(stripHash(id));
+
+      }
 
     } else if (isNumber(id)) {
 
@@ -248,7 +291,18 @@ export class ScrollToService {
    * @returns                   The Listener Target to attach events on
    */
   private _getListenerTarget(container: HTMLElement): ScrollToListenerTarget {
-    return container.tagName.toUpperCase() === 'BODY' ? window : container;
+    return this._isDocumentBody(container) ? window : container;
+  }
+
+  /**
+   * Test if a given HTML Element is the Document Body.
+   *
+   * @param element             The given HTML Element
+   * @returns                   Whether or not the Element is the
+   *                            Document Body Element
+   */
+  private _isDocumentBody(element: HTMLElement): element is HTMLBodyElement {
+    return element.tagName.toUpperCase() === 'BODY';
   }
 
 }

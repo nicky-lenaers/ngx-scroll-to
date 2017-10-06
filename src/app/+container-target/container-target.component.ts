@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
+import { ScrollToService } from '../modules/scroll-to/scroll-to.service';
+
 @Component({
   selector: 'ngx-container-target',
   templateUrl: './container-target.component.html',
@@ -7,9 +9,18 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ContainerTargetComponent implements OnInit {
 
-  constructor() { }
+  constructor(private _scrollToService: ScrollToService) { }
 
-  ngOnInit() {
+  public ngOnInit() {
+
+    setTimeout(() => {
+
+      this._scrollToService.scrollTo({
+        container: 'body',
+        target: '#content'
+      });
+
+    }, 2000);
   }
 
 }

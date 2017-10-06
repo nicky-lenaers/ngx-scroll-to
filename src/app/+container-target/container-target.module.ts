@@ -7,11 +7,13 @@ import {
 import {
   ContainerTargetComponent
 } from './container-target.component';
+import { ScrollToModule } from '../modules/scroll-to/scroll-to.module';
 
 @NgModule({
   imports: [
     CommonModule,
-    ContainerTargetRoutingModule
+    ContainerTargetRoutingModule,
+    ScrollToModule.forRoot()
   ],
   declarations: [
     ContainerTargetComponent
