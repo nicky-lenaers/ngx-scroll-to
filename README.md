@@ -33,7 +33,7 @@
     </td>
   </tr>
   <tr>
-    <td></td>
+    <td>&nbsp;</td>
     <td>NPM</td>
     <td align="left">
       <a href="https://www.npmjs.com/package/@nicky-lenaers/ngx-scroll-to" target="_blank">
@@ -51,7 +51,7 @@
     </td>
   </tr>
   <tr>
-    <td></td>
+    <td>&nbsp;</td>
     <td align="left">Peer</td>
     <td align="left">
       <a href="https://david-dm.org/nicky-lenaers/ngx-scroll-to?type=peer" target="_blank">
@@ -60,7 +60,7 @@
     </td>
   </tr>
   <tr>
-    <td></td>
+    <td>&nbsp;</td>
     <td align="left">Development</td>
     <td align="left">
       <a href="https://david-dm.org/nicky-lenaers/ngx-scroll-to?type=dev" target="_blank">
@@ -69,7 +69,7 @@
     </td>
   </tr>
   <tr>
-    <td></td>
+    <td>&nbsp;</td>
     <td align="left">Optional</td>
     <td align="left">
       <a href="https://david-dm.org/nicky-lenaers/ngx-scroll-to?type=optional" target="_blank">
@@ -78,11 +78,20 @@
     </td>
   </tr>
   <tr>
+    <th align="left" valign="top">Downloads</th>
+    <td>NPM</td>
+    <td>
+      <a href="https://npmjs.org/ngx-bootstrap" target="_blank">
+        <img src="https://img.shields.io/npm/dm/%40nicky-lenaers%2Fngx-scroll-to.svg?style=flat-square" alt="NPM Monthly Downloads">
+      </a>
+    </td>
+  </tr>
+  <tr>
     <th align="left" valign="top">License</th>
-    <td></td>
+    <td>&nbsp;</td>
     <td>
       <a href="https://github.com/nicky-lenaers/ngx-scroll-to/blob/master/LICENSE" target="_blank">
-        <img src="https://img.shields.io/npm/l/@nicky-lenaers/ngx-scroll-to.svg?style=flat-square" alt="Optional Dependencies">
+        <img src="https://img.shields.io/npm/l/@nicky-lenaers/ngx-scroll-to.svg?style=flat-square" alt="License">
       </a>
     </td>
   </tr>
