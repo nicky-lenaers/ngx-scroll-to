@@ -40,6 +40,9 @@ jobs:
       - run:
           name: Install NodeJS Dependencies via NPM
           command: npm install
+      - run:
+          name: Install Peer Dependencies via NPM
+          command: npm run install:peers
       - save_cache:
           key: dependency-cache-{{ checksum "package.json" }}
           paths:
