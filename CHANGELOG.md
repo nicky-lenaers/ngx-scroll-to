@@ -1,3 +1,24 @@
+<a name="0.4.0"></a>
+# [0.4.0](https://github.com/nicky-lenaers/ngx-scroll-to/compare/0.4.0-alpha.3...0.4.0) (2017-10-12)
+
+
+### Bug Fixes
+
+* **module:** Correctly calcuate `ngx-scroll-to-offset` value on inverse scrolling from bottom to top ([7656e35](https://github.com/nicky-lenaers/ngx-scroll-to/commit/7656e35)), closes [#29](https://github.com/nicky-lenaers/ngx-scroll-to/issues/29)
+
+
+### Features
+
+* **module:** ScrollTo using a diferent Container Element and without `event` parameter ([bf3612f](https://github.com/nicky-lenaers/ngx-scroll-to/commit/bf3612f)), closes [#27](https://github.com/nicky-lenaers/ngx-scroll-to/issues/27) [#20](https://github.com/nicky-lenaers/ngx-scroll-to/issues/20)
+
+
+### BREAKING CHANGES
+
+* **module:** The `ScrollToConfig` Interface has been renamed to `ScrollToConfigOptions`
+* **module:** The `event` parameter has been removed from `scrollTo` function, see README.md for updated examples
+
+
+
 <a name="0.4.0-alpha.3"></a>
 # [0.4.0-alpha.3](https://github.com/nicky-lenaers/ngx-scroll-to/compare/0.4.0-alpha.2...0.4.0-alpha.3) (2017-10-04)
 
