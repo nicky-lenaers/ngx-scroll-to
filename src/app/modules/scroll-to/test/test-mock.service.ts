@@ -1,6 +1,6 @@
 /**
  * Mocked Service for ScrollToService.
  */
-export class ScrollToMockService {
+export class ScrollToServiceMock {
   public scrollTo() { }
 }

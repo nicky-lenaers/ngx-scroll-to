@@ -33,7 +33,7 @@
     </td>
   </tr>
   <tr>
-    <td></td>
+    <td>&nbsp;</td>
     <td>NPM</td>
     <td align="left">
       <a href="https://www.npmjs.com/package/@nicky-lenaers/ngx-scroll-to" target="_blank">
@@ -51,7 +51,7 @@
     </td>
   </tr>
   <tr>
-    <td></td>
+    <td>&nbsp;</td>
     <td align="left">Peer</td>
     <td align="left">
       <a href="https://david-dm.org/nicky-lenaers/ngx-scroll-to?type=peer" target="_blank">
@@ -60,7 +60,7 @@
     </td>
   </tr>
   <tr>
-    <td></td>
+    <td>&nbsp;</td>
     <td align="left">Development</td>
     <td align="left">
       <a href="https://david-dm.org/nicky-lenaers/ngx-scroll-to?type=dev" target="_blank">
@@ -69,7 +69,7 @@
     </td>
   </tr>
   <tr>
-    <td></td>
+    <td>&nbsp;</td>
     <td align="left">Optional</td>
     <td align="left">
       <a href="https://david-dm.org/nicky-lenaers/ngx-scroll-to?type=optional" target="_blank">
@@ -78,11 +78,20 @@
     </td>
   </tr>
   <tr>
+    <th align="left" valign="top">Downloads</th>
+    <td>NPM</td>
+    <td>
+      <a href="https://npmjs.org/ngx-bootstrap" target="_blank">
+        <img src="https://img.shields.io/npm/dm/%40nicky-lenaers%2Fngx-scroll-to.svg?style=flat-square" alt="NPM Monthly Downloads">
+      </a>
+    </td>
+  </tr>
+  <tr>
     <th align="left" valign="top">License</th>
-    <td></td>
+    <td>MIT</td>
     <td>
       <a href="https://github.com/nicky-lenaers/ngx-scroll-to/blob/master/LICENSE" target="_blank">
-        <img src="https://img.shields.io/npm/l/@nicky-lenaers/ngx-scroll-to.svg?style=flat-square" alt="Optional Dependencies">
+        <img src="https://img.shields.io/npm/l/@nicky-lenaers/ngx-scroll-to.svg?style=flat-square" alt="License">
       </a>
     </td>
   </tr>
@@ -132,7 +141,7 @@ export class AppModule { }
 ## Basic Usage - Service
 **my.component.html**
 ```html
-<button (click)="triggerScrollTo($event)">Go to destination</button>
+<button (click)="triggerScrollTo()">Go to destination</button>
 
 <div id="destination">
   You've reached your destination.
@@ -143,23 +152,22 @@ export class AppModule { }
 
 ```js
 import { Injectable } from '@angular/core';
-import { ScrollToService, ScrollToConfig } from '@nicky-lenaers/ngx-scroll-to';
+import { ScrollToService, ScrollToConfigOptions } from '@nicky-lenaers/ngx-scroll-to';
 
 @Injectable()
 export class MyService {
 
   constructor(private _scrollToService: ScrollToService) { }
 
-  public triggerScrollTo($event: Event) {
+  public triggerScrollTo() {
     
-    const config: ScrollToConfig = {
+    const config: ScrollToConfigOptions = {
       target: 'destination'
-    }
+    };
 
-    this._scrollToService.scrollTo($event, config);
+    this._scrollToService.scrollTo(config);
   }
 }
-
 ```
 
 ## Advanced Usage - Directive
@@ -226,7 +234,46 @@ export class MyComponent {
 </div>
 ```
 
-## Attributes Map
+## Advanced Usage - Service
+**my.component.html**
+```html
+<button (click)="triggerScrollTo()">Go to destination</button>
+
+<div id="custom-container">
+  <div id="destination">
+    You've reached your destination.
+  </div>
+</div>
+```
+
+**my.service.ts**
+
+```js
+import { Injectable } from '@angular/core';
+import { ScrollToService, ScrollToConfigOptions } from '@nicky-lenaers/ngx-scroll-to';
+
+@Injectable()
+export class MyService {
+
+  constructor(private _scrollToService: ScrollToService) { }
+
+  public triggerScrollTo() {
+    
+    const config: ScrollToConfigOptions = {
+      container: 'custom-container',
+      target: 'destination',
+      duration: 650,
+      easing: 'easeOutElastic',
+      offset: 20
+    };
+
+    this._scrollToService.scrollTo(config);
+  }
+}
+```
+
+
+## Directive Attributes Map
 | Options                                                       | Type                                   | Default         | Accepts                                            |
 |---------------------------------------------------------------|----------------------------------------|-----------------|----------------------------------------------------|
 | [ngx-scroll-to](#ngx-scroll-to-details)                       | `string` | `number` | `ElementRef`     | `''`            | Any `string`, `number` or `ElementRef` value       |
@@ -236,7 +283,7 @@ export class MyComponent {
 | [ngx-scroll-to-offset](#ngx-scroll-to-offset-details)         | `number`                               | `0`             | Any `number` value                                 |
 | [ngx-scroll-to-offset-map](#ngx-scroll-to-offset-map-details) | `ScrollToOffsetMap`                    | `new Map()`     | `ScrollToOffsetMap`                                |
 
-## Attribue Map Details
+## Directive Attribue Map Details
 #### <a name="ngx-scroll-to-details"></a>`[ngx-scroll-to]`
 This value specifies the ID of the HTML Element to scroll to. Note the outer double quotes `""` and the inner single quotes `''` in the above example(s). This enables you to dynamically set the string value based on a class property of your Component.
 
@@ -287,15 +334,3 @@ $ npm run install:peers
 
 # License
  [MIT](/LICENSE)
-
-<!-- 
-
-TODO:
-- [ ] Guidelines
-- [ ] PR Template
-
-REFERENCES:
-- Library Starter
-  https://github.com/robisim74/angular-library-starter
-
--->

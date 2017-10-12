@@ -2,8 +2,10 @@ import { ReplaySubject } from 'rxjs/ReplaySubject';
 import { Observable } from 'rxjs/Observable';
 
 import { EASING } from '../statics/scroll-to-helpers';
-import { ScrollToConfig } from '../models/scroll-to-config.model';
-import { ScrollToListenerTarget } from '../models/scroll-to-targets.model';
+import {
+  ScrollToConfigOptions,
+  ScrollToListenerTarget
+} from '../models/scroll-to-config.model';
 
 export class ScrollToAnimation {
 
@@ -22,7 +24,7 @@ export class ScrollToAnimation {
     private _listenerTarget: ScrollToListenerTarget,
     private readonly _isWindow: boolean,
     private readonly _to: number,
-    private readonly _options: ScrollToConfig,
+    private readonly _options: ScrollToConfigOptions,
     private _isBrowser: boolean
   ) {
     this._tick = 16;
@@ -49,15 +51,12 @@ export class ScrollToAnimation {
         .forEach((value, key) => offset = window.innerWidth > key ? value : offset);
     }
 
-    // this._distance += offset;
     this._distance += offset * (directionalDistance <= 0 ? 1 : -1);
     this._source$ = new ReplaySubject();
   }
 
   /**
    * Start the new Scroll Animation.
-   *
-   * @todo consider using enums for actiontypes
    *
    * @returns       void
    */

@@ -11,13 +11,13 @@ import {
   EVENTS
 } from './statics/scroll-to-helpers';
 import {
-  ScrollToConfig,
-  ScrollToOffsetMap
+  ScrollToConfigOptions,
+  ScrollToOffsetMap,
+  ScrollToTarget
 } from './models/scroll-to-config.model';
 import {
   ScrollToAnimationEasing
 } from './models/scroll-to-easing.model';
-import { ScrollToTarget } from './models/scroll-to-targets.model';
 import { ScrollToEvent } from './models/scroll-to-event.model';
 import { ScrollToService } from './scroll-to.service';
 
@@ -30,7 +30,7 @@ export class ScrollToDirective implements AfterViewInit {
   public ngxScrollTo: ScrollToTarget = DEFAULTS.target;
 
   @Input('ngx-scroll-to-event')
-  public ngxScrollToEvent: ScrollToEvent = DEFAULTS.event;
+  public ngxScrollToEvent: ScrollToEvent = DEFAULTS.action;
 
   @Input('ngx-scroll-to-duration')
   public ngxScrollToDuration: number = DEFAULTS.duration;
@@ -44,7 +44,7 @@ export class ScrollToDirective implements AfterViewInit {
   @Input('ngx-scroll-to-offset-map')
   public ngxScrollToOffsetMap: ScrollToOffsetMap = DEFAULTS.offsetMap;
 
-  private _config: ScrollToConfig;
+  private _options: ScrollToConfigOptions;
 
   constructor(
     private _elementRef: ElementRef,
@@ -67,9 +67,9 @@ export class ScrollToDirective implements AfterViewInit {
 
     // Listen for the trigger...
     this._renderer2.listen(this._elementRef.nativeElement, this.ngxScrollToEvent,
-      (event: any) => {
+      (event: Event) => {
 
-        this._config = {
+        this._options = {
           target: this.ngxScrollTo,
           duration: this.ngxScrollToDuration,
           easing: this.ngxScrollToEasing,
@@ -77,7 +77,7 @@ export class ScrollToDirective implements AfterViewInit {
           offsetMap: this.ngxScrollToOffsetMap
         };
 
-        this._scrollToService.scrollTo(event, this._config);
+        this._scrollToService.scrollTo(this._options);
       });
   }
 }

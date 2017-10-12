@@ -1,34 +1,66 @@
+import { ElementRef } from '@angular/core';
+
 import { ScrollToAnimationEasing } from './scroll-to-easing.model';
-import { ScrollToTarget } from './scroll-to-targets.model';
 import { ScrollToEvent } from './scroll-to-event.model';
 
+/**
+ * The target of the Scroll Animation.
+ */
+export type ScrollToTarget = string | number | ElementRef;
+
+/**
+ * The container on which the Scroll Animation
+ * will happen.
+ */
+export type ScrollToContainer = string | number | ElementRef;
+
+/**
+ * The Listener Target is responsive for listening
+ * to events that could interrupt the Scroll Animation.
+ */
+export type ScrollToListenerTarget = HTMLElement | Window;
+
+/**
+ * A mapped list of breakpoints with accompanying
+ * values for the offset of that specific breakpoint.
+ */
 export type ScrollToOffsetMap = Map<number, number>;
 
 /**
- * @todo move ScrollToTarget to this file (no need for seperate file, since it is a config option)
+ * The Configuration Object.
  */
-export type ScrollToConfigOptional<T> = {
-  [Option in keyof T]?: T[Option];
-};
-
-export interface ScrollToConfigMandatory {
+export interface ScrollToConfigOptions {
+  /**
+   * The target to scroll to.
+   */
   target: ScrollToTarget;
+  /**
+   * The Container to scroll.
+   */
+  container?: ScrollToContainer;
+  /**
+   * Duration of the Scroll Animation.
+   */
+  duration?: number;
+  /**
+   * The named Easing Function to use.
+   */
+  easing?: ScrollToAnimationEasing;
+  /**
+   * The offset from the top of the Element
+   * in pixels.
+   */
+  offset?: number;
+  /**
+   * A mapped list of offsets.
+   */
+  offsetMap?: ScrollToOffsetMap;
 }
 
-export interface ScrollToConfigMandatoryPartial {
-  event: ScrollToEvent;
+/**
+ * The Default Configuration Object.
+ */
+export interface ScrollToDefaultConfigOptions extends ScrollToConfigOptions {
+  action: ScrollToEvent;
 }
 
-export interface ScrollToConfigPartial {
-  duration: number;
-  easing: ScrollToAnimationEasing;
-  offset: number;
-  offsetMap: ScrollToOffsetMap;
-}
-
-export interface ScrollToConfig extends ScrollToConfigOptional<ScrollToConfigPartial>, ScrollToConfigMandatory {
-  [key: string]: ScrollToTarget | ScrollToAnimationEasing | ScrollToOffsetMap | number;
-}
-export interface ScrollToDefaultOptions extends ScrollToConfigMandatory, ScrollToConfigMandatoryPartial, ScrollToConfigPartial {
-  [key: string]: ScrollToTarget | ScrollToAnimationEasing | ScrollToOffsetMap | number;
-}

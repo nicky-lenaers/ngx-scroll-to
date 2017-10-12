@@ -91,10 +91,5 @@
     "ts-node": "~3.2.0",
     "tslint": "~5.7.0",
     "typescript": "~2.3.3"
-  },
-  "dependencies": {
-    "@angular/core": "^4.4.4",
-    "rxjs": "^5.4.3",
-    "zone.js": "^0.8.18"
   }
 }

@@ -1,3 +1,6 @@
+/**
+ * Supported Events.
+ */
 export type ScrollToEvent = 'click'
   | 'mouseenter'
   | 'mouseover'

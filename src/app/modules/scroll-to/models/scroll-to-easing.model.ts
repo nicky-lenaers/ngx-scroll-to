@@ -1,3 +1,6 @@
+/**
+ * Named Easing Function.
+ */
 export type ScrollToAnimationEasing = 'easeInQuad'
   | 'easeOutQuad'
   | 'easeInOutQuad'
@@ -12,7 +15,15 @@ export type ScrollToAnimationEasing = 'easeInQuad'
   | 'easeInOutQuint'
   | 'easeOutElastic';
 
+/**
+ * The Easing Function controlling the Easing
+ * Animation over Time.
+ */
 export type ScrollToAnimationEasingFunction = (time: number) => number;
+
+/**
+ * The collection of named Easing Functions.
+ */
 export interface ScrollToAnimationEasingCollection {
   [key: string]: ScrollToAnimationEasingFunction;
 }
