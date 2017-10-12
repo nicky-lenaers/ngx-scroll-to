@@ -10,7 +10,10 @@ import { ScrollToEvent } from '../models/scroll-to-event.model';
 export interface CompileTemplateConfigOptions extends ScrollToConfigOptions {
   action?: string;
 }
-export function createTestComponent(component: Type<any>, config: CompileTemplateConfigOptions, event: ScrollToEvent): ComponentFixture<any> {
+export function createTestComponent(
+  component: Type<any>,
+  config: CompileTemplateConfigOptions,
+  event: ScrollToEvent): ComponentFixture<any> {
 
   const template = `
     <button id="${BUTTON_ID}"

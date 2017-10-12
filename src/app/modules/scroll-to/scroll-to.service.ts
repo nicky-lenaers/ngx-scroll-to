@@ -153,7 +153,7 @@ export class ScrollToService {
    */
   private _getContainer(options: ScrollToConfigOptions, targetNode: HTMLElement): HTMLElement {
 
-    let container: HTMLElement = options.container ?
+    const container: HTMLElement = options.container ?
       this._getNode(options.container, true) :
       this._getFirstScrollableParent(targetNode);
 
