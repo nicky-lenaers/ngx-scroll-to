@@ -260,7 +260,7 @@ export class MyService {
   public triggerScrollTo() {
     
     const config: ScrollToConfigOptions = {
-      container: 'custom-container',
+      container: 'custom-container', // Please Read: NOTE 1
       target: 'destination',
       duration: 650,
       easing: 'easeOutElastic',
@@ -271,7 +271,9 @@ export class MyService {
   }
 }
 ```
+**NOTE 1:**
 
+*The `container` property is an optional property. By default, `ngx-scroll-to` searches for the first scrollable parent `HTMLElement` with respect to the specified `target`. This should suffice in most cases. However, if multiple scrollable parents reside in the DOM tree, you have the degree of freedom the specify a specific container by using the `container` property, as used in the above example.*
 
 ## Directive Attributes Map
 <table>
