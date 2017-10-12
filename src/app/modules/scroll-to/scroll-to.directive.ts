@@ -71,7 +71,6 @@ export class ScrollToDirective implements AfterViewInit {
 
         this._options = {
           target: this.ngxScrollTo,
-          event: event,
           duration: this.ngxScrollToDuration,
           easing: this.ngxScrollToEasing,
           offset: this.ngxScrollToOffset,

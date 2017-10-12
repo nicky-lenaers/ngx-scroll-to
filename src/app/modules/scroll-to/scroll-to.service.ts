@@ -97,8 +97,8 @@ export class ScrollToService {
 
     if (this._animation) this._animation.stop();
 
-    const container: HTMLElement = this._getContainer(mergedConfigOptions);
     const targetNode = this._getNode(mergedConfigOptions.target);
+    const container: HTMLElement = this._getContainer(mergedConfigOptions, targetNode);
     const listenerTarget = this._getListenerTarget(container);
     const to: number = isWindow(listenerTarget) ? targetNode.offsetTop : targetNode.getBoundingClientRect().top;
 
@@ -151,23 +151,13 @@ export class ScrollToService {
    * @param options         The Merged Configuration Object
    * @returns
    */
-  private _getContainer(options: ScrollToConfigOptions): HTMLElement {
+  private _getContainer(options: ScrollToConfigOptions, targetNode: HTMLElement): HTMLElement {
 
-    let container: HTMLElement;
+    let container: HTMLElement = options.container ?
+      this._getNode(options.container, true) :
+      this._getFirstScrollableParent(targetNode);
 
-    if (options.container) {
-
-      container = this._getNode(options.container as any, true);
-
-    } else if (options.event && options.event instanceof Event) {
-
-      container = this._getFirstScrollableParent(options.event.target as HTMLElement);
-
-    } else {
-
-      throw new Error('Unable to get Container Element');
-
-    }
+    if (!container) throw new Error('Unable to get Container Element');
 
     return container;
   }

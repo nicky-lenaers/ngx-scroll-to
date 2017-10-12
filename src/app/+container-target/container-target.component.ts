@@ -18,8 +18,7 @@ export class ContainerTargetComponent implements OnInit {
   public scrollToElementInAnotherContainer(container, event) {
 
     this._scrollToService.scrollTo({
-      container: 'another-scroll-container',
-      event: event,
+      container: 'body',
       target: 'another-scroll-container-destination',
     });
   }

@@ -10,6 +10,7 @@ import { EVENTS, DEFAULTS } from './statics/scroll-to-helpers';
 import { DummyComponent, TARGET, BUTTON_ID } from './test/test-dummy.component';
 import { ScrollToMockService } from './test/test-mock.service';
 import { createTestComponent, CompileTemplateConfigOptions } from './test/test-helpers';
+import { ScrollToEvent } from './models/scroll-to-event.model';
 
 describe('ScrollToDirective', () => {
 
@@ -67,16 +68,15 @@ describe('ScrollToDirective', () => {
 
   }));
 
-  const testMouseEvent = (event: string) => {
+  const testMouseEvent = (event: ScrollToEvent) => {
 
     it(`should handle a '${event}' event`, fakeAsync(() => {
 
       const template_config: CompileTemplateConfigOptions = {
-        target: TARGET,
-        event: event
+        target: TARGET
       };
 
-      const fixture: ComponentFixture<DummyComponent> = createTestComponent(DummyComponent, template_config);
+      const fixture: ComponentFixture<DummyComponent> = createTestComponent(DummyComponent, template_config, event);
       const service: ScrollToService = TestBed.get(ScrollToService);
       const component: DummyComponent = fixture.componentInstance;
 
@@ -89,7 +89,7 @@ describe('ScrollToDirective', () => {
       const btn = fixture.debugElement.query(By.css(`#${BUTTON_ID}`));
       const mouse_event: MouseEvent = new MouseEvent('click');
 
-      btn.triggerEventHandler(template_config.event, mouse_event);
+      btn.triggerEventHandler(event, mouse_event);
       tick();
 
       expect(service.scrollTo).toHaveBeenCalledTimes(1);
@@ -104,7 +104,7 @@ describe('ScrollToDirective', () => {
     }));
   };
 
-  EVENTS.forEach((event) => {
+  EVENTS.forEach((event: ScrollToEvent) => {
     testMouseEvent(event);
   });
 
