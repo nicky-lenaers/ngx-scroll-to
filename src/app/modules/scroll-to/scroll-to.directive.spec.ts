@@ -8,7 +8,7 @@ import { ScrollToDirective } from './scroll-to.directive';
 import { ScrollToService } from './scroll-to.service';
 import { EVENTS, DEFAULTS } from './statics/scroll-to-helpers';
 import { DummyComponent, TARGET, BUTTON_ID } from './test/test-dummy.component';
-import { ScrollToMockService } from './test/test-mock.service';
+import { ScrollToServiceMock } from './test/test-mock.service';
 import { createTestComponent, CompileTemplateConfigOptions } from './test/test-helpers';
 import { ScrollToEvent } from './models/scroll-to-event.model';
 
@@ -27,7 +27,7 @@ describe('ScrollToDirective', () => {
         providers: [
           {
             provide: ScrollToService,
-            useClass: ScrollToMockService
+            useClass: ScrollToServiceMock
           }
         ]
       });
@@ -53,12 +53,11 @@ describe('ScrollToDirective', () => {
     spyOn(service, 'scrollTo');
 
     const btn = fixture.debugElement.query(By.css(`#${BUTTON_ID}`));
-    const mouse_event: MouseEvent = new MouseEvent('click');
 
-    btn.triggerEventHandler('click', mouse_event);
+    btn.triggerEventHandler('click', null);
     tick();
 
-    expect(service.scrollTo).toHaveBeenCalledWith(mouse_event, {
+    expect(service.scrollTo).toHaveBeenCalledWith({
       target: TARGET,
       duration: DEFAULTS.duration,
       easing: DEFAULTS.easing,
@@ -87,13 +86,12 @@ describe('ScrollToDirective', () => {
       spyOn(service, 'scrollTo');
 
       const btn = fixture.debugElement.query(By.css(`#${BUTTON_ID}`));
-      const mouse_event: MouseEvent = new MouseEvent('click');
 
-      btn.triggerEventHandler(event, mouse_event);
+      btn.triggerEventHandler(event, null);
       tick();
 
       expect(service.scrollTo).toHaveBeenCalledTimes(1);
-      expect(service.scrollTo).toHaveBeenCalledWith(mouse_event, {
+      expect(service.scrollTo).toHaveBeenCalledWith({
         target: TARGET,
         duration: DEFAULTS.duration,
         easing: DEFAULTS.easing,
