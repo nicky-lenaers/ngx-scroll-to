@@ -274,14 +274,50 @@ export class MyService {
 
 
 ## Directive Attributes Map
-| Options                                                       | Type                                   | Default         | Accepts                                            |
-|---------------------------------------------------------------|----------------------------------------|-----------------|----------------------------------------------------|
-| [ngx-scroll-to](#ngx-scroll-to-details)                       | `string` | `number` | `ElementRef`     | `''`            | Any `string`, `number` or `ElementRef` value       |
-| [ngx-scroll-to-event](#ngx-scroll-to-event-details)           | `ScrollToEvent`                        | `click`         | `ScrollToEvent`                                    |
-| [ngx-scroll-to-duration](#ngx-scroll-to-duration-details)     | `number`                               | `650`           | Any `number` value                                 |
-| [ngx-scroll-to-easing](#ngx-scroll-to-easing-details)         | `ScrollToAnimationEasing`              | `easeInOutQuad` | `ScrollToAnimationEasing`                          |
-| [ngx-scroll-to-offset](#ngx-scroll-to-offset-details)         | `number`                               | `0`             | Any `number` value                                 |
-| [ngx-scroll-to-offset-map](#ngx-scroll-to-offset-map-details) | `ScrollToOffsetMap`                    | `new Map()`     | `ScrollToOffsetMap`                                |
+<table>
+  <tr>
+    <th align="left">Options</th>
+    <th align="left">Type</th>
+    <th align="left">Default</th>
+    <th align="left">Accepts</th>
+  </tr>
+  <tr>
+    <td><a href="#ngx-scroll-to-details">ngx-scroll-to</a></td>
+    <td><code>string</code> | <code>number</code> | <code>ElementRef</code></td>
+    <td><code>''</code></td>
+    <td>Any <code>string</code>, <code>number</code> or <code>ElementRef</code> value</td>
+  </tr>
+  <tr>
+    <td><a href="#ngx-scroll-to-event-details">ngx-scroll-to-event</a></td>
+    <td><code>ScrollToEvent</code></td>
+    <td><code>click</code></td>
+    <td><code>ScrollToEvent</code></td>
+  </tr>
+  <tr>
+    <td><a href="#ngx-scroll-to-duration-details">ngx-scroll-to-duration</a></td>
+    <td><code>number</code></td>
+    <td><code>650</code></td>
+    <td>Any <code>number</code> value</td>
+  </tr>
+  <tr>
+    <td><a href="#ngx-scroll-to-easing-details">ngx-scroll-to-easing</a></td>
+    <td><code>ScrollToAnimationEasing</code></td>
+    <td><code>easeInOutQuad</code></td>
+    <td><code>ScrollToAnimationEasing</code></td>
+  </tr>
+  <tr>
+    <td><a href="#ngx-scroll-to-offset-details">ngx-scroll-to-offset</a></td>
+    <td><code>number</code></td>
+    <td><code>0</code></td>
+    <td>Any <code>number</code> value</td>
+  </tr>
+  <tr>
+    <td><a href="#ngx-scroll-to-offset-map-details">ngx-scroll-to-offset-map</a></td>
+    <td><code>ScrollToOffsetMap</code></td>
+    <td><code>new Map()</code></td>
+    <td><code>ScrollToOffsetMap</code></td>
+  </tr>
+</table>
 
 ## Directive Attribue Map Details
 #### <a name="ngx-scroll-to-details"></a>`[ngx-scroll-to]`
