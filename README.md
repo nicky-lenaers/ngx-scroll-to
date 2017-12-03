@@ -366,12 +366,5 @@ This value controls the offset with respect to the top of the destination HTML e
 #### <a name="ngx-scroll-to-offset-map-details"></a>`[ngx-scroll-to-offset-map]`
 This value allows you to control dynamic offsets based on the width of the device screen. The Map get's iterated over internally in a sequential fashion, meaning you need to supply key values in the order from low to high. The `key` of the `Map` defines the width treshold. The `value` of the `Map` defines the offset. Note that this value is in pixels.
 
-## Development
-
-### Install Peer Dependencies
-```sh
-$ npm run install:peers
-``` 
-
 # License
  [MIT](/LICENSE)
