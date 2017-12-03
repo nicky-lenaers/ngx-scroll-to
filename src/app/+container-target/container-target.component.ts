@@ -17,10 +17,15 @@ export class ContainerTargetComponent implements OnInit {
 
   public scrollToElementInAnotherContainer(container, event) {
 
-    this._scrollToService.scrollTo({
-      container: '#another-scroll-container',
+    const sub = this._scrollToService.scrollTo({
+      container: '#another-scroll-containerz',
       target: 'another-scroll-container-destination',
     });
+
+    sub.subscribe(
+      value => console.log(value),
+      err => { throw new Error(err) }
+    );
   }
 
 }

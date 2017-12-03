@@ -81,7 +81,7 @@
     <th align="left" valign="top">Downloads</th>
     <td>NPM</td>
     <td>
-      <a href="https://npmjs.org/ngx-bootstrap" target="_blank">
+      <a href="https://npmjs.org/@nicky-lenaers/ngx-scroll-to" target="_blank">
         <img src="https://img.shields.io/npm/dm/%40nicky-lenaers%2Fngx-scroll-to.svg?style=flat-square" alt="NPM Monthly Downloads">
       </a>
     </td>
@@ -316,6 +316,33 @@ export class MyService {
     <td><code>new Map()</code></td>
   </tr>
 </table>
+
+## Error Handling
+In some occasions, one might misspell a target or container selector string. Even though `ngx-scoll-to` will not be able to initiate the scrolling animation, you can catch the internally generated error and handle it as you please on the `Observable` chain returned from the `scrollTo` method.
+
+**faulty.service.ts**
+```js
+import { Injectable } from '@angular/core';
+import { ScrollToService } from '@nicky-lenaers/ngx-scroll-to';
+
+@Injectable()
+export class FaultyService {
+
+  constructor(private _scrollToService: ScrollToService) { }
+
+  public triggerScrollTo() {
+    
+    this._scrollToService
+      .scrollTo({
+        target: 'faulty-id'
+      })
+      .subscribe(
+        value => { console.log(value) },
+        err => console.log(err) // Error is caught and logged instead of thrown
+      );
+  }
+}
+```
 
 ## Directive Attribue Map Details
 #### <a name="ngx-scroll-to-details"></a>`[ngx-scroll-to]`
