@@ -1,3 +1,20 @@
+<a name="0.5.0"></a>
+# [0.5.0](https://github.com/nicky-lenaers/ngx-scroll-to/compare/0.4.0...0.5.0) (2017-12-03)
+
+
+### Bug Fixes
+
+* bash typo ([12a7958](https://github.com/nicky-lenaers/ngx-scroll-to/commit/12a7958))
+
+
+### Features
+
+* **module:** Catchable Errors for suppression and custom Error Handling ([#57](https://github.com/nicky-lenaers/ngx-scroll-to/issues/57)) ([0af1208](https://github.com/nicky-lenaers/ngx-scroll-to/commit/0af1208)), closes [#50](https://github.com/nicky-lenaers/ngx-scroll-to/issues/50)
+* **module:** Support for Angular 5 ([#54](https://github.com/nicky-lenaers/ngx-scroll-to/issues/54)) ([fe1da1f](https://github.com/nicky-lenaers/ngx-scroll-to/commit/fe1da1f)), closes [#52](https://github.com/nicky-lenaers/ngx-scroll-to/issues/52)
+* **module:** Support for Native Element in both Target and Container ([#56](https://github.com/nicky-lenaers/ngx-scroll-to/issues/56)) ([8ed7b63](https://github.com/nicky-lenaers/ngx-scroll-to/commit/8ed7b63)), closes [#22](https://github.com/nicky-lenaers/ngx-scroll-to/issues/22) [#55](https://github.com/nicky-lenaers/ngx-scroll-to/issues/55)
+
+
+
 <a name="0.4.0"></a>
 # [0.4.0](https://github.com/nicky-lenaers/ngx-scroll-to/compare/0.4.0-alpha.3...0.4.0) (2017-10-12)
 
