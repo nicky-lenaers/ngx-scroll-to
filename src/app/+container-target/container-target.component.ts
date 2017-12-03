@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ElementRef } from '@angular/core';
 
 import { ScrollToService } from '../modules/scroll-to/scroll-to.service';
 
@@ -18,7 +18,7 @@ export class ContainerTargetComponent implements OnInit {
   public scrollToElementInAnotherContainer(container, event) {
 
     this._scrollToService.scrollTo({
-      container: 'body',
+      container: '#another-scroll-container',
       target: 'another-scroll-container-destination',
     });
   }

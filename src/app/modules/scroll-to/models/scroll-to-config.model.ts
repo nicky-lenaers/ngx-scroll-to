@@ -6,13 +6,13 @@ import { ScrollToEvent } from './scroll-to-event.model';
 /**
  * The target of the Scroll Animation.
  */
-export type ScrollToTarget = string | number | ElementRef;
+export type ScrollToTarget = string | number | ElementRef | HTMLElement;
 
 /**
  * The container on which the Scroll Animation
  * will happen.
  */
-export type ScrollToContainer = string | number | ElementRef;
+export type ScrollToContainer = string | number | ElementRef | HTMLElement;
 
 /**
  * The Listener Target is responsive for listening

@@ -118,10 +118,20 @@ export function isWindow(container: any): container is Window {
  * Test if a given value is of type ElementRef.
  *
  * @param value 					The given value
- * @returns 						Whether the given value is a number
+ * @returns               Whether the given value is a number
  */
 export function isElementRef(value: any): value is ElementRef {
   return value instanceof ElementRef;
+}
+
+/**
+ * Whether or not the given value is a Native Element.
+ *
+ * @param value           The given value
+ * @returns               Whether or not the value is a Native Element
+ */
+export function isNativeElement(value: any): value is HTMLElement {
+  return value instanceof HTMLElement;
 }
 
 /**
