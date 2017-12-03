@@ -1,7 +1,8 @@
 <button
+  (click)="show()"
   [ngx-scroll-to-duration]="4000"
   [ngx-scroll-to]="'destination'"
   >Go</button>
-<section id="destination">
+<section *ngIf="visible" id="destination">
   You've reached your destination.
 </section>

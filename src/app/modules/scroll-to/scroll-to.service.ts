@@ -3,9 +3,9 @@ import { DOCUMENT } from '@angular/platform-browser';
 import { isPlatformBrowser } from '@angular/common';
 
 import { Observable } from 'rxjs/Observable';
+import 'rxjs/add/observable/throw';
 import { ReplaySubject } from 'rxjs/ReplaySubject';
 
-import { TimeOut } from './decorators/scroll-to-timeout.decorator';
 import { ScrollToAnimationEasing } from './models/scroll-to-easing.model';
 import {
   ScrollToConfigOptions,
@@ -49,7 +49,8 @@ export class ScrollToService {
   private _interruptiveEvents: string[];
 
   /**
-   * Construct and setup required paratemeters
+   * Construct and setup required paratemeters.
+   *
    * @param _document         A Reference to the Document
    * @param _platformId       Angular Platform ID
    */
@@ -72,7 +73,6 @@ export class ScrollToService {
    * @param options         Configuration Object
    * @returns               Observable
    */
-  @TimeOut()
   public scrollTo(options: ScrollToConfigOptions): Observable<any> {
 
     if (!isPlatformBrowser(this._platformId)) return new ReplaySubject().asObservable();
@@ -99,7 +99,11 @@ export class ScrollToService {
     if (this._animation) this._animation.stop();
 
     const targetNode = this._getNode(mergedConfigOptions.target);
+    if (!targetNode) return Observable.throw(new Error('Unable to get Target Element'));
+
     const container: HTMLElement = this._getContainer(mergedConfigOptions, targetNode);
+    if (!container) return Observable.throw(new Error('Unable to get Container Element'));
+
     const listenerTarget = this._getListenerTarget(container);
     const to: number = isWindow(listenerTarget) ? targetNode.offsetTop : targetNode.getBoundingClientRect().top;
 
@@ -158,8 +162,6 @@ export class ScrollToService {
       this._getNode(options.container, true) :
       this._getFirstScrollableParent(targetNode);
 
-    if (!container) throw new Error('Unable to get Container Element');
-
     return container;
   }
 
@@ -213,7 +215,7 @@ export class ScrollToService {
 
     const overflowRegex: RegExp = /(auto|scroll)/;
 
-    if (style.position === 'fixed') throw new Error(`Scroll item cannot be positioned 'fixed'`);
+    if (style.position === 'fixed') return null;
 
     for (let parent = nativeElement; parent = parent.parentElement; null) {
 
@@ -227,7 +229,7 @@ export class ScrollToService {
         || parent.tagName === 'BODY') return parent;
     }
 
-    throw new Error(`No scrollable parent found for element ${nativeElement.nodeName}`);
+    return null;
   }
 
   /**
@@ -268,8 +270,6 @@ export class ScrollToService {
       targetNode = id;
 
     }
-
-    if (!targetNode) throw new Error('Unable to find Target Element');
 
     return targetNode;
 
