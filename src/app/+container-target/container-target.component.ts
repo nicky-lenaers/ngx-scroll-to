@@ -24,7 +24,7 @@ export class ContainerTargetComponent implements OnInit {
 
     sub.subscribe(
       value => console.log(value),
-      err => { throw new Error(err) }
+      err => { throw new Error(err); }
     );
   }
 
