@@ -19,7 +19,8 @@ import {
   isNumber,
   isElementRef,
   isWindow,
-  DEFAULTS
+  DEFAULTS,
+  isNativeElement
 } from './statics/scroll-to-helpers';
 
 /**
@@ -261,6 +262,10 @@ export class ScrollToService {
     } else if (isElementRef(id)) {
 
       targetNode = id.nativeElement;
+
+    } else if (isNativeElement(id)) {
+
+      targetNode = id;
 
     }
 
