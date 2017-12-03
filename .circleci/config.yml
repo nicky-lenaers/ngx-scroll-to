@@ -49,13 +49,6 @@ jobs:
           key: dependency-cache-{{ checksum "package.json" }}
           paths:
             - node_modules
-      - run:
-          name: Install Peer Dependencies via NPM
-          command: npm run install:peers
-      - save_cache:
-          key: dependency-cache-peer-{{ checksum "package.json" }}
-          paths:
-            - node_modules
   test_spec:
     <<: *job_defaults_browsers
     steps:
