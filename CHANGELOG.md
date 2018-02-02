@@ -1,3 +1,13 @@
+<a name="0.5.1"></a>
+## [0.5.1](https://github.com/nicky-lenaers/ngx-scroll-to/compare/0.5.0...0.5.1) (2018-02-02)
+
+
+### Bug Fixes
+
+* **module:** prevent float to int comparison and use int to int ([b7fa36c](https://github.com/nicky-lenaers/ngx-scroll-to/commit/b7fa36c)), closes [#62](https://github.com/nicky-lenaers/ngx-scroll-to/issues/62)
+
+
+
 <a name="0.5.0"></a>
 # [0.5.0](https://github.com/nicky-lenaers/ngx-scroll-to/compare/0.4.0...0.5.0) (2017-12-03)
 
