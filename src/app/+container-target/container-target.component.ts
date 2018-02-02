@@ -18,8 +18,9 @@ export class ContainerTargetComponent implements OnInit {
   public scrollToElementInAnotherContainer(container, event) {
 
     const sub = this._scrollToService.scrollTo({
-      container: '#another-scroll-containerz',
+      container: '#another-scroll-container',
       target: 'another-scroll-container-destination',
+      easing: 'easeOutElastic'
     });
 
     sub.subscribe(

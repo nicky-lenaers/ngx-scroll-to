@@ -7,18 +7,67 @@ import {
   ScrollToListenerTarget
 } from '../models/scroll-to-config.model';
 
+/**
+ * Scroll To Animation.
+ */
 export class ScrollToAnimation {
 
+  /**
+   * Number of milliseconds for each Tick.
+   */
   private _tick: number;
+
+  /**
+   * JavaScript Interval.
+   */
   private _interval: any;
+
+  /**
+   * Time Lapsed in milliseconds.
+   */
   private _timeLapsed: number;
+
+  /**
+   * Percentage of time lapsed.
+   */
   private _percentage: number;
+
+  /**
+   * Position of the Element.
+   */
   private _position: number;
+
+  /**
+   * Start Position of the Element.
+   */
   private _startPosition: number;
+
+  /**
+   * The Distance to scroll.
+   */
   private _distance: number;
+
+  /**
+   * Observable Source.
+   */
   private _source$: ReplaySubject<number>;
+
+  /**
+   * Scroll Top of the Window.
+   */
   private _windowScrollTop: number;
 
+  /**
+   * Class Constructor.
+   *
+   * @param _container            The Container
+   * @param _listenerTarget       The Element that listens for DOM Events
+   * @param _isWindow             Whether or not the listener is the Window
+   * @param _to                   Position to scroll to
+   * @param _options              Additional options for scrolling
+   * @param _isBrowser            Whether or not execution runs in the browser
+   *                              (as opposed to the server)
+   */
   constructor(
     private _container: HTMLElement,
     private _listenerTarget: ScrollToListenerTarget,
@@ -58,9 +107,9 @@ export class ScrollToAnimation {
   /**
    * Start the new Scroll Animation.
    *
-   * @returns       void
+   * @returns         Observable containing a number
    */
-  public start(): Observable<any> {
+  public start(): Observable<number> {
     clearInterval(this._interval);
     this._interval = setInterval(this._loop, this._tick);
     return this._source$.asObservable();
@@ -69,7 +118,7 @@ export class ScrollToAnimation {
   /**
    * Recursively loop over the Scroll Animation.
    *
-   * @returns void
+   * @returns           Void
    */
   private _loop = (): void => {
     this._timeLapsed += this._tick;
@@ -79,8 +128,8 @@ export class ScrollToAnimation {
     // Position Update
     this._position = this._startPosition +
       ((this._startPosition - this._to < 0 ? 1 : -1) *
-      this._distance *
-      EASING[this._options.easing](this._percentage));
+        this._distance *
+        EASING[this._options.easing](this._percentage));
 
     this._source$.next(this._position);
     this._isWindow ? this._listenerTarget.scrollTo(0, Math.floor(this._position)) : this._container.scrollTop = Math.floor(this._position);
@@ -90,13 +139,16 @@ export class ScrollToAnimation {
   /**
    * Stop the current Scroll Animation Loop.
    *
-   * @param force 			Force to stop
+   * @param force 			    Force to stop the Animation Loop
+   * @returns               Void
    */
   public stop(force: boolean = true): void {
 
-    const curr_position = this._isWindow ? this._windowScrollTop : this._container.scrollTop;
+    const currPosition = this._isWindow ? this._windowScrollTop : this._container.scrollTop;
 
-    if (force || this._position === (this._to + this._options.offset) || curr_position === (this._to + this._options.offset)) {
+    if (force
+      || Math.trunc(this._position) === (this._to + this._options.offset)
+      || currPosition === (this._to + this._options.offset)) {
       clearInterval(this._interval);
       this._interval = null;
       this._source$.complete();
