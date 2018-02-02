@@ -34,6 +34,13 @@ references:
     restore_cache:
       key: dependency-cache-peer-{{ checksum "package.json" }}
 
+  update_chrome_driver: &update_chrome_driver
+    run:
+      name: Update Chrome Driver
+      command: |
+        wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
+        sudo dpkg -i google-chrome-stable_current_amd64.deb
+
 # Jobs
 jobs:
   build:
@@ -67,6 +74,7 @@ jobs:
       - checkout
       - *restore_npm_cache
       - *restore_npm_cache_peer
+      - *update_chrome_driver
       - run:
           name: Test End to End
           command: npm run e2e
