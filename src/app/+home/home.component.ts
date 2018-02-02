@@ -8,8 +8,13 @@ import { Component, OnInit } from '@angular/core';
 export class HomeComponent implements OnInit {
 
   public visible = false;
+  public offsetMap;
 
-  constructor() { }
+  constructor() {
+    this.offsetMap = new Map();
+    this.offsetMap
+      .set(600, -500);
+  }
 
   ngOnInit() {
   }

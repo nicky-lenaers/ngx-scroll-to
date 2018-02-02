@@ -58,6 +58,11 @@ export class ScrollToAnimation {
   private _windowScrollTop: number;
 
   /**
+   * Mapped Offset taken from the active Offset Map.
+   */
+  private _mappedOffset: number;
+
+  /**
    * Class Constructor.
    *
    * @param _container            The Container
@@ -90,17 +95,17 @@ export class ScrollToAnimation {
     const directionalDistance = this._startPosition - this._to;
     this._distance = Math.abs(this._startPosition - this._to);
 
-    let offset = this._options.offset;
+    this._mappedOffset = this._options.offset;
 
     // Set offset from Offset Map
     if (this._isBrowser) {
 
       this._options
         .offsetMap
-        .forEach((value, key) => offset = window.innerWidth > key ? value : offset);
+        .forEach((value, key) => this._mappedOffset = window.innerWidth > key ? value : this._mappedOffset);
     }
 
-    this._distance += offset * (directionalDistance <= 0 ? 1 : -1);
+    this._distance += this._mappedOffset * (directionalDistance <= 0 ? 1 : -1);
     this._source$ = new ReplaySubject();
   }
 
@@ -121,6 +126,7 @@ export class ScrollToAnimation {
    * @returns           Void
    */
   private _loop = (): void => {
+
     this._timeLapsed += this._tick;
     this._percentage = (this._timeLapsed / this._options.duration);
     this._percentage = (this._percentage > 1) ? 1 : this._percentage;
@@ -147,8 +153,8 @@ export class ScrollToAnimation {
     const currPosition = this._isWindow ? this._windowScrollTop : this._container.scrollTop;
 
     if (force
-      || Math.trunc(this._position) === (this._to + this._options.offset)
-      || currPosition === (this._to + this._options.offset)) {
+      || Math.trunc(this._position) === (this._to + this._mappedOffset)
+      || currPosition === (this._to + this._mappedOffset)) {
       clearInterval(this._interval);
       this._interval = null;
       this._source$.complete();
