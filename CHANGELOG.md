@@ -1,3 +1,13 @@
+<a name="0.5.2"></a>
+## [0.5.2](https://github.com/nicky-lenaers/ngx-scroll-to/compare/0.5.1...0.5.2) (2018-02-02)
+
+
+### Bug Fixes
+
+* **module:** e2e runs against compatible chrome version ([#63](https://github.com/nicky-lenaers/ngx-scroll-to/issues/63)) ([293b458](https://github.com/nicky-lenaers/ngx-scroll-to/commit/293b458))
+
+
+
 <a name="0.5.1"></a>
 ## [0.5.1](https://github.com/nicky-lenaers/ngx-scroll-to/compare/0.5.0...0.5.1) (2018-02-02)
 
