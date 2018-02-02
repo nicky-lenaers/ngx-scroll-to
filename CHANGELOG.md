@@ -1,3 +1,13 @@
+<a name="0.5.3"></a>
+## [0.5.3](https://github.com/nicky-lenaers/ngx-scroll-to/compare/0.5.2...0.5.3) (2018-02-02)
+
+
+### Bug Fixes
+
+* **module:** compare position value to mapped offset value ([#64](https://github.com/nicky-lenaers/ngx-scroll-to/issues/64)) ([a2f4792](https://github.com/nicky-lenaers/ngx-scroll-to/commit/a2f4792)), closes [#62](https://github.com/nicky-lenaers/ngx-scroll-to/issues/62)
+
+
+
 <a name="0.5.2"></a>
 ## [0.5.2](https://github.com/nicky-lenaers/ngx-scroll-to/compare/0.5.1...0.5.2) (2018-02-02)
 
