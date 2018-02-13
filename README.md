@@ -123,7 +123,7 @@ import { ScrollToModule } from '@nicky-lenaers/ngx-scroll-to';
 export class AppModule { }
 ```
 
-## Basic Usage - Directive
+## Basic Usage - Directive to Target
 **my.component.html**
 
 ```html
@@ -138,7 +138,20 @@ export class AppModule { }
 </div>
 ```
 
-## Basic Usage - Service
+## Basic Usage - Directive to Offset Only
+Besides scrolling to a specific element, it is also possible to scroll a given offset only. This can be achieved by an empty target and an offset:
+
+**my.component.html**
+
+```html
+<button 
+  ngx-scroll-to 
+  [ngx-scroll-to-offset]="200">
+  Go down 200 pixels
+</button>
+```
+
+## Basic Usage - Service to Target
 **my.component.html**
 ```html
 <button (click)="triggerScrollTo()">Go to destination</button>
@@ -163,6 +176,36 @@ export class MyService {
     
     const config: ScrollToConfigOptions = {
       target: 'destination'
+    };
+
+    this._scrollToService.scrollTo(config);
+  }
+}
+```
+
+## Basic Usage - Service to Offset Only
+Just like with the Directive, the Service can be used to scroll to an offset only instead of a given target element:
+
+**my.component.html**
+```html
+<button (click)="triggerScrollToOffsetOnly(200)">Go down 200 pixels</button>
+```
+
+**my.service.ts**
+
+```js
+import { Injectable } from '@angular/core';
+import { ScrollToService, ScrollToConfigOptions } from '@nicky-lenaers/ngx-scroll-to';
+
+@Injectable()
+export class MyService {
+
+  constructor(private _scrollToService: ScrollToService) { }
+
+  public triggerScrollToOffsetOnly(offset: number = 0) {
+    
+    const config: ScrollToConfigOptions = {
+      offset
     };
 
     this._scrollToService.scrollTo(config);
@@ -338,7 +381,7 @@ export class FaultyService {
       })
       .subscribe(
         value => { console.log(value) },
-        err => console.log(err) // Error is caught and logged instead of thrown
+        err => console.error(err) // Error is caught and logged instead of thrown
       );
   }
 }

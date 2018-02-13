@@ -28,17 +28,22 @@
     "scroll",
     "scrolling",
     "scroll-to",
+    "smooth scroll",
     "smooth-scroll",
+    "smooth scrolling",
+    "smooth-scrolling",
     "smooth",
     "angular",
     "angular2",
     "angular 2",
     "angular4",
-    "angular 4"
+    "angular 4",
+    "angular5",
+    "angular 5"
   ],
   "author": {
     "name": "Nicky Lenaers",
-    "email": "nicky@nite-dev.nl"
+    "email": "nicky@newgameplus.online"
   },
   "repository": {
     "type": "git",

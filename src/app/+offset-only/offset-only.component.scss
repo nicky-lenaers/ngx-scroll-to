@@ -1,0 +1,12 @@
+:host {
+  display: block;
+  height: 300vh;
+}
+
+#scrollable-container {
+  height: 200px;
+  overflow-y: auto;
+}
+#scrollable-container-overflow {
+  height: 1000px;
+}

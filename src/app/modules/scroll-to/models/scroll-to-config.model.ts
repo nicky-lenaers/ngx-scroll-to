@@ -26,14 +26,7 @@ export type ScrollToListenerTarget = HTMLElement | Window;
  */
 export type ScrollToOffsetMap = Map<number, number>;
 
-/**
- * The Configuration Object.
- */
-export interface ScrollToConfigOptions {
-  /**
-   * The target to scroll to.
-   */
-  target: ScrollToTarget;
+export interface ScrollToConfigOptionsBase {
   /**
    * The Container to scroll.
    */
@@ -47,20 +40,40 @@ export interface ScrollToConfigOptions {
    */
   easing?: ScrollToAnimationEasing;
   /**
-   * The offset from the top of the Element
-   * in pixels.
-   */
-  offset?: number;
-  /**
    * A mapped list of offsets.
    */
   offsetMap?: ScrollToOffsetMap;
 }
 
+export interface ScrollToConfigOptionsTarget extends ScrollToConfigOptionsBase {
+  /**
+   * The target to scroll to.
+   */
+  target: ScrollToTarget;
+  /**
+   * The offset from the top of the Element
+   * in pixels.
+   */
+  offset?: number;
+}
+
+export interface ScrollToConfigOptionsOffsetOnly extends ScrollToConfigOptionsBase {
+  /**
+   * The offset from the top of the Element
+   * in pixels.
+   */
+  offset: number;
+}
+
+/**
+ * The Configuration Object.
+ */
+export type ScrollToConfigOptions = ScrollToConfigOptionsTarget | ScrollToConfigOptionsOffsetOnly;
+
 /**
  * The Default Configuration Object.
  */
-export interface ScrollToDefaultConfigOptions extends ScrollToConfigOptions {
+export interface ScrollToDefaultConfigOptions extends ScrollToConfigOptionsTarget {
   action: ScrollToEvent;
 }
 

@@ -3,13 +3,15 @@ import { TestBed, ComponentFixture } from '@angular/core/testing';
 import { BUTTON_ID } from './test-dummy.component';
 import {
   ScrollToConfigOptions,
-  ScrollToTarget
+  ScrollToTarget,
+  ScrollToConfigOptionsTarget
 } from '../models/scroll-to-config.model';
 import { ScrollToEvent } from '../models/scroll-to-event.model';
 
-export interface CompileTemplateConfigOptions extends ScrollToConfigOptions {
+export interface CompileTemplateConfigOptions extends ScrollToConfigOptionsTarget {
   action?: string;
 }
+
 export function createTestComponent(
   component: Type<any>,
   config: CompileTemplateConfigOptions,
