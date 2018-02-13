@@ -10,7 +10,8 @@ import { ScrollToAnimationEasing } from './models/scroll-to-easing.model';
 import {
   ScrollToConfigOptions,
   ScrollToTarget,
-  ScrollToListenerTarget
+  ScrollToListenerTarget,
+  ScrollToConfigOptionsTarget
 } from './models/scroll-to-config.model';
 import { ScrollToAnimation } from './statics/scroll-to-animation';
 import {
@@ -94,18 +95,23 @@ export class ScrollToService {
     const mergedConfigOptions = {
       ...DEFAULTS as ScrollToConfigOptions,
       ...options
-    };
+    } as ScrollToConfigOptionsTarget;
 
     if (this._animation) this._animation.stop();
 
     const targetNode = this._getNode(mergedConfigOptions.target);
-    if (!targetNode) return Observable.throw(new Error('Unable to get Target Element'));
+    if (mergedConfigOptions.target && !targetNode) return Observable.throw('Unable to find Target Element');
 
     const container: HTMLElement = this._getContainer(mergedConfigOptions, targetNode);
-    if (!container) return Observable.throw(new Error('Unable to get Container Element'));
+    if (mergedConfigOptions.container && !container) return Observable.throw('Unable to find Container Element');
 
-    const listenerTarget = this._getListenerTarget(container);
-    const to: number = isWindow(listenerTarget) ? targetNode.offsetTop : targetNode.getBoundingClientRect().top;
+    const listenerTarget = this._getListenerTarget(container) || window;
+
+    let to = 0;
+
+    if (targetNode) {
+      to = isWindow(listenerTarget) ? targetNode.offsetTop : targetNode.getBoundingClientRect().top;
+    }
 
     // Create Animation
     this._animation = new ScrollToAnimation(
@@ -156,11 +162,15 @@ export class ScrollToService {
    * @param options         The Merged Configuration Object
    * @returns
    */
-  private _getContainer(options: ScrollToConfigOptions, targetNode: HTMLElement): HTMLElement {
+  private _getContainer(options: ScrollToConfigOptions, targetNode: HTMLElement): HTMLElement | null {
 
-    const container: HTMLElement = options.container ?
-      this._getNode(options.container, true) :
-      this._getFirstScrollableParent(targetNode);
+    let container: HTMLElement | null = null;
+
+    if (options.container) {
+      container = this._getNode(options.container, true);
+    } else if (targetNode) {
+      container = this._getFirstScrollableParent(targetNode);
+    }
 
     return container;
   }
@@ -177,6 +187,8 @@ export class ScrollToService {
   private _addInterruptiveEventListeners(
     listenerTarget: ScrollToListenerTarget,
     handler: EventListenerOrEventListenerObject): void {
+
+      if (!listenerTarget) listenerTarget = window;
 
     this._interruptiveEvents.forEach(event => listenerTarget.addEventListener(event, handler));
   }
@@ -197,6 +209,7 @@ export class ScrollToService {
     listenerTarget: ScrollToListenerTarget,
     handler: EventListenerOrEventListenerObject): void {
 
+    if (!listenerTarget) listenerTarget = window;
     events.forEach(event => listenerTarget.removeEventListener(event, handler));
   }
 
@@ -285,6 +298,7 @@ export class ScrollToService {
    * @returns                   The Listener Target to attach events on
    */
   private _getListenerTarget(container: HTMLElement): ScrollToListenerTarget {
+    if (!container) return null;
     return this._isDocumentBody(container) ? window : container;
   }
 

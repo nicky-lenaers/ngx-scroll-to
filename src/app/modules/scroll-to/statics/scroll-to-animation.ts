@@ -38,6 +38,11 @@ export class ScrollToAnimation {
   private _position: number;
 
   /**
+   * Last Position.
+   */
+  private _lastPosition: number;
+
+  /**
    * Start Position of the Element.
    */
   private _startPosition: number;
@@ -83,17 +88,25 @@ export class ScrollToAnimation {
   ) {
     this._tick = 16;
     this._interval = null;
+    this._lastPosition = null;
     this._timeLapsed = 0;
 
     this._windowScrollTop = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop || 0;
-    this._startPosition = this._isWindow ? this._windowScrollTop : this._container.scrollTop;
+
+    if (!this._container) {
+      this._startPosition = this._windowScrollTop;
+    } else {
+      this._startPosition = this._isWindow ? this._windowScrollTop : this._container.scrollTop;
+    }
 
     // Correction for Starting Position of nested HTML Elements
-    if (!this._isWindow) this._to = this._to - this._container.getBoundingClientRect().top + this._startPosition;
+    if (this._container && !this._isWindow) {
+      this._to = this._to - this._container.getBoundingClientRect().top + this._startPosition;
+    }
 
     // Set Distance
     const directionalDistance = this._startPosition - this._to;
-    this._distance = Math.abs(this._startPosition - this._to);
+    this._distance = this._container ? Math.abs(this._startPosition - this._to) : this._to;
 
     this._mappedOffset = this._options.offset;
 
@@ -133,13 +146,19 @@ export class ScrollToAnimation {
 
     // Position Update
     this._position = this._startPosition +
-      ((this._startPosition - this._to < 0 ? 1 : -1) *
+      ((this._startPosition - this._to <= 0 ? 1 : -1) *
         this._distance *
         EASING[this._options.easing](this._percentage));
 
-    this._source$.next(this._position);
-    this._isWindow ? this._listenerTarget.scrollTo(0, Math.floor(this._position)) : this._container.scrollTop = Math.floor(this._position);
-    this.stop(false);
+    if (this._lastPosition !== null && this._position === this._lastPosition) {
+      this.stop();
+    } else {
+      this._source$.next(this._position);
+      this._isWindow
+        ? this._listenerTarget.scrollTo(0, Math.floor(this._position))
+        : this._container.scrollTop = Math.floor(this._position);
+      this._lastPosition = this._position;
+    }
   }
 
   /**
@@ -148,16 +167,9 @@ export class ScrollToAnimation {
    * @param force 			    Force to stop the Animation Loop
    * @returns               Void
    */
-  public stop(force: boolean = true): void {
-
-    const currPosition = this._isWindow ? this._windowScrollTop : this._container.scrollTop;
-
-    if (force
-      || Math.trunc(this._position) === (this._to + this._mappedOffset)
-      || currPosition === (this._to + this._mappedOffset)) {
-      clearInterval(this._interval);
-      this._interval = null;
-      this._source$.complete();
-    }
+  public stop(): void {
+    clearInterval(this._interval);
+    this._interval = null;
+    this._source$.complete();
   }
 }

@@ -11,6 +11,10 @@ export const routes: Routes = [
     loadChildren: './+container-target/container-target.module#ContainerTargetModule'
   },
   {
+    path: 'offset-only',
+    loadChildren: './+offset-only/offset-only.module#OffsetOnlyModule'
+  },
+  {
     path: '**',
     redirectTo: '/home',
     pathMatch: 'full'
