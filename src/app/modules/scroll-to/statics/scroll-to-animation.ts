@@ -154,7 +154,9 @@ export class ScrollToAnimation {
       this.stop();
     } else {
       this._source$.next(this._position);
-      this._isWindow ? this._listenerTarget.scrollTo(0, Math.floor(this._position)) : this._container.scrollTop = Math.floor(this._position);
+      this._isWindow
+        ? this._listenerTarget.scrollTo(0, Math.floor(this._position))
+        : this._container.scrollTop = Math.floor(this._position);
       this._lastPosition = this._position;
     }
   }
