@@ -1,3 +1,13 @@
+<a name="0.6.0"></a>
+# [0.6.0](https://github.com/nicky-lenaers/ngx-scroll-to/compare/0.5.3...0.6.0) (2018-02-13)
+
+
+### Features
+
+* **module:** scroll to offset instead of target ([#67](https://github.com/nicky-lenaers/ngx-scroll-to/issues/67)) ([c72828a](https://github.com/nicky-lenaers/ngx-scroll-to/commit/c72828a)), closes [#28](https://github.com/nicky-lenaers/ngx-scroll-to/issues/28)
+
+
+
 <a name="0.5.3"></a>
 ## [0.5.3](https://github.com/nicky-lenaers/ngx-scroll-to/compare/0.5.2...0.5.3) (2018-02-02)
 
