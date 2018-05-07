@@ -10,7 +10,7 @@ import { ScrollToConfigOptions } from '../modules/scroll-to/models/scroll-to-con
 })
 export class ContainerOffsetComponent implements AfterViewInit {
 
-  @ViewChild("dialogContentForScroll") dialogContent: ElementRef;
+  @ViewChild('dialogContentForScroll') dialogContent: ElementRef;
   scrollPosition: number;
   name = 'Angular 5';
 
@@ -20,11 +20,11 @@ export class ContainerOffsetComponent implements AfterViewInit {
 
   ngAfterViewInit(): void {
 
-    let dialogElement = this.dialogContent.nativeElement as HTMLElement;
+    const dialogElement = this.dialogContent.nativeElement as HTMLElement;
 
     dialogElement.onscroll = () => {
       this.scrollPosition = dialogElement.scrollTop;
-    }
+    };
 
     this.scrollToService.scrollTo({
       offset: this.scrollPosition,
