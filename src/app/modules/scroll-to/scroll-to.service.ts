@@ -2,8 +2,7 @@ import { Injectable, ElementRef, PLATFORM_ID, Inject } from '@angular/core';
 import { DOCUMENT } from '@angular/platform-browser';
 import { isPlatformBrowser } from '@angular/common';
 
-import { Observable } from 'rxjs/Observable';
-import 'rxjs/add/observable/throw';
+import { Observable } from 'rxjs';
 import { ReplaySubject } from 'rxjs/ReplaySubject';
 
 import { ScrollToAnimationEasing } from './models/scroll-to-easing.model';
