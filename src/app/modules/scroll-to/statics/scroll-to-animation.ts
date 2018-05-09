@@ -1,5 +1,4 @@
-import { ReplaySubject } from 'rxjs/ReplaySubject';
-import { Observable } from 'rxjs/Observable';
+import { ReplaySubject ,  Observable } from 'rxjs';
 
 import { EASING } from '../statics/scroll-to-helpers';
 import {

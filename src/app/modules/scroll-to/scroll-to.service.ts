@@ -1,9 +1,8 @@
+
+import {throwError as observableThrowError,  Observable, ReplaySubject } from 'rxjs';
 import { Injectable, ElementRef, PLATFORM_ID, Inject } from '@angular/core';
 import { DOCUMENT } from '@angular/platform-browser';
 import { isPlatformBrowser } from '@angular/common';
-
-import { Observable } from 'rxjs';
-import { ReplaySubject } from 'rxjs/ReplaySubject';
 
 import { ScrollToAnimationEasing } from './models/scroll-to-easing.model';
 import {
@@ -99,10 +98,10 @@ export class ScrollToService {
     if (this._animation) this._animation.stop();
 
     const targetNode = this._getNode(mergedConfigOptions.target);
-    if (mergedConfigOptions.target && !targetNode) return Observable.throw('Unable to find Target Element');
+    if (mergedConfigOptions.target && !targetNode) return observableThrowError('Unable to find Target Element');
 
     const container: HTMLElement = this._getContainer(mergedConfigOptions, targetNode);
-    if (mergedConfigOptions.container && !container) return Observable.throw('Unable to find Container Element');
+    if (mergedConfigOptions.container && !container) return observableThrowError('Unable to find Container Element');
 
     const listenerTarget = this._getListenerTarget(container) || window;
 
