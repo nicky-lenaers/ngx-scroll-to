@@ -387,7 +387,7 @@ export class FaultyService {
 }
 ```
 
-## Directive Attribue Map Details
+## Directive Attribute Map Details
 #### <a name="ngx-scroll-to-details"></a>`[ngx-scroll-to]`
 This value specifies the ID of the HTML Element to scroll to. Note the outer double quotes `""` and the inner single quotes `''` in the above example(s). This enables you to dynamically set the string value based on a class property of your Component.
 
@@ -428,6 +428,12 @@ This value controls the offset with respect to the top of the destination HTML e
 
 #### <a name="ngx-scroll-to-offset-map-details"></a>`[ngx-scroll-to-offset-map]`
 This value allows you to control dynamic offsets based on the width of the device screen. The Map get's iterated over internally in a sequential fashion, meaning you need to supply key values in the order from low to high. The `key` of the `Map` defines the width treshold. The `value` of the `Map` defines the offset. Note that this value is in pixels.
+
+# Contributing
+Please see [Contributing Guidelines](.github/CONTRIBUTING.md).
+
+# Code of Conduct
+Please see [Code of Conduct](.github/CODE_OF_CONDUCT.md).
 
 # License
  [MIT](/LICENSE)
