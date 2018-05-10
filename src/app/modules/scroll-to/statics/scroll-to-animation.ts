@@ -112,7 +112,6 @@ export class ScrollToAnimation {
 
     // Set offset from Offset Map
     if (this._isBrowser) {
-
       this._options
         .offsetMap
         .forEach((value, key) => this._mappedOffset = window.innerWidth > key ? value : this._mappedOffset);

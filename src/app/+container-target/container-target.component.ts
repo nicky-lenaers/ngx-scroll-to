@@ -1,4 +1,4 @@
-import { Component, OnInit, ElementRef } from '@angular/core';
+import { Component, ElementRef } from '@angular/core';
 
 import { ScrollToService } from '../modules/scroll-to/scroll-to.service';
 
@@ -7,20 +7,17 @@ import { ScrollToService } from '../modules/scroll-to/scroll-to.service';
   templateUrl: './container-target.component.html',
   styleUrls: ['./container-target.component.scss']
 })
-export class ContainerTargetComponent implements OnInit {
+export class ContainerTargetComponent {
 
   constructor(private _scrollToService: ScrollToService) { }
-
-  public ngOnInit() {
-
-  }
 
   public scrollToElementInAnotherContainer(container, event) {
 
     const sub = this._scrollToService.scrollTo({
       container: '#another-scroll-container',
       target: 'another-scroll-container-destination',
-      easing: 'easeOutElastic'
+      easing: 'easeOutElastic',
+      duration: 3000
     });
 
     sub.subscribe(
