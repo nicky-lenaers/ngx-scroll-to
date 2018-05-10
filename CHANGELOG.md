@@ -1,3 +1,20 @@
+<a name="0.6.1"></a>
+## [0.6.1](https://github.com/nicky-lenaers/ngx-scroll-to/compare/0.6.0...0.6.1) (2018-05-10)
+
+
+### Bug Fixes
+
+* **module:** non-target offset inside nested container ([#80](https://github.com/nicky-lenaers/ngx-scroll-to/issues/80)) ([292e479](https://github.com/nicky-lenaers/ngx-scroll-to/commit/292e479))
+
+
+### Features
+
+* add conventional github releaser ([#86](https://github.com/nicky-lenaers/ngx-scroll-to/issues/86)) ([a3e5dc7](https://github.com/nicky-lenaers/ngx-scroll-to/commit/a3e5dc7))
+* commit linting ([#84](https://github.com/nicky-lenaers/ngx-scroll-to/issues/84)) ([82ddc9d](https://github.com/nicky-lenaers/ngx-scroll-to/commit/82ddc9d))
+* github contributing guidelines and code of conduct ([#85](https://github.com/nicky-lenaers/ngx-scroll-to/issues/85)) ([095e1c8](https://github.com/nicky-lenaers/ngx-scroll-to/commit/095e1c8))
+
+
+
 <a name="0.6.0"></a>
 # [0.6.0](https://github.com/nicky-lenaers/ngx-scroll-to/compare/0.5.3...0.6.0) (2018-02-13)
 
