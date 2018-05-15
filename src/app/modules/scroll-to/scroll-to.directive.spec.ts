@@ -1,6 +1,6 @@
 import { Component, DebugElement, OnInit } from '@angular/core';
 import { async, TestBed, fakeAsync, tick, getTestBed } from '@angular/core/testing';
-import { Observable } from 'rxjs/Observable';
+import { Observable } from 'rxjs';
 import { By } from '@angular/platform-browser';
 import { ComponentFixture } from '@angular/core/testing';
 import { ScrollToModule } from './scroll-to.module';
