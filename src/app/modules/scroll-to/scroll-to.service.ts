@@ -138,8 +138,10 @@ export class ScrollToService {
    * @param onInterrupt             The handler for Interruptive Events
    * @returns                       Void
    */
-  private _subscribeToAnimation(animation$: Observable<any>, listenerTarget, onInterrupt) {
-
+  private _subscribeToAnimation(
+      animation$: Observable<any>,
+      listenerTarget: ScrollToListenerTarget,
+      onInterrupt: EventListenerOrEventListenerObject) {
     const subscription = animation$
       .subscribe(
         () => { },
