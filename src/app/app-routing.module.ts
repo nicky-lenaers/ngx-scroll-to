@@ -11,6 +11,10 @@ export const routes: Routes = [
     loadChildren: './+container-target/container-target.module#ContainerTargetModule'
   },
   {
+    path: 'container-offset',
+    loadChildren: './+container-offset/container-offset.module#ContainerOffsetModule'
+  },
+  {
     path: 'offset-only',
     loadChildren: './+offset-only/offset-only.module#OffsetOnlyModule'
   },

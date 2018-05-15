@@ -105,7 +105,7 @@ export class ScrollToService {
 
     const listenerTarget = this._getListenerTarget(container) || window;
 
-    let to = 0;
+    let to = container ? container.getBoundingClientRect().top : 0;
 
     if (targetNode) {
       to = isWindow(listenerTarget) ? targetNode.offsetTop : targetNode.getBoundingClientRect().top;
