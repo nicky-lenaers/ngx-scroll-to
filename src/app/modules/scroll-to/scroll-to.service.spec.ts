@@ -1,5 +1,5 @@
 import { Inject, PLATFORM_ID } from '@angular/core';
-import { DOCUMENT } from '@angular/platform-browser';
+import { DOCUMENT } from '@angular/common';
 import { TestBed, async } from '@angular/core/testing';
 import { ScrollToService } from './scroll-to.service';
 

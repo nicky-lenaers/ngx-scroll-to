@@ -1,12 +1,7 @@
-import { Injectable, ElementRef, PLATFORM_ID, Inject } from '@angular/core';
-import { DOCUMENT } from '@angular/platform-browser';
+import { Injectable, PLATFORM_ID, Inject } from '@angular/core';
+import { DOCUMENT } from '@angular/common';
 import { isPlatformBrowser } from '@angular/common';
 
-import { Observable } from 'rxjs/Observable';
-import 'rxjs/add/observable/throw';
-import { ReplaySubject } from 'rxjs/ReplaySubject';
-
-import { ScrollToAnimationEasing } from './models/scroll-to-easing.model';
 import {
   ScrollToConfigOptions,
   ScrollToTarget,
@@ -23,6 +18,7 @@ import {
   DEFAULTS,
   isNativeElement
 } from './statics/scroll-to-helpers';
+import { Observable, ReplaySubject, throwError } from 'rxjs/index';
 
 /**
  * The ScrollToService handles starting, interrupting
@@ -100,10 +96,10 @@ export class ScrollToService {
     if (this._animation) this._animation.stop();
 
     const targetNode = this._getNode(mergedConfigOptions.target);
-    if (mergedConfigOptions.target && !targetNode) return Observable.throw('Unable to find Target Element');
+    if (mergedConfigOptions.target && !targetNode) return throwError('Unable to find Target Element');
 
     const container: HTMLElement = this._getContainer(mergedConfigOptions, targetNode);
-    if (mergedConfigOptions.container && !container) return Observable.throw('Unable to find Container Element');
+    if (mergedConfigOptions.container && !container) return throwError('Unable to find Container Element');
 
     const listenerTarget = this._getListenerTarget(container) || window;
 
@@ -160,6 +156,7 @@ export class ScrollToService {
    * the scrolling should happen.
    *
    * @param options         The Merged Configuration Object
+   * @param targetNode    the targeted HTMLElement
    * @returns
    */
   private _getContainer(options: ScrollToConfigOptions, targetNode: HTMLElement): HTMLElement | null {
