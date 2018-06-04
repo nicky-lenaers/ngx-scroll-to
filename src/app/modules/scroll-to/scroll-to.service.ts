@@ -18,7 +18,7 @@ import {
   DEFAULTS,
   isNativeElement
 } from './statics/scroll-to-helpers';
-import { Observable, ReplaySubject, throwError } from 'rxjs';
+import { Observable, ReplaySubject, throwError } from 'rxjs/index';
 
 /**
  * The ScrollToService handles starting, interrupting
