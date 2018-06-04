@@ -96,10 +96,11 @@
     "karma-coverage-istanbul-reporter": "^1.2.1",
     "karma-jasmine": "~1.1.0",
     "karma-jasmine-html-reporter": "^0.2.2",
-    "ng-packagr": "^1.2.1",
+    "ng-packagr": "^3.0.1",
     "protractor": "^5.2.0",
     "rxjs": "^6.1.0",
     "ts-node": "^4.1.0",
+    "tsickle": "^0.29.0",
     "tslint": "^5.8.0",
     "typescript": "^2.4.2",
     "zone.js": "^0.8.26"
