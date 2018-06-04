@@ -3,7 +3,7 @@
   "description": "A simple Angular 4+ plugin enabling you to smooth scroll to any element on your page and enhance scroll-based features in your app.",
   "version": "1.0.0",
   "license": "MIT",
-  "main": "bundles/ngx-scroll-to.umd.js",
+  "main": "bundles/nicky-lenaers.ngx-scroll-to.umd.js",
   "module": "@nicky-lenaers/ngx-scroll-to.es5.js",
   "scripts": {
     "build": "ng build",
@@ -16,7 +16,7 @@
     "npm:publish": "cd ./dist && npm publish --access=public",
     "package": "ng-packagr -p ng-package.json",
     "package:tar": "cd ./dist && npm pack",
-    "prenpm:publish": "npm run package",
+    "prenpm:publish": "npm run package && npm run package:tar",
     "start": "ng serve",
     "test": "ng test --single-run=true",
     "test:watch": "ng test --single-run=false"

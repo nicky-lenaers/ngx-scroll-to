@@ -7,6 +7,8 @@
     A simple Angular 4+ plugin enabling you to smooth scroll to any element on your page and enhance scroll-based features in your app. Works for <strong>Angular 4+</strong>, both <strong>AoT</strong> and <strong>SSR</strong>. No dependencies.
   </p>
   <strong>Support for Angular 6!</strong>
+  <br/>
+  <br/>
 </div>
 
 <table>
