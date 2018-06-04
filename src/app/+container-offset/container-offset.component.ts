@@ -1,4 +1,4 @@
-import { Component, ElementRef, ViewChild, AfterViewInit } from '@angular/core';
+import { Component, ElementRef, ViewChild, AfterViewInit, VERSION } from '@angular/core';
 
 import { ScrollToService } from '../modules/scroll-to/scroll-to.service';
 import { ScrollToConfigOptions } from '../modules/scroll-to/models/scroll-to-config.model';
@@ -12,10 +12,11 @@ export class ContainerOffsetComponent implements AfterViewInit {
 
   @ViewChild('dialogContentForScroll') dialogContent: ElementRef;
   scrollPosition: number;
-  name = 'Angular 5';
+  name = 'Angular ';
 
   constructor(private readonly scrollToService: ScrollToService) {
     this.scrollPosition = 107;
+    this.name += VERSION.full;
   }
 
   ngAfterViewInit(): void {
