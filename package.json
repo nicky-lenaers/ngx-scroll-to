@@ -18,6 +18,7 @@
     "package:tar": "cd ./dist && npm pack",
     "prenpm:publish": "npm run package && npm run package:tar",
     "start": "ng serve",
+    "tags": "npm dist-tag ls @nicky-lenaers/ngx-scroll-to",
     "test": "ng test --single-run=true",
     "test:watch": "ng test --single-run=false"
   },
