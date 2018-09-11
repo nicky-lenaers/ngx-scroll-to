@@ -1,3 +1,34 @@
+<a name="1.1.0"></a>
+# [1.1.0](https://github.com/nicky-lenaers/ngx-scroll-to/compare/1.0.0...1.1.0) (2018-09-11)
+
+
+### Features
+
+* passive events ([#99](https://github.com/nicky-lenaers/ngx-scroll-to/issues/99)) ([37b1e23](https://github.com/nicky-lenaers/ngx-scroll-to/commit/37b1e23)), closes [#76](https://github.com/nicky-lenaers/ngx-scroll-to/issues/76)
+* support for overflow property overlay ([61d58c3](https://github.com/nicky-lenaers/ngx-scroll-to/commit/61d58c3)), closes [#87](https://github.com/nicky-lenaers/ngx-scroll-to/issues/87)
+
+
+
+<a name="1.0.0"></a>
+# [1.0.0](https://github.com/nicky-lenaers/ngx-scroll-to/compare/1.0.0-beta.0...1.0.0) (2018-06-04)
+
+
+
+<a name="1.0.0-beta.0"></a>
+# [1.0.0-beta.0](https://github.com/nicky-lenaers/ngx-scroll-to/compare/0.6.1...1.0.0-beta.0) (2018-06-04)
+
+
+### Features
+
+* support for angular 6 ([#88](https://github.com/nicky-lenaers/ngx-scroll-to/issues/88)) ([9c3c866](https://github.com/nicky-lenaers/ngx-scroll-to/commit/9c3c866))
+
+
+### BREAKING CHANGES
+
+* Support for Angular 5 is dropped as of v1.0.0 of this module. For Angular 5 proejcts, please see install guides in the README file.
+
+
+
 <a name="0.6.1"></a>
 ## [0.6.1](https://github.com/nicky-lenaers/ngx-scroll-to/compare/0.6.0...0.6.1) (2018-05-10)
 
