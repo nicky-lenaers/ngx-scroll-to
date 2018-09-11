@@ -250,7 +250,7 @@ export class ScrollToService {
 
     let style: CSSStyleDeclaration = window.getComputedStyle(nativeElement);
 
-    const overflowRegex: RegExp = /(auto|scroll)/;
+    const overflowRegex: RegExp = /(auto|scroll|overlay)/;
 
     if (style.position === 'fixed') return null;
 
@@ -262,7 +262,7 @@ export class ScrollToService {
         || style.overflow === 'hidden'
         || style.overflowY === 'hidden') continue;
 
-      if (overflowRegex.test(style.overflow + style.overflowY + style.overflowX)
+      if (overflowRegex.test(style.overflow + style.overflowY)
         || parent.tagName === 'BODY') return parent;
     }
 
