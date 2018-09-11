@@ -1,18 +1,9 @@
 import { ElementRef } from '@angular/core';
 
-import {
-  ScrollToAnimationEasing,
-  ScrollToAnimationEasingCollection
-} from '../models/scroll-to-easing.model';
-import { ScrollToEvent } from '../models/scroll-to-event.model';
-import {
-  ScrollToConfigOptions,
-  ScrollToDefaultConfigOptions
-} from '../models/scroll-to-config.model';
+import { ScrollToAnimationEasingCollection } from './scroll-to-easing.interface';
+import { ScrollToDefaultConfigOptions } from './scroll-to-config.interface';
 
-/**
- * Default values for Component Input.
- */
+/** Default values for Component Input */
 export const DEFAULTS: ScrollToDefaultConfigOptions = {
   target: null,
   action: 'click',
@@ -22,9 +13,7 @@ export const DEFAULTS: ScrollToDefaultConfigOptions = {
   offsetMap: new Map()
 };
 
-/**
- * Easing Colleciton.
- */
+/** Easing Colleciton */
 export const EASING: ScrollToAnimationEasingCollection = {
   easeInQuad: (time: number) => {
     return time * time;

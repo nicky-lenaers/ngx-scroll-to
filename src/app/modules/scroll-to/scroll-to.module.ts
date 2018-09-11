@@ -2,6 +2,7 @@ import { NgModule, ModuleWithProviders } from '@angular/core';
 import { ScrollToDirective } from './scroll-to.directive';
 import { ScrollToService } from './scroll-to.service';
 
+/** Scroll To Module */
 @NgModule({
   declarations: [
     ScrollToDirective
@@ -11,6 +12,7 @@ import { ScrollToService } from './scroll-to.service';
   ]
 })
 export class ScrollToModule {
+
   /**
    * Guaranteed singletons for provided Services across App.
    *
