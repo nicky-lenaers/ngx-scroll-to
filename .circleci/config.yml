@@ -81,7 +81,7 @@ jobs:
       - *update_chrome_driver
       - run:
           name: Test End to End
-          command: npm run e2e
+          command: npm run ng:e2e
       - store_test_results:
           path: reports/e2e
   lint:
