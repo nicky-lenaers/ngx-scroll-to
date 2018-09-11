@@ -190,7 +190,9 @@ export class ScrollToService {
 
     if (!listenerTarget) listenerTarget = window;
 
-    this._interruptiveEvents.forEach(event => listenerTarget.addEventListener(event, handler, this._supportPassive() ? { passive: true } : false));
+    this._interruptiveEvents
+      .forEach(event => listenerTarget
+        .addEventListener(event, handler, this._supportPassive() ? { passive: true } : false));
   }
 
   /**
