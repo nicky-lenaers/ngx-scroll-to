@@ -141,7 +141,10 @@ export class AppModule { }
 <!-- Works for excluding '#' -->
 <button [ngx-scroll-to]="'destination'">Go to destination</button>
 
-<div id="destination">
+<!-- Works for angular ElementRef -->
+<button [ngx-scroll-to]="destinationRef">Go to destination</button>
+
+<div id="destination" #destinationRef>
   You've reached your destination.
 </div>
 ```
