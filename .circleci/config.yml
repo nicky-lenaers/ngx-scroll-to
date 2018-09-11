@@ -92,7 +92,7 @@ jobs:
       - *restore_npm_cache_peer
       - run:
           name: Lint TypeScript
-          command: npm run lint
+          command: npm run ng:lint
 
 # Workflows
 workflows:

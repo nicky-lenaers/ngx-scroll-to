@@ -2,8 +2,6 @@ import { Type } from '@angular/core';
 import { TestBed, ComponentFixture } from '@angular/core/testing';
 import { BUTTON_ID } from './test-dummy.component';
 import {
-  ScrollToConfigOptions,
-  ScrollToTarget,
   ScrollToConfigOptionsTarget
 } from '../scroll-to-config.interface';
 import { ScrollToEvent } from '../scroll-to-event.interface';

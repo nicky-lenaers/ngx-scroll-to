@@ -3,9 +3,7 @@ import { Component, OnInit } from '@angular/core';
 export const TARGET = 'destination';
 export const BUTTON_ID = 'btn-1';
 
-/**
- * Dummy Component for testing the Angular Directive.
- */
+/** Dummy Component for testing the Angular Directive */
 @Component({
   selector: 'ngx-scroll-to',
   styles: [`

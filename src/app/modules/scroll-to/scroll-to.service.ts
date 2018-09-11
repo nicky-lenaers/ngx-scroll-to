@@ -190,7 +190,29 @@ export class ScrollToService {
 
     if (!listenerTarget) listenerTarget = window;
 
-    this._interruptiveEvents.forEach(event => listenerTarget.addEventListener(event, handler));
+    this._interruptiveEvents.forEach(event => listenerTarget.addEventListener(event, handler, this._supportPassive() ? { passive: true } : false));
+  }
+
+  /**
+   * Feature-detect support for passive event listeners.
+   *
+   * @returns       Whether or not passive event listeners are supported
+   */
+  private _supportPassive(): boolean {
+
+    let supportsPassive = false;
+
+    try {
+      const opts = Object.defineProperty({}, 'passive', {
+        get: function () {
+          supportsPassive = true;
+        }
+      });
+      window.addEventListener('testPassive', null, opts);
+      window.removeEventListener('testPassive', null, opts);
+    } catch (e) { }
+
+    return supportsPassive;
   }
 
   /**
