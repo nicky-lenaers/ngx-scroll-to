@@ -1,69 +1,45 @@
 import { Observable, ReplaySubject } from 'rxjs/index';
 
-import { EASING } from '../statics/scroll-to-helpers';
+import { EASING } from './scroll-to-helpers';
 import {
   ScrollToConfigOptions,
   ScrollToListenerTarget
-} from '../models/scroll-to-config.model';
+} from './scroll-to-config.interface';
 
-/**
- * Scroll To Animation.
- */
+/** Scroll To Animation */
 export class ScrollToAnimation {
 
-  /**
-   * Number of milliseconds for each Tick.
-   */
+  /** Number of milliseconds for each Tick */
   private _tick: number;
 
-  /**
-   * JavaScript Interval.
-   */
+  /** Interval */
   private _interval: any;
 
-  /**
-   * Time Lapsed in milliseconds.
-   */
+  /** Time Lapsed in milliseconds */
   private _timeLapsed: number;
 
-  /**
-   * Percentage of time lapsed.
-   */
+  /** Percentage of time lapsed */
   private _percentage: number;
 
-  /**
-   * Position of the Element.
-   */
+  /** Position of the Element */
   private _position: number;
 
-  /**
-   * Last Position.
-   */
+  /** Last Element Position */
   private _lastPosition: number;
 
-  /**
-   * Start Position of the Element.
-   */
+  /** Start Position of the Element */
   private _startPosition: number;
 
-  /**
-   * The Distance to scroll.
-   */
+  /** The Distance to scroll */
   private _distance: number;
 
-  /**
-   * Observable Source.
-   */
+  /** Observable Source */
   private _source$: ReplaySubject<number>;
 
-  /**
-   * Scroll Top of the Window.
-   */
+  /** Scroll Top of the Window */
   private _windowScrollTop: number;
 
-  /**
-   * Mapped Offset taken from the active Offset Map.
-   */
+  /** Mapped Offset taken from the active Offset Map */
   private _mappedOffset: number;
 
   /**
@@ -131,11 +107,7 @@ export class ScrollToAnimation {
     return this._source$.asObservable();
   }
 
-  /**
-   * Recursively loop over the Scroll Animation.
-   *
-   * @returns           Void
-   */
+  /** Recursively loop over the Scroll Animation */
   private _loop = (): void => {
 
     this._timeLapsed += this._tick;

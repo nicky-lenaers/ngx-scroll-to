@@ -1,6 +1,4 @@
-/**
- * Supported Events.
- */
+/** Supported Events to trigger the scroll animation */
 export type ScrollToEvent = 'click'
   | 'mouseenter'
   | 'mouseover'

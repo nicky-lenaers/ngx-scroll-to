@@ -4,11 +4,11 @@ import { ComponentFixture } from '@angular/core/testing';
 import { ScrollToModule } from './scroll-to.module';
 import { ScrollToDirective } from './scroll-to.directive';
 import { ScrollToService } from './scroll-to.service';
-import { EVENTS, DEFAULTS } from './statics/scroll-to-helpers';
+import { EVENTS, DEFAULTS } from './scroll-to-helpers';
 import { DummyComponent, TARGET, BUTTON_ID } from './test/test-dummy.component';
 import { ScrollToServiceMock } from './test/test-mock.service';
 import { createTestComponent, CompileTemplateConfigOptions } from './test/test-helpers';
-import { ScrollToEvent } from './models/scroll-to-event.model';
+import { ScrollToEvent } from './scroll-to-event.interface';
 
 describe('ScrollToDirective', () => {
 

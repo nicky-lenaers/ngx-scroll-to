@@ -1,11 +1,9 @@
 import { ElementRef } from '@angular/core';
 
-import { ScrollToAnimationEasing } from './scroll-to-easing.model';
-import { ScrollToEvent } from './scroll-to-event.model';
+import { ScrollToAnimationEasing } from './scroll-to-easing.interface';
+import { ScrollToEvent } from './scroll-to-event.interface';
 
-/**
- * The target of the Scroll Animation.
- */
+/** The target of the Scroll Animation */
 export type ScrollToTarget = string | number | ElementRef | HTMLElement;
 
 /**
@@ -27,52 +25,34 @@ export type ScrollToListenerTarget = HTMLElement | Window;
 export type ScrollToOffsetMap = Map<number, number>;
 
 export interface ScrollToConfigOptionsBase {
-  /**
-   * The Container to scroll.
-   */
+  /** The Container to scroll */
   container?: ScrollToContainer;
-  /**
-   * Duration of the Scroll Animation.
-   */
+  /** Duration of the Scroll Animation */
   duration?: number;
-  /**
-   * The named Easing Function to use.
-   */
+  /** The named Easing Function to use */
   easing?: ScrollToAnimationEasing;
-  /**
-   * A mapped list of offsets.
-   */
+  /** A mapped list of offsets */
   offsetMap?: ScrollToOffsetMap;
 }
 
+/** Configuration Options Target */
 export interface ScrollToConfigOptionsTarget extends ScrollToConfigOptionsBase {
-  /**
-   * The target to scroll to.
-   */
+  /** The target to scroll to */
   target: ScrollToTarget;
-  /**
-   * The offset from the top of the Element
-   * in pixels.
-   */
+  /** The offset from the top of the Element in pixels */
   offset?: number;
 }
 
+/** Configuration Options Offset Only */
 export interface ScrollToConfigOptionsOffsetOnly extends ScrollToConfigOptionsBase {
-  /**
-   * The offset from the top of the Element
-   * in pixels.
-   */
+  /** The offset from the top of the Element in pixels */
   offset: number;
 }
 
-/**
- * The Configuration Object.
- */
+/** The Configuration Object */
 export type ScrollToConfigOptions = ScrollToConfigOptionsTarget | ScrollToConfigOptionsOffsetOnly;
 
-/**
- * The Default Configuration Object.
- */
+/** The Default Configuration Object */
 export interface ScrollToDefaultConfigOptions extends ScrollToConfigOptionsTarget {
   action: ScrollToEvent;
 }

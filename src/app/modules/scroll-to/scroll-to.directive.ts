@@ -9,16 +9,16 @@ import {
 import {
   DEFAULTS,
   EVENTS
-} from './statics/scroll-to-helpers';
+} from './scroll-to-helpers';
 import {
   ScrollToConfigOptions,
   ScrollToOffsetMap,
   ScrollToTarget
-} from './models/scroll-to-config.model';
+} from './scroll-to-config.interface';
 import {
   ScrollToAnimationEasing
-} from './models/scroll-to-easing.model';
-import { ScrollToEvent } from './models/scroll-to-event.model';
+} from './scroll-to-easing.interface';
+import { ScrollToEvent } from './scroll-to-event.interface';
 import { ScrollToService } from './scroll-to.service';
 
 @Directive({
@@ -49,9 +49,7 @@ export class ScrollToDirective implements AfterViewInit {
   constructor(
     private _elementRef: ElementRef,
     private _scrollToService: ScrollToService,
-    private _renderer2: Renderer2) {
-
-  }
+    private _renderer2: Renderer2) { }
 
   /**
    * Angular Lifecycle Hook - After View Init

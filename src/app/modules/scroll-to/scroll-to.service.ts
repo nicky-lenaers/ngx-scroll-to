@@ -7,8 +7,8 @@ import {
   ScrollToTarget,
   ScrollToListenerTarget,
   ScrollToConfigOptionsTarget
-} from './models/scroll-to-config.model';
-import { ScrollToAnimation } from './statics/scroll-to-animation';
+} from './scroll-to-config.interface';
+import { ScrollToAnimation } from './scroll-to-animation';
 import {
   stripHash,
   isString,
@@ -17,11 +17,11 @@ import {
   isWindow,
   DEFAULTS,
   isNativeElement
-} from './statics/scroll-to-helpers';
+} from './scroll-to-helpers';
 import { Observable, ReplaySubject, throwError } from 'rxjs/index';
 
 /**
- * The ScrollToService handles starting, interrupting
+ * The Scroll To Service handles starting, interrupting
  * and ending the actual Scroll Animation. It provides
  * some utilities to find the proper HTML Element on a
  * given page to setup Event Listeners and calculate
@@ -139,9 +139,10 @@ export class ScrollToService {
    * @returns                       Void
    */
   private _subscribeToAnimation(
-      animation$: Observable<any>,
-      listenerTarget: ScrollToListenerTarget,
-      onInterrupt: EventListenerOrEventListenerObject) {
+    animation$: Observable<any>,
+    listenerTarget: ScrollToListenerTarget,
+    onInterrupt: EventListenerOrEventListenerObject
+  ) {
     const subscription = animation$
       .subscribe(
         () => { },
@@ -187,9 +188,33 @@ export class ScrollToService {
     listenerTarget: ScrollToListenerTarget,
     handler: EventListenerOrEventListenerObject): void {
 
-      if (!listenerTarget) listenerTarget = window;
+    if (!listenerTarget) listenerTarget = window;
 
-    this._interruptiveEvents.forEach(event => listenerTarget.addEventListener(event, handler));
+    this._interruptiveEvents
+      .forEach(event => listenerTarget
+        .addEventListener(event, handler, this._supportPassive() ? { passive: true } : false));
+  }
+
+  /**
+   * Feature-detect support for passive event listeners.
+   *
+   * @returns       Whether or not passive event listeners are supported
+   */
+  private _supportPassive(): boolean {
+
+    let supportsPassive = false;
+
+    try {
+      const opts = Object.defineProperty({}, 'passive', {
+        get: function () {
+          supportsPassive = true;
+        }
+      });
+      window.addEventListener('testPassive', null, opts);
+      window.removeEventListener('testPassive', null, opts);
+    } catch (e) { }
+
+    return supportsPassive;
   }
 
   /**
@@ -258,33 +283,20 @@ export class ScrollToService {
     let targetNode: HTMLElement;
 
     if (isString(id)) {
-
       if (allowBodyTag && (id === 'body' || id === 'BODY')) {
-
         targetNode = this._document.body;
-
       } else {
-
         targetNode = this._document.getElementById(stripHash(id));
-
       }
-
     } else if (isNumber(id)) {
-
       targetNode = this._document.getElementById(String(id));
-
     } else if (isElementRef(id)) {
-
       targetNode = id.nativeElement;
-
     } else if (isNativeElement(id)) {
-
       targetNode = id;
-
     }
 
     return targetNode;
-
   }
 
   /**
@@ -311,5 +323,4 @@ export class ScrollToService {
   private _isDocumentBody(element: HTMLElement): element is HTMLBodyElement {
     return element.tagName.toUpperCase() === 'BODY';
   }
-
 }
