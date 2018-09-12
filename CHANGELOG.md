@@ -1,3 +1,13 @@
+<a name="1.1.1"></a>
+## [1.1.1](https://github.com/nicky-lenaers/ngx-scroll-to/compare/1.1.0...1.1.1) (2018-09-12)
+
+
+### Bug Fixes
+
+* include src in npm packages ([1e44246](https://github.com/nicky-lenaers/ngx-scroll-to/commit/1e44246))
+
+
+
 <a name="1.1.0"></a>
 # [1.1.0](https://github.com/nicky-lenaers/ngx-scroll-to/compare/1.0.0...1.1.0) (2018-09-11)
 
