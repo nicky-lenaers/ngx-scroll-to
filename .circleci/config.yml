@@ -84,6 +84,21 @@ jobs:
           command: npm run ng:e2e
       - store_test_results:
           path: reports/e2e
+  test_cypress:
+    <<: *job_defaults
+    steps:
+      - checkout
+      - *restore_npm_cache
+      - *restore_npm_cache_peer
+      - run:
+          name: Run server in background
+          command: npm run start:ci-server
+          background: true
+      - run:
+          name: Cypress
+          command: npm run test:cypress
+      - store_test_results:
+          path: reports/cypress
   lint:
     <<: *job_defaults
     steps:
@@ -101,6 +116,9 @@ workflows:
     jobs:
       - build
       - test_spec:
+          requires:
+            - build
+      - test_cypress:
           requires:
             - build
       - test_e2e:
