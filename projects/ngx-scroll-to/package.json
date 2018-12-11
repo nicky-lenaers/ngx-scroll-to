@@ -34,6 +34,11 @@
     "name": "Nicky Lenaers",
     "email": "nicky@newgameplus.online"
   },
+  "contributors": [
+    {
+      "name": "Robbert van Caem"
+    }
+  ],
   "repository": {
     "type": "git",
     "url": "git+https://github.com/nicky-lenaers/ngx-scroll-to.git"
