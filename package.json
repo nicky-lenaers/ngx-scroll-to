@@ -13,10 +13,12 @@
     "ng:e2e": "ng e2e",
     "ng:lint": "ng lint",
     "ng:serve": "ng serve",
+    "copy:readme": "copyfiles README.md ./dist/ngx-scroll-to",
+    "scroll-to:package": "cd ./projects/ngx-scroll-to && npm run build",
+    "postscroll-to:package": "npm run copy:readme && cd ./dist/ngx-scroll-to && npm pack",
+    "scroll-to:publish": "cd ./dist/ngx-scroll-to && npm publish --access=public",
+    "prescroll-to:publish": "npm run scroll-to:package",
     "npm:publish": "cd ./dist && npm publish --access=public",
-    "package": "ng-packagr -p ng-package.json",
-    "package:tar": "cd ./dist && npm pack",
-    "prenpm:publish": "npm run package && npm run package:tar",
     "start": "ng serve",
     "tags": "npm dist-tag ls @nicky-lenaers/ngx-scroll-to",
     "test": "ng test --single-run=true",
@@ -43,7 +45,8 @@
     "angular5",
     "angular 5",
     "angular6",
-    "angular 6"
+    "angular 6",
+    "angular 7"
   ],
   "author": {
     "name": "Nicky Lenaers",
@@ -87,6 +90,7 @@
     "codelyzer": "^4.5.0",
     "conventional-changelog-cli": "^2.0.11",
     "conventional-github-releaser": "^3.1.2",
+    "copyfiles": "^2.1.0",
     "core-js": "^2.6.0",
     "husky": "^1.2.0",
     "jasmine-core": "^3.3.0",
