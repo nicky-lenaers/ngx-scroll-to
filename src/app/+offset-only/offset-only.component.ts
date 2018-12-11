@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
+import { ScrollToService } from '@nicky-lenaers/ngx-scroll-to';
 
-import { ScrollToService } from '../modules/scroll-to/scroll-to.service';
-
+/** Offset Only Component */
 @Component({
   selector: 'ngx-offset-only',
   templateUrl: './offset-only.component.html',
@@ -9,7 +9,7 @@ import { ScrollToService } from '../modules/scroll-to/scroll-to.service';
 })
 export class OffsetOnlyComponent {
 
-  constructor(private _scrollToService: ScrollToService) {}
+  constructor(private _scrollToService: ScrollToService) { }
 
   public scrollToOffsetOnly(offset: number = 0) {
     this._scrollToService.scrollTo({

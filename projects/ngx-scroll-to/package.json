@@ -1,0 +1,52 @@
+{
+  "name": "@nicky-lenaers/ngx-scroll-to",
+  "version": "1.1.1",
+  "scripts": {
+    "build": "ng build"
+  },
+  "license": "MIT",
+  "private": false,
+  "keywords": [
+    "ng",
+    "ngx",
+    "ngx-scroll-to",
+    "scroll",
+    "scrolling",
+    "scroll-to",
+    "smooth scroll",
+    "smooth-scroll",
+    "smooth scrolling",
+    "smooth-scrolling",
+    "smooth",
+    "angular",
+    "angular2",
+    "angular 2",
+    "angular4",
+    "angular 4",
+    "angular5",
+    "angular 5",
+    "angular6",
+    "angular 6",
+    "angular 7"
+  ],
+  "author": {
+    "name": "Nicky Lenaers",
+    "email": "nicky@newgameplus.online"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nicky-lenaers/ngx-scroll-to.git"
+  },
+  "homepage": "https://github.com/nicky-lenaers/ngx-scroll-to#readme",
+  "bugs": {
+    "url": "https://github.com/nicky-lenaers/ngx-scroll-to/issues"
+  },
+  "engines": {
+    "node": ">=10.0.0",
+    "npm": ">=6.0.0"
+  },
+  "peerDependencies": {
+    "@angular/common": "^7.1.0",
+    "@angular/core": "^7.1.0"
+  }
+}

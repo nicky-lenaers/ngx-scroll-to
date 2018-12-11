@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-
 import { OffsetOnlyComponent } from './offset-only.component';
 
 const routes: Routes = [

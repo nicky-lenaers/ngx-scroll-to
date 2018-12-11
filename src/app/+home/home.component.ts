@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
+/** Home Component */
 @Component({
   selector: 'ngx-home',
   templateUrl: './home.component.html',

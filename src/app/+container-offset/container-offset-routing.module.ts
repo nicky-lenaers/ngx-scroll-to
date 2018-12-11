@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-
 import { ContainerOffsetComponent } from './container-offset.component';
 
 const routes: Routes = [
@@ -15,6 +14,7 @@ const routes: Routes = [
   }
 ];
 
+/** Container Offset Routing Module */
 @NgModule({
   imports: [
     RouterModule.forChild(routes)

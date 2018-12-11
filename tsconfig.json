@@ -2,6 +2,7 @@
   "compileOnSave": false,
   "compilerOptions": {
     "outDir": "./dist/out-tsc",
+    "baseUrl": "./",
     "sourceMap": true,
     "declaration": false,
     "moduleResolution": "node",
@@ -14,6 +15,14 @@
     "lib": [
       "es2017",
       "dom"
-    ]
+    ],
+    "paths": {
+      "@nicky-lenaers/ngx-scroll-to": [
+        "dist/ngx-scroll-to"
+      ],
+      "nicky-lenaers/ngx-scroll-to/*": [
+        "dist/ngx-scroll-to/*"
+      ]
+    }
   }
 }
