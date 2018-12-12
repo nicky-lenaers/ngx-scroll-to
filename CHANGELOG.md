@@ -1,3 +1,13 @@
+<a name="2.0.0"></a>
+# [2.0.0](https://github.com/nicky-lenaers/ngx-scroll-to/compare/1.1.1...2.0.0) (2018-12-12)
+
+
+### Features
+
+* **lib:** support for angular v7 ([#114](https://github.com/nicky-lenaers/ngx-scroll-to/issues/114)) ([5b9cb85](https://github.com/nicky-lenaers/ngx-scroll-to/commit/5b9cb85))
+
+
+
 <a name="1.1.1"></a>
 ## [1.1.1](https://github.com/nicky-lenaers/ngx-scroll-to/compare/1.1.0...1.1.1) (2018-09-12)
 

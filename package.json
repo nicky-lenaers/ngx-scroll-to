@@ -1,7 +1,7 @@
 {
   "name": "@nicky-lenaers/ngx-scroll-to-demo",
   "description": "Demo Application for @nicky-lenaers/ngx-scroll-to package.",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "license": "MIT",
   "scripts": {
     "changelog": "conventional-changelog -p angular -i CHANGELOG.md -s -r 0",
@@ -12,10 +12,10 @@
     "ng:lint": "ng lint",
     "ng:serve": "ng serve",
     "copy:readme": "copyfiles README.md ./dist/ngx-scroll-to",
-    "lib:package": "cd ./projects/ngx-scroll-to && npm run build",
-    "postlib:package": "npm run copy:readme && cd ./dist/ngx-scroll-to && npm pack",
+    "lib:build": "ng build ngx-scroll-to",
+    "lib:package": "ng build ngx-scroll-to && npm run copy:readme && cd ./dist/ngx-scroll-to && npm pack",
+    "prelib:publish": "npm run lib:package",
     "lib:publish": "cd ./dist/ngx-scroll-to && npm publish --access=public",
-    "prelib:publish": "npm run scroll-to:package",
     "lib:test": "ng test ngx-scroll-to --watch=false",
     "lib:test:watch": "ng test ngx-scroll-to --watch=true",
     "start": "ng serve",
