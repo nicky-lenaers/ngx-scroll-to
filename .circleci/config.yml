@@ -68,10 +68,7 @@ jobs:
       - *restore_npm_cache_peer
       - run:
           name: Test Spec
-          command: npm run test -- --single-run=true --progress=false --code-coverage --log-level=DEBUG
-      - store_artifacts:
-          path: coverage/ts
-          destination: coverage
+          command: npm run lib:test
   lint:
     <<: *job_defaults
     steps:

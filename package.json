@@ -16,10 +16,12 @@
     "postlib:package": "npm run copy:readme && cd ./dist/ngx-scroll-to && npm pack",
     "lib:publish": "cd ./dist/ngx-scroll-to && npm publish --access=public",
     "prelib:publish": "npm run scroll-to:package",
+    "lib:test": "ng test ngx-scroll-to --watch=false",
+    "lib:test:watch": "ng test ngx-scroll-to --watch=true",
     "start": "ng serve",
     "tags": "npm dist-tag ls @nicky-lenaers/ngx-scroll-to",
-    "test": "ng test --single-run=true",
-    "test:watch": "ng test --single-run=false"
+    "test": "ng test --watch=false",
+    "test:watch": "ng test --watch=true"
   },
   "private": false,
   "contributors": [

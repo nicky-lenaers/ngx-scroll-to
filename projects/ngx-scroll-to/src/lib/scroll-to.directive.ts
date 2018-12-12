@@ -21,6 +21,7 @@ import {
 import { ScrollToEvent } from './scroll-to-event.interface';
 import { ScrollToService } from './scroll-to.service';
 
+/* tslint:disable */
 @Directive({
   selector: '[ngx-scroll-to]'
 })

@@ -4,6 +4,7 @@ export const TARGET = 'destination';
 export const BUTTON_ID = 'btn-1';
 
 /** Dummy Component for testing the Angular Directive */
+/* tslint:disable */
 @Component({
   selector: 'ngx-scroll-to',
   styles: [`
