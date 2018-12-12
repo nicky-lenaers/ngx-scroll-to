@@ -1,10 +1,8 @@
 import { Type } from '@angular/core';
-import { TestBed, ComponentFixture } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { ScrollToConfigOptionsTarget } from '../lib/scroll-to-config.interface';
+import { ScrollToEvent } from '../lib/scroll-to-event.interface';
 import { BUTTON_ID } from './test-dummy.component';
-import {
-  ScrollToConfigOptionsTarget
-} from '../scroll-to-config.interface';
-import { ScrollToEvent } from '../scroll-to-event.interface';
 
 export interface CompileTemplateConfigOptions extends ScrollToConfigOptionsTarget {
   action?: string;

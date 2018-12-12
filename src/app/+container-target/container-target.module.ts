@@ -1,14 +1,10 @@
-import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { NgModule } from '@angular/core';
+import { ScrollToModule } from '@nicky-lenaers/ngx-scroll-to';
+import { ContainerTargetRoutingModule } from './container-target-routing.module';
+import { ContainerTargetComponent } from './container-target.component';
 
-import {
-  ContainerTargetRoutingModule
-} from './container-target-routing.module';
-import {
-  ContainerTargetComponent
-} from './container-target.component';
-import { ScrollToModule } from '../modules/scroll-to/scroll-to.module';
-
+/** Container Target Module */
 @NgModule({
   imports: [
     CommonModule,

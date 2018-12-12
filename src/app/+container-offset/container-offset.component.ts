@@ -1,7 +1,5 @@
-import { Component, ElementRef, ViewChild, AfterViewInit, VERSION } from '@angular/core';
-
-import { ScrollToService } from '../modules/scroll-to/scroll-to.service';
-import { ScrollToConfigOptions } from '../modules/scroll-to/scroll-to-config.interface';
+import { AfterViewInit, Component, ElementRef, VERSION, ViewChild } from '@angular/core';
+import { ScrollToConfigOptions, ScrollToService } from '@nicky-lenaers/ngx-scroll-to';
 
 @Component({
   selector: 'ngx-container-offset',

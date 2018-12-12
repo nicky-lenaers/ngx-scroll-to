@@ -1,7 +1,7 @@
-import { Component, ElementRef } from '@angular/core';
+import { Component } from '@angular/core';
+import { ScrollToService } from '@nicky-lenaers/ngx-scroll-to';
 
-import { ScrollToService } from '../modules/scroll-to/scroll-to.service';
-
+/** Container Target Component */
 @Component({
   selector: 'ngx-container-target',
   templateUrl: './container-target.component.html',

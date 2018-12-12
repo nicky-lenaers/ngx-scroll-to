@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-
 import { ContainerTargetComponent } from './container-target.component';
 
 const routes: Routes = [
@@ -15,6 +14,7 @@ const routes: Routes = [
   }
 ];
 
+/** Container Target Routing Module */
 @NgModule({
   imports: [
     RouterModule.forChild(routes)
