@@ -102,7 +102,7 @@
           "builder": "@angular-devkit/build-angular:protractor",
           "options": {
             "protractorConfig": "e2e/protractor.conf.js",
-            "devServerTarget": "ngx-scroll-to:serve"
+            "devServerTarget": "ngx-scroll-to-demo:serve"
           }
         },
         "lint": {

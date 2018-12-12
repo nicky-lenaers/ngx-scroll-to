@@ -72,18 +72,6 @@ jobs:
       - store_artifacts:
           path: coverage/ts
           destination: coverage
-  test_e2e:
-    <<: *job_defaults_browsers
-    steps:
-      - checkout
-      - *restore_npm_cache
-      - *restore_npm_cache_peer
-      - *update_chrome_driver
-      - run:
-          name: Test End to End
-          command: npm run ng:e2e
-      - store_test_results:
-          path: reports/e2e
   lint:
     <<: *job_defaults
     steps:
@@ -101,9 +89,6 @@ workflows:
     jobs:
       - build
       - test_spec:
-          requires:
-            - build
-      - test_e2e:
           requires:
             - build
       - lint:
