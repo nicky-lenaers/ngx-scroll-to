@@ -87,7 +87,7 @@ jobs:
             - .cache/Cypress
       - run:
           name: Start
-          command: npm start
+          command: npm run start:ci
       - run:
           name: Wait on http://localhost:4200
           command: npx wait-on http://localhost:4200
@@ -113,7 +113,9 @@ workflows:
       - test_spec:
           requires:
             - build
-      - test_cypress
+      - test_cypress:
+          requires:
+            - build
       - lint:
           requires:
             - build
