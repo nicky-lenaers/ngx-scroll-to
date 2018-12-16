@@ -4,6 +4,7 @@
 # CirlceCI Configuration
 version: 2.1
 
+# Use orb: https://github.com/cypress-io/circleci-orb
 orbs:
   cypress: cypress-io/cypress@1.1.0
 
