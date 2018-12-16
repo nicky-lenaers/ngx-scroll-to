@@ -45,7 +45,7 @@ jobs:
       - *restore_npm_cache_peer
       - run:
           name: Install NodeJS Dependencies via NPM
-          command: npm ci
+          command: npm install
       - run:
           name: Build dist
           command: npm run ng:build
