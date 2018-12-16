@@ -79,7 +79,7 @@ jobs:
             - cache-{{ .Branch }}-{{ checksum "package.json" }}
             - dist-{{ .Branch }}-{{ checksum "package.json" }}
       - run:
-          command: npx cypress verify
+          command: npm run cy:verify
       - run:
           name: Start
           command: npm run start:ci
