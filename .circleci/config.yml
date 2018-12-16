@@ -91,10 +91,6 @@ jobs:
       - run:
           name: Start
           command: npm run start:ci
-          background: true
-      - run:
-          name: Wait on http://localhost:4200
-          command: npx wait-on http://localhost:4200
       - run:
           name: Run Cypress
           command: npm run test:cypress
