@@ -2,7 +2,10 @@
 # - https://circleci.com/docs/2.0/circleci-images/
 
 # CirlceCI Configuration
-version: 2
+version: 2.1
+
+orbs:
+  cypress: cypress-io/cypress@1.1.0
 
 # References
 references:
@@ -34,16 +37,6 @@ references:
     restore_cache:
       key: dependency-cache-peer-{{ checksum "package.json" }}
 
-  update_chrome_driver: &update_chrome_driver
-    run:
-      name: Update Chrome Driver
-      command: |
-        sudo apt-get update
-        sudo apt-get install lsb-release libappindicator3-1
-        curl -L -o google-chrome.deb https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
-        sudo dpkg -i google-chrome.deb
-        sudo sed -i 's|HERE/chrome"|HERE/chrome" --no-sandbox|g' /opt/google/chrome/google-chrome
-        rm google-chrome.deb
 
 # Jobs
 jobs:
@@ -72,33 +65,6 @@ jobs:
       - store_artifacts:
           path: coverage/ts
           destination: coverage
-  test_e2e:
-    <<: *job_defaults_browsers
-    steps:
-      - checkout
-      - *restore_npm_cache
-      - *restore_npm_cache_peer
-      - *update_chrome_driver
-      - run:
-          name: Test End to End
-          command: npm run ng:e2e
-      - store_test_results:
-          path: reports/e2e
-  test_cypress:
-    <<: *job_defaults
-    steps:
-      - checkout
-      - *restore_npm_cache
-      - *restore_npm_cache_peer
-      - run:
-          name: Run server in background
-          command: npm run start:ci-server
-          background: true
-      - run:
-          name: Cypress
-          command: npm run test:cypress
-      - store_test_results:
-          path: reports/cypress
   lint:
     <<: *job_defaults
     steps:
@@ -118,12 +84,9 @@ workflows:
       - test_spec:
           requires:
             - build
-      - test_cypress:
-          requires:
-            - build
-      - test_e2e:
-          requires:
-            - build
+      - cypress/run:
+          start: npm start
+          wait-on: 'http://localhost:4200'
       - lint:
           requires:
             - build
