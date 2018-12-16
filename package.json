@@ -18,7 +18,7 @@
     "package:tar": "cd ./dist && npm pack",
     "prenpm:publish": "npm run package && npm run package:tar",
     "start": "ng serve",
-    "start:ci": "http-server ./dist/ngx-scroll-to -p 4200 -a localhost & wait-on http://localhost:4200",
+    "start:ci": "http-server ./dist/ngx-scroll-to/ -p 4200 -a localhost & wait-on http://localhost:4200",
     "tags": "npm dist-tag ls @nicky-lenaers/ngx-scroll-to",
     "test": "ng test --single-run=true",
     "test:cypress": "./node_modules/.bin/cypress run --reporter junit --reporter-options mochaFile=reports/cypress/result.xml",
