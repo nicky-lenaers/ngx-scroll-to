@@ -28,7 +28,7 @@ references:
 
   restore_npm_cache: &restore_npm_cache
     restore_cache:
-      key: dependency-cache-{{ checksum "package.json" }}
+      key: cache-{{ .Branch }}-{{ checksum "package.json" }}
 
   restore_npm_cache_peer: &restore_npm_cache_peer
     restore_cache:
@@ -47,7 +47,7 @@ jobs:
           name: Install NodeJS Dependencies via NPM
           command: npm install
       - save_cache:
-          key: dependency-cache-{{ checksum "package.json" }}
+          key: cache-{{ .Branch }}-{{ checksum "package.json" }}
           paths:
             - node_modules
       - run:
