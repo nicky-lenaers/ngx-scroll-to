@@ -46,13 +46,17 @@ jobs:
       - run:
           name: Install NodeJS Dependencies via NPM
           command: npm install
-      - run:
-          name: Build dist
-          command: npm run ng:build
       - save_cache:
           key: dependency-cache-{{ checksum "package.json" }}
           paths:
             - node_modules
+      - run:
+          name: Build dist and cache
+          command: npm run ng:build
+      - save_cache:
+          key: dist-{{ .Branch }}-{{ checksum "package.json" }}
+          paths:
+            - dist
   test_spec:
     <<: *job_defaults_browsers
     steps:
@@ -73,21 +77,9 @@ jobs:
       - restore_cache:
           keys:
             - cache-{{ .Branch }}-{{ checksum "package.json" }}
-      - run:
-          name: Npm CI
-          command: npm ci
+            - dist-{{ .Branch }}-{{ checksum "package.json" }}
       - run:
           command: npx cypress verify
-      - save_cache:
-          key: cache-{{ .Branch }}-{{ checksum "package.json" }}
-          paths:
-            - ~/.npm
-            - ~/.cache
-      - persist_to_workspace:
-          root: ~/
-          paths:
-            - project
-            - .cache/Cypress
       - run:
           name: Start
           command: npm run start:ci
