@@ -70,6 +70,7 @@ jobs:
           path: coverage/ts
           destination: coverage
   test_cypress:
+    <<: *job_defaults
     docker:
       - image: cypress/base:10
     steps:
