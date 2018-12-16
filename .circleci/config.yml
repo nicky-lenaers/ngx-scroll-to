@@ -2,11 +2,7 @@
 # - https://circleci.com/docs/2.0/circleci-images/
 
 # CirlceCI Configuration
-version: 2.1
-
-# Use orb: https://github.com/cypress-io/circleci-orb
-orbs:
-  cypress: cypress-io/cypress@1.1.0
+version: 2
 
 # References
 references:
@@ -66,6 +62,39 @@ jobs:
       - store_artifacts:
           path: coverage/ts
           destination: coverage
+  test_cypress:
+    docker:
+      - image: cypress/base:10
+    steps:
+      - checkout
+      - restore_cache:
+          keys:
+            - cache-{{ .Branch }}-{{ checksum "package.json" }}
+      - run:
+          name: Npm CI
+          command: npm ci
+      - run:
+          command: npx cypress verify
+      - save_cache:
+          key: cache-{{ .Branch }}-{{ checksum "package.json" }}
+          paths:
+            - ~/.npm
+            - ~/.cache
+      - persist_to_workspace:
+          root: ~/
+          paths:
+            - project
+            - .cache/Cypress
+      - run:
+          name: Start
+          command: npm start
+          background: true
+      - run:
+          name: Wait on http://localhost:4200
+          command: npx wait-on http://localhost:4200
+      - run:
+          name: Run Cypress
+          command: npm run test:cypress
   lint:
     <<: *job_defaults
     steps:
@@ -85,9 +114,7 @@ workflows:
       - test_spec:
           requires:
             - build
-      - cypress/run:
-          start: npm start
-          wait-on: 'http://localhost:4200'
+      - test_cypress
       - lint:
           requires:
             - build
