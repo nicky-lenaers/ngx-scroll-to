@@ -45,7 +45,10 @@ jobs:
       - *restore_npm_cache_peer
       - run:
           name: Install NodeJS Dependencies via NPM
-          command: npm install
+          command: npm ci
+      - run:
+          name: Build dist
+          command: npm run ng:build
       - save_cache:
           key: dependency-cache-{{ checksum "package.json" }}
           paths:
@@ -88,6 +91,7 @@ jobs:
       - run:
           name: Start
           command: npm run start:ci
+          background: true
       - run:
           name: Wait on http://localhost:4200
           command: npx wait-on http://localhost:4200
