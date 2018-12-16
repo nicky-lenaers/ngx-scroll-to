@@ -24,7 +24,7 @@
     "test:cypress": "./node_modules/.bin/cypress run --reporter junit --reporter-options mochaFile=reports/cypress/result.xml",
     "test:cypress:open": "./node_modules/.bin/cypress open",
     "test:watch": "ng test --single-run=false",
-    "cy:verify": "cypress verify"
+    "cy:verify": "./node_modules/.bin/cypress verify"
   },
   "private": false,
   "keywords": [
