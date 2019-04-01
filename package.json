@@ -1,7 +1,7 @@
 {
   "name": "@nicky-lenaers/ngx-scroll-to-demo",
   "description": "Demo Application for @nicky-lenaers/ngx-scroll-to package.",
-  "version": "2.0.1",
+  "version": "2.0.2",
   "license": "MIT",
   "scripts": {
     "changelog": "conventional-changelog -p angular -i CHANGELOG.md -s -r 0",
