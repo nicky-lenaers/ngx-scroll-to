@@ -1,7 +1,7 @@
 {
   "name": "@nicky-lenaers/ngx-scroll-to",
   "description": "A simple Angular 4+ plugin enabling you to smooth scroll to any element on your page and enhance scroll-based features in your app.",
-  "version": "2.0.1",
+  "version": "3.0.0",
   "scripts": {
     "build": "ng build"
   },
@@ -52,7 +52,7 @@
     "npm": ">=6.0.0"
   },
   "peerDependencies": {
-    "@angular/common": "^7.1.0",
-    "@angular/core": "^7.1.0"
+    "@angular/common": "^8.0.0",
+    "@angular/core": "^8.0.0"
   }
 }
