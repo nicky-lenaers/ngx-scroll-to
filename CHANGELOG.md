@@ -1,4 +1,4 @@
-<a name="3.0.0"></a>
+<a name="2.0.0"></a>
 # [2.0.0](https://github.com/nicky-lenaers/ngx-scroll-to/compare/1.1.1...2.0.0) (2018-12-12)
 
 
