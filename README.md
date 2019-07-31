@@ -105,10 +105,6 @@ Current Angular Version
 [![npm version](https://img.shields.io/npm/v/%40angular%2Fcore.svg?style=flat-square)](https://www.npmjs.com/~angular)  
 
 ## Installation
-Angular 8
-```sh
-$ npm install @nicky-lenaers/ngx-scroll-to
-```
 Angular 7
 ```sh
 $ npm install @nicky-lenaers/ngx-scroll-to

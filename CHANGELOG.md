@@ -1,5 +1,5 @@
 <a name="3.0.0"></a>
-# [3.0.0](https://github.com/nicky-lenaers/ngx-scroll-to/compare/2.0.0...3.0.0) (2018-12-12)
+# [2.0.0](https://github.com/nicky-lenaers/ngx-scroll-to/compare/1.1.1...2.0.0) (2018-12-12)
 
 
 ### Features
