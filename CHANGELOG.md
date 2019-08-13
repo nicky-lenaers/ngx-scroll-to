@@ -1,3 +1,19 @@
+<a name="3.0.0"></a>
+# [3.0.0](https://github.com/nicky-lenaers/ngx-scroll-to/compare/2.0.0...3.0.0) (2019-08-13)
+
+
+### Bug Fixes
+
+* failing install due to locked deps ([214d57e](https://github.com/nicky-lenaers/ngx-scroll-to/commit/214d57e))
+* **lib:** replace "... from 'rjx/index'" import by "...from 'rxjs'" ([#115](https://github.com/nicky-lenaers/ngx-scroll-to/issues/115)) ([452a986](https://github.com/nicky-lenaers/ngx-scroll-to/commit/452a986))
+
+
+### Features
+
+* update to angular 8 ([#123](https://github.com/nicky-lenaers/ngx-scroll-to/issues/123)) ([8d0e337](https://github.com/nicky-lenaers/ngx-scroll-to/commit/8d0e337))
+
+
+
 <a name="2.0.0"></a>
 # [2.0.0](https://github.com/nicky-lenaers/ngx-scroll-to/compare/1.1.1...2.0.0) (2018-12-12)
 
