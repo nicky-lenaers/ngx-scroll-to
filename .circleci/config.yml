@@ -11,10 +11,10 @@ references:
     ~/app
 
   image_node: &image_node
-    image: circleci/node:8.11.2
+    image: circleci/node:12.14.1
 
   image_node_browsers: &image_node_browsers
-    image: circleci/node:8.11.2-browsers
+    image: circleci/node:12.14.1-browsers
 
   job_defaults: &job_defaults
     working_directory: *working_directory
