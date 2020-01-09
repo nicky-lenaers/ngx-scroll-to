@@ -106,7 +106,9 @@ export class ScrollToService {
     let to = container ? container.getBoundingClientRect().top : 0;
 
     if (targetNode) {
-      to = isWindow(listenerTarget) ? targetNode.offsetTop : targetNode.getBoundingClientRect().top;
+      to = isWindow(listenerTarget) ?
+        window.scrollY + targetNode.getBoundingClientRect().top :
+        targetNode.getBoundingClientRect().top;
     }
 
     // Create Animation
