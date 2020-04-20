@@ -1,23 +1,9 @@
-import { Injectable, PLATFORM_ID, Inject } from '@angular/core';
-import { DOCUMENT } from '@angular/common';
-import { isPlatformBrowser } from '@angular/common';
+import { Inject, Injectable, PLATFORM_ID } from '@angular/core';
+import { DOCUMENT, isPlatformBrowser } from '@angular/common';
 
-import {
-  ScrollToConfigOptions,
-  ScrollToTarget,
-  ScrollToListenerTarget,
-  ScrollToConfigOptionsTarget
-} from './scroll-to-config.interface';
+import { ScrollToConfigOptions, ScrollToConfigOptionsTarget, ScrollToListenerTarget, ScrollToTarget } from './scroll-to-config.interface';
 import { ScrollToAnimation } from './scroll-to-animation';
-import {
-  stripHash,
-  isString,
-  isNumber,
-  isElementRef,
-  isWindow,
-  DEFAULTS,
-  isNativeElement
-} from './scroll-to-helpers';
+import { DEFAULTS, isElementRef, isNativeElement, isNumber, isString, isWindow, stripHash } from './scroll-to-helpers';
 import { Observable, ReplaySubject, throwError } from 'rxjs';
 
 /**
@@ -36,26 +22,26 @@ export class ScrollToService {
    * allows for usage of e.g. `start` and `stop`
    * methods within this Angular Service.
    */
-  private _animation: ScrollToAnimation;
+  private animation: ScrollToAnimation;
 
   /**
    * Interruptive Events allow to scrolling animation
    * to be interrupted before it is finished. The list
    * of Interruptive Events represents those.
    */
-  private _interruptiveEvents: string[];
+  private interruptiveEvents: string[];
 
   /**
    * Construct and setup required paratemeters.
    *
-   * @param _document         A Reference to the Document
-   * @param _platformId       Angular Platform ID
+   * @param document         A Reference to the Document
+   * @param platformId       Angular Platform ID
    */
   constructor(
-    @Inject(DOCUMENT) private _document: any,
-    @Inject(PLATFORM_ID) private _platformId: any
+    @Inject(DOCUMENT) private document: any,
+    @Inject(PLATFORM_ID) private platformId: any
   ) {
-    this._interruptiveEvents = ['mousewheel', 'DOMMouseScroll', 'touchstart'];
+    this.interruptiveEvents = ['mousewheel', 'DOMMouseScroll', 'touchstart'];
   }
 
   /**
@@ -65,16 +51,18 @@ export class ScrollToService {
    * by means of `*ngIf`, but ought to be scrolled to eventually.
    *
    * @todo type 'any' in Observable should become custom type like 'ScrollToEvent' (base class), see issue comment:
-   * 	- https://github.com/nicky-lenaers/ngx-scroll-to/issues/10#issuecomment-317198481
+   *  - https://github.com/nicky-lenaers/ngx-scroll-to/issues/10#issuecomment-317198481
    *
    * @param options         Configuration Object
    * @returns               Observable
    */
-  public scrollTo(options: ScrollToConfigOptions): Observable<any> {
+  scrollTo(options: ScrollToConfigOptions): Observable<any> {
 
-    if (!isPlatformBrowser(this._platformId)) return new ReplaySubject().asObservable();
+    if (!isPlatformBrowser(this.platformId)) {
+      return new ReplaySubject().asObservable();
+    }
 
-    return this._start(options);
+    return this.start(options);
   }
 
   /**
@@ -85,7 +73,7 @@ export class ScrollToService {
    * @param options         Configuration Object
    * @returns               Observable
    */
-  private _start(options: ScrollToConfigOptions): Observable<number> {
+  private start(options: ScrollToConfigOptions): Observable<number> {
 
     // Merge config with default values
     const mergedConfigOptions = {
@@ -93,15 +81,21 @@ export class ScrollToService {
       ...options
     } as ScrollToConfigOptionsTarget;
 
-    if (this._animation) this._animation.stop();
+    if (this.animation) {
+      this.animation.stop();
+    }
 
-    const targetNode = this._getNode(mergedConfigOptions.target);
-    if (mergedConfigOptions.target && !targetNode) return throwError('Unable to find Target Element');
+    const targetNode = this.getNode(mergedConfigOptions.target);
+    if (mergedConfigOptions.target && !targetNode) {
+      return throwError('Unable to find Target Element');
+    }
 
-    const container: HTMLElement = this._getContainer(mergedConfigOptions, targetNode);
-    if (mergedConfigOptions.container && !container) return throwError('Unable to find Container Element');
+    const container: HTMLElement = this.getContainer(mergedConfigOptions, targetNode);
+    if (mergedConfigOptions.container && !container) {
+      return throwError('Unable to find Container Element');
+    }
 
-    const listenerTarget = this._getListenerTarget(container) || window;
+    const listenerTarget = this.getListenerTarget(container) || window;
 
     let to = container ? container.getBoundingClientRect().top : 0;
 
@@ -112,20 +106,20 @@ export class ScrollToService {
     }
 
     // Create Animation
-    this._animation = new ScrollToAnimation(
+    this.animation = new ScrollToAnimation(
       container,
       listenerTarget,
       isWindow(listenerTarget),
       to,
       mergedConfigOptions,
-      isPlatformBrowser(this._platformId)
+      isPlatformBrowser(this.platformId)
     );
-    const onInterrupt = () => this._animation.stop();
-    this._addInterruptiveEventListeners(listenerTarget, onInterrupt);
+    const onInterrupt = () => this.animation.stop();
+    this.addInterruptiveEventListeners(listenerTarget, onInterrupt);
 
     // Start Animation
-    const animation$ = this._animation.start();
-    this._subscribeToAnimation(animation$, listenerTarget, onInterrupt);
+    const animation$ = this.animation.start();
+    this.subscribeToAnimation(animation$, listenerTarget, onInterrupt);
 
     return animation$;
   }
@@ -140,17 +134,19 @@ export class ScrollToService {
    * @param onInterrupt             The handler for Interruptive Events
    * @returns                       Void
    */
-  private _subscribeToAnimation(
+  private subscribeToAnimation(
     animation$: Observable<any>,
     listenerTarget: ScrollToListenerTarget,
     onInterrupt: EventListenerOrEventListenerObject
   ) {
     const subscription = animation$
       .subscribe(
-        () => { },
-        () => { },
         () => {
-          this._removeInterruptiveEventListeners(this._interruptiveEvents, listenerTarget, onInterrupt);
+        },
+        () => {
+        },
+        () => {
+          this.removeInterruptiveEventListeners(this.interruptiveEvents, listenerTarget, onInterrupt);
           subscription.unsubscribe();
         }
       );
@@ -162,16 +158,15 @@ export class ScrollToService {
    *
    * @param options         The Merged Configuration Object
    * @param targetNode    the targeted HTMLElement
-   * @returns
    */
-  private _getContainer(options: ScrollToConfigOptions, targetNode: HTMLElement): HTMLElement | null {
+  private getContainer(options: ScrollToConfigOptions, targetNode: HTMLElement): HTMLElement | null {
 
     let container: HTMLElement | null = null;
 
     if (options.container) {
-      container = this._getNode(options.container, true);
+      container = this.getNode(options.container, true);
     } else if (targetNode) {
-      container = this._getFirstScrollableParent(targetNode);
+      container = this.getFirstScrollableParent(targetNode);
     }
 
     return container;
@@ -186,15 +181,17 @@ export class ScrollToService {
    * @param handler           Handler for when the listener fires
    * @returns                 Void
    */
-  private _addInterruptiveEventListeners(
+  private addInterruptiveEventListeners(
     listenerTarget: ScrollToListenerTarget,
     handler: EventListenerOrEventListenerObject): void {
 
-    if (!listenerTarget) listenerTarget = window;
+    if (!listenerTarget) {
+      listenerTarget = window;
+    }
 
-    this._interruptiveEvents
+    this.interruptiveEvents
       .forEach(event => listenerTarget
-        .addEventListener(event, handler, this._supportPassive() ? { passive: true } : false));
+        .addEventListener(event, handler, this.supportPassive() ? {passive: true} : false));
   }
 
   /**
@@ -202,19 +199,20 @@ export class ScrollToService {
    *
    * @returns       Whether or not passive event listeners are supported
    */
-  private _supportPassive(): boolean {
+  private supportPassive(): boolean {
 
     let supportsPassive = false;
 
     try {
       const opts = Object.defineProperty({}, 'passive', {
-        get: function () {
+        get: () => {
           supportsPassive = true;
         }
       });
       window.addEventListener('testPassive', null, opts);
       window.removeEventListener('testPassive', null, opts);
-    } catch (e) { }
+    } catch (e) {
+    }
 
     return supportsPassive;
   }
@@ -230,12 +228,14 @@ export class ScrollToService {
    * @param handler           Handler for when the listener fires
    * @returns                 Void
    */
-  private _removeInterruptiveEventListeners(
+  private removeInterruptiveEventListeners(
     events: string[],
     listenerTarget: ScrollToListenerTarget,
     handler: EventListenerOrEventListenerObject): void {
 
-    if (!listenerTarget) listenerTarget = window;
+    if (!listenerTarget) {
+      listenerTarget = window;
+    }
     events.forEach(event => listenerTarget.removeEventListener(event, handler));
   }
 
@@ -248,24 +248,31 @@ export class ScrollToService {
    * @param nativeElement     The Element to search the DOM Tree upwards from
    * @returns                 The first scrollable parent HTML Element
    */
-  private _getFirstScrollableParent(nativeElement: HTMLElement): HTMLElement {
+  private getFirstScrollableParent(nativeElement: HTMLElement): HTMLElement {
 
     let style: CSSStyleDeclaration = window.getComputedStyle(nativeElement);
 
     const overflowRegex: RegExp = /(auto|scroll|overlay)/;
 
-    if (style.position === 'fixed') return null;
+    if (style.position === 'fixed') {
+      return null;
+    }
 
-    for (let parent = nativeElement; parent = parent.parentElement; null) {
-
+    let parent = nativeElement;
+    while (parent.parentElement) {
+      parent = parent.parentElement;
       style = window.getComputedStyle(parent);
 
       if (style.position === 'absolute'
         || style.overflow === 'hidden'
-        || style.overflowY === 'hidden') continue;
+        || style.overflowY === 'hidden') {
+        continue;
+      }
 
       if (overflowRegex.test(style.overflow + style.overflowY)
-        || parent.tagName === 'BODY') return parent;
+        || parent.tagName === 'BODY') {
+        return parent;
+      }
     }
 
     return null;
@@ -280,18 +287,18 @@ export class ScrollToService {
    *                        considered a valid Target Node
    * @returns               The Target Node to scroll to
    */
-  private _getNode(id: ScrollToTarget, allowBodyTag: boolean = false): HTMLElement {
+  private getNode(id: ScrollToTarget, allowBodyTag: boolean = false): HTMLElement {
 
     let targetNode: HTMLElement;
 
     if (isString(id)) {
       if (allowBodyTag && (id === 'body' || id === 'BODY')) {
-        targetNode = this._document.body;
+        targetNode = this.document.body;
       } else {
-        targetNode = this._document.getElementById(stripHash(id));
+        targetNode = this.document.getElementById(stripHash(id));
       }
     } else if (isNumber(id)) {
-      targetNode = this._document.getElementById(String(id));
+      targetNode = this.document.getElementById(String(id));
     } else if (isElementRef(id)) {
       targetNode = id.nativeElement;
     } else if (isNativeElement(id)) {
@@ -310,9 +317,11 @@ export class ScrollToService {
    * @param container           The HTML Container element
    * @returns                   The Listener Target to attach events on
    */
-  private _getListenerTarget(container: HTMLElement): ScrollToListenerTarget {
-    if (!container) return null;
-    return this._isDocumentBody(container) ? window : container;
+  private getListenerTarget(container: HTMLElement): ScrollToListenerTarget {
+    if (!container) {
+      return null;
+    }
+    return this.isDocumentBody(container) ? window : container;
   }
 
   /**
@@ -322,7 +331,7 @@ export class ScrollToService {
    * @returns                   Whether or not the Element is the
    *                            Document Body Element
    */
-  private _isDocumentBody(element: HTMLElement): element is HTMLBodyElement {
+  private isDocumentBody(element: HTMLElement): element is HTMLBodyElement {
     return element.tagName.toUpperCase() === 'BODY';
   }
 }

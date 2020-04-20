@@ -26,11 +26,11 @@ references:
     docker:
       - *image_node_browsers
 
-  restore_npm_cache: &restore_npm_cache
+  restore_yarn_cache: &restore_yarn_cache
     restore_cache:
       key: dependency-cache-{{ checksum "package.json" }}
 
-  restore_npm_cache_peer: &restore_npm_cache_peer
+  restore_yarn_cache_peer: &restore_yarn_cache_peer
     restore_cache:
       key: dependency-cache-peer-{{ checksum "package.json" }}
 
@@ -51,11 +51,11 @@ jobs:
     <<: *job_defaults
     steps:
       - checkout
-      - *restore_npm_cache
-      - *restore_npm_cache_peer
+      - *restore_yarn_cache
+      - *restore_yarn_cache_peer
       - run:
-          name: Install NodeJS Dependencies via NPM
-          command: npm install
+          name: Install NodeJS Dependencies via YARN
+          command: yarn install
       - save_cache:
           key: dependency-cache-{{ checksum "package.json" }}
           paths:
@@ -64,20 +64,20 @@ jobs:
     <<: *job_defaults_browsers
     steps:
       - checkout
-      - *restore_npm_cache
-      - *restore_npm_cache_peer
+      - *restore_yarn_cache
+      - *restore_yarn_cache_peer
       - run:
           name: Test Spec
-          command: npm run lib:test
+          command: yarn test
   lint:
     <<: *job_defaults
     steps:
       - checkout
-      - *restore_npm_cache
-      - *restore_npm_cache_peer
+      - *restore_yarn_cache
+      - *restore_yarn_cache_peer
       - run:
           name: Lint TypeScript
-          command: npm run ng:lint
+          command: yarn lint
 
 # Workflows
 workflows:

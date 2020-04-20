@@ -1,0 +1,11 @@
+<button
+  (click)="show()"
+  [ngxScrollToDuration]="1500"
+  [ngxScrollTo]="'destination'"
+  [ngxScrollToOffset]="-10"
+  [ngxScrollToOffsetMap]="offsetMap"
+  [ngxScrollToEasing]="'easeInOutQuint'"
+  >Go</button>
+<section *ngIf="visible" id="destination">
+  You've reached your destination.
+</section>

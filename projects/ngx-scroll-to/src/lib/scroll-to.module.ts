@@ -18,7 +18,7 @@ export class ScrollToModule {
    *
    * @return          An Angular Module with Providers
    */
-  static forRoot(): ModuleWithProviders {
+  static forRoot(): ModuleWithProviders<ScrollToModule> {
     return {
       ngModule: ScrollToModule,
       providers: [

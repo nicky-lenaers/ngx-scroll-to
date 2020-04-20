@@ -23,7 +23,7 @@ describe('ScrollToService', () => {
       ]
     });
 
-    service = TestBed.get(ScrollToService);
+    service = TestBed.inject(ScrollToService);
   }));
 
   it('should be created', () => {
