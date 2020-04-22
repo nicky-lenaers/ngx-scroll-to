@@ -1,13 +1,12 @@
-import { async, TestBed, fakeAsync, tick } from '@angular/core/testing';
+import { async, ComponentFixture, fakeAsync, TestBed, tick } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
-import { ComponentFixture } from '@angular/core/testing';
 import { ScrollToModule } from './scroll-to.module';
 import { ScrollToDirective } from './scroll-to.directive';
 import { ScrollToService } from './scroll-to.service';
-import { EVENTS, DEFAULTS } from './scroll-to-helpers';
-import { DummyComponent, TARGET, BUTTON_ID } from '../test/test-dummy.component';
+import { DEFAULTS, EVENTS } from './scroll-to-helpers';
+import { BUTTON_ID, DummyComponent, TARGET } from '../test/test-dummy.component';
 import { ScrollToServiceMock } from '../test/test-mock.service';
-import { createTestComponent, CompileTemplateConfigOptions } from '../test/test-helpers';
+import { CompileTemplateConfigOptions, createTestComponent } from '../test/test-helpers';
 import { ScrollToEvent } from './scroll-to-event.interface';
 
 describe('ScrollToDirective', () => {
@@ -41,7 +40,7 @@ describe('ScrollToDirective', () => {
   it('should have default values', fakeAsync(() => {
 
     const fixture: ComponentFixture<DummyComponent> = TestBed.createComponent(DummyComponent);
-    const service: ScrollToService = TestBed.get(ScrollToService);
+    const service: ScrollToService = TestBed.inject(ScrollToService);
     const component: DummyComponent = fixture.componentInstance;
 
     component.ngOnInit();
@@ -69,12 +68,12 @@ describe('ScrollToDirective', () => {
 
     it(`should handle a '${event}' event`, fakeAsync(() => {
 
-      const template_config: CompileTemplateConfigOptions = {
+      const templateConfig: CompileTemplateConfigOptions = {
         target: TARGET
       };
 
-      const fixture: ComponentFixture<DummyComponent> = createTestComponent(DummyComponent, template_config, event);
-      const service: ScrollToService = TestBed.get(ScrollToService);
+      const fixture: ComponentFixture<DummyComponent> = createTestComponent(DummyComponent, templateConfig, event);
+      const service: ScrollToService = TestBed.inject(ScrollToService);
       const component: DummyComponent = fixture.componentInstance;
 
       component.ngOnInit();

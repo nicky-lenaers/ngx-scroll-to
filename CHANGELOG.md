@@ -1,3 +1,53 @@
+<a name="9.0.0"></a>
+# [9.0.0](https://github.com/nicky-lenaers/ngx-scroll-to/compare/3.0.1...9.0.0) (2020-04-22)
+
+
+### Bug Fixes
+
+* scroll to element with relative positioned parent ([#124](https://github.com/nicky-lenaers/ngx-scroll-to/issues/124)) ([4d2c775](https://github.com/nicky-lenaers/ngx-scroll-to/commit/4d2c775))
+
+
+### Features
+
+* **lib:** support for angular v9 ([4b50770](https://github.com/nicky-lenaers/ngx-scroll-to/commit/4b50770))
+
+
+### BREAKING CHANGES
+
+* **lib:** Rename properties to follow angular style guide
+
+Before:
+
+[ngx-scroll-to]
+[ngx-scroll-to-event]
+[ngx-scroll-to-duration]
+[ngx-scroll-to-easing]
+[ngx-scroll-to-offset]
+[ngx-scroll-to-offset-map]
+
+After:
+
+[ngxScrollTo]
+[ngxScrollToEvent]
+[ngxScrollToDuration]
+[ngxScrollToEasing]
+[ngxScrollToOffset]
+[ngxScrollToOffsetMap]
+
+* **core:** Fix lint
+
+
+
+<a name="3.0.1"></a>
+## [3.0.1](https://github.com/nicky-lenaers/ngx-scroll-to/compare/3.0.0...3.0.1) (2019-08-13)
+
+
+### Bug Fixes
+
+* incorrect package version ([abd2e97](https://github.com/nicky-lenaers/ngx-scroll-to/commit/abd2e97))
+
+
+
 <a name="3.0.0"></a>
 # [3.0.0](https://github.com/nicky-lenaers/ngx-scroll-to/compare/2.0.0...3.0.0) (2019-08-13)
 

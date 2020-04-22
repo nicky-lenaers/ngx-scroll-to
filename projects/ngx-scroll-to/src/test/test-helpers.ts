@@ -15,15 +15,15 @@ export function createTestComponent(
 
   const template = `
     <button id="${BUTTON_ID}"
-      [ngx-scroll-to]="'${config.target}'"
-      ${event ? '[ngx-scroll-to-event]="\'' + event + '\'"' : ''}
+      [ngxScrollTo]="'${config.target}'"
+      ${event ? '[ngxScrollToEvent]="\'' + event + '\'"' : ''}
       >Go to destination</button>
     <div id="${config.target}">You've reached your destination</div>
 `;
 
   TestBed.overrideComponent(component, {
     set: {
-      template: template
+      template
     }
   });
 
