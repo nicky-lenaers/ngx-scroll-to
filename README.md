@@ -1,11 +1,4 @@
 <div align="center">
-  <h1>This project is no longer maintained.</h1>
-  <br>
-  <br>
-  <br>
-</div>
-
-<div align="center">
   <img src="https://user-images.githubusercontent.com/2785350/28428760-ae908006-6d7a-11e7-92ec-174bec80740e.png">
 </div>
 <div align="center">
@@ -355,7 +348,7 @@ export class MyService {
     <th align="left">Default</th>
   </tr>
   <tr>
-    <td><a href="#ngx-scroll-to-details">ngx-scroll-to</a></td>
+    <td><a href="#ngx-scroll-to-details">ngxScrollTo</a></td>
     <td><code>string</code> | <code>number</code> | <code>ElementRef</code> | <code>HTMLElement</code></td>
     <td><code>''</code></td>
   </tr>
