@@ -30,7 +30,9 @@
     "angular8",
     "angular 8",
     "angular9",
-    "angular 9"
+    "angular 9",
+    "angular10",
+    "angular 10"
   ],
   "author": {
     "name": "Nicky Lenaers",
@@ -53,9 +55,11 @@
     "node": ">=8.0.0",
     "npm": ">=6.0.0"
   },
+  "dependencies": {
+    "tslib": "^2.0.0"
+  },
   "peerDependencies": {
-    "@angular/common": "^8.0.0 || ^9.0.0",
-    "@angular/core": "^8.0.0 || ^9.0.0",
-    "tslib": "^1.10.0"
+    "@angular/common": "^8.0.0 || ^9.0.0 || ^10.0.0",
+    "@angular/core": "^8.0.0 || ^9.0.0 || ^10.0.0"
   }
 }

@@ -1,4 +1,4 @@
-import { async, ComponentFixture, fakeAsync, TestBed, tick } from '@angular/core/testing';
+import { ComponentFixture, fakeAsync, TestBed, tick, waitForAsync } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { ScrollToModule } from './scroll-to.module';
 import { ScrollToDirective } from './scroll-to.directive';
@@ -11,7 +11,7 @@ import { ScrollToEvent } from './scroll-to-event.interface';
 
 describe('ScrollToDirective', () => {
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
 
     TestBed
       .configureTestingModule({
