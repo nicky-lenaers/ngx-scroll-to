@@ -1,0 +1,19 @@
+:host {
+  display: block;
+  position: relative;
+}
+
+#another-scroll-container {
+
+  background-color: lightgray;
+  height: 200px;
+  overflow-y: auto;
+
+  #intro {
+    height: 400px;
+  }
+
+  #another-scroll-container-destination {
+    background-color: mediumseagreen;
+  }
+}
