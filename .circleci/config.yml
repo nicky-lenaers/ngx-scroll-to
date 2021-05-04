@@ -11,10 +11,10 @@ references:
     ~/app
 
   image_node: &image_node
-    image: circleci/node:8.2.1
+    image: circleci/node:12.14.1
 
   image_node_browsers: &image_node_browsers
-    image: circleci/node:8.2.1-browsers
+    image: circleci/node:12.14.1-browsers
 
   job_defaults: &job_defaults
     working_directory: *working_directory
@@ -26,9 +26,24 @@ references:
     docker:
       - *image_node_browsers
 
-  restore_npm_cache: &restore_npm_cache
+  restore_yarn_cache: &restore_yarn_cache
     restore_cache:
       key: dependency-cache-{{ checksum "package.json" }}
+
+  restore_yarn_cache_peer: &restore_yarn_cache_peer
+    restore_cache:
+      key: dependency-cache-peer-{{ checksum "package.json" }}
+
+  update_chrome_driver: &update_chrome_driver
+    run:
+      name: Update Chrome Driver
+      command: |
+        sudo apt-get update
+        sudo apt-get install lsb-release libappindicator3-1
+        curl -L -o google-chrome.deb https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
+        sudo dpkg -i google-chrome.deb
+        sudo sed -i 's|HERE/chrome"|HERE/chrome" --no-sandbox|g' /opt/google/chrome/google-chrome
+        rm google-chrome.deb
 
 # Jobs
 jobs:
@@ -36,10 +51,11 @@ jobs:
     <<: *job_defaults
     steps:
       - checkout
-      - *restore_npm_cache
+      - *restore_yarn_cache
+      - *restore_yarn_cache_peer
       - run:
-          name: Install NodeJS Dependencies via NPM
-          command: npm install
+          name: Install NodeJS Dependencies via YARN
+          command: yarn install
       - save_cache:
           key: dependency-cache-{{ checksum "package.json" }}
           paths:
@@ -48,31 +64,20 @@ jobs:
     <<: *job_defaults_browsers
     steps:
       - checkout
-      - *restore_npm_cache
+      - *restore_yarn_cache
+      - *restore_yarn_cache_peer
       - run:
           name: Test Spec
-          command: npm run test -- --single-run=true --progress=false --code-coverage --log-level=DEBUG
-      - store_artifacts:
-          path: coverage/ts
-          destination: coverage
-  test_e2e:
-    <<: *job_defaults_browsers
-    steps:
-      - checkout
-      - *restore_npm_cache
-      - run:
-          name: Test End to End
-          command: npm run e2e
-      - store_test_results:
-          path: reports/e2e
+          command: yarn test
   lint:
     <<: *job_defaults
     steps:
       - checkout
-      - *restore_npm_cache
+      - *restore_yarn_cache
+      - *restore_yarn_cache_peer
       - run:
           name: Lint TypeScript
-          command: npm run lint
+          command: yarn lint
 
 # Workflows
 workflows:
@@ -81,9 +86,6 @@ workflows:
     jobs:
       - build
       - test_spec:
-          requires:
-            - build
-      - test_e2e:
           requires:
             - build
       - lint:

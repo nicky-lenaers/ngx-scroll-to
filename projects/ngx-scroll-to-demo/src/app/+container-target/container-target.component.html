@@ -1,0 +1,22 @@
+<section id="hero">
+  Container Target Hero
+</section>
+<section id="content">
+
+  Container Target Content
+
+  <aside>
+    <button (click)="scrollToElementInAnotherContainer('another-scroll-container', $event)">Scroll To Element In Another Container</button>
+  </aside>
+
+  <div id="another-scroll-container">
+
+    <div id="intro">
+      This is another-scroll-container intro
+    </div>
+
+    <div id="another-scroll-container-destination">
+      I am the target inside another scroll container
+    </div>
+  </div>
+</section>

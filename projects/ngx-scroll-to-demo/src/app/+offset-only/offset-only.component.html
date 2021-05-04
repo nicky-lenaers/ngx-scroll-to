@@ -1,0 +1,20 @@
+<button
+  ngxScrollTo
+  [ngxScrollToEasing]="'easeOutElastic'"
+  [ngxScrollToOffset]="50">
+  Scroll To Offset Only - Directive
+</button>
+
+<button (click)="scrollToOffsetOnly(400)">
+  Scroll To Offset Only - Service
+</button>
+
+<button (click)="scrollToOffsetOnlyInContainer()">
+  Scroll To Offset Only in Container - Service
+</button>
+
+<div id="scrollable-container">
+  <div id="scrollable-container-overflow">
+    This container is scrollable
+  </div>
+</div>

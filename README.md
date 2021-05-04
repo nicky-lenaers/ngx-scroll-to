@@ -6,6 +6,9 @@
   <p>
     A simple Angular 4+ plugin enabling you to smooth scroll to any element on your page and enhance scroll-based features in your app. Works for <strong>Angular 4+</strong>, both <strong>AoT</strong> and <strong>SSR</strong>. No dependencies.
   </p>
+  <strong>Support for Angular 9!</strong>
+  <br/>
+  <br/>
 </div>
 
 <table>
@@ -33,7 +36,7 @@
     </td>
   </tr>
   <tr>
-    <td></td>
+    <td>&nbsp;</td>
     <td>NPM</td>
     <td align="left">
       <a href="https://www.npmjs.com/package/@nicky-lenaers/ngx-scroll-to" target="_blank">
@@ -51,7 +54,7 @@
     </td>
   </tr>
   <tr>
-    <td></td>
+    <td>&nbsp;</td>
     <td align="left">Peer</td>
     <td align="left">
       <a href="https://david-dm.org/nicky-lenaers/ngx-scroll-to?type=peer" target="_blank">
@@ -60,7 +63,7 @@
     </td>
   </tr>
   <tr>
-    <td></td>
+    <td>&nbsp;</td>
     <td align="left">Development</td>
     <td align="left">
       <a href="https://david-dm.org/nicky-lenaers/ngx-scroll-to?type=dev" target="_blank">
@@ -69,7 +72,7 @@
     </td>
   </tr>
   <tr>
-    <td></td>
+    <td>&nbsp;</td>
     <td align="left">Optional</td>
     <td align="left">
       <a href="https://david-dm.org/nicky-lenaers/ngx-scroll-to?type=optional" target="_blank">
@@ -78,11 +81,20 @@
     </td>
   </tr>
   <tr>
+    <th align="left" valign="top">Downloads</th>
+    <td>NPM</td>
+    <td>
+      <a href="https://npmjs.org/@nicky-lenaers/ngx-scroll-to" target="_blank">
+        <img src="https://img.shields.io/npm/dm/%40nicky-lenaers%2Fngx-scroll-to.svg?style=flat-square" alt="NPM Monthly Downloads">
+      </a>
+    </td>
+  </tr>
+  <tr>
     <th align="left" valign="top">License</th>
-    <td></td>
+    <td>MIT</td>
     <td>
       <a href="https://github.com/nicky-lenaers/ngx-scroll-to/blob/master/LICENSE" target="_blank">
-        <img src="https://img.shields.io/npm/l/@nicky-lenaers/ngx-scroll-to.svg?style=flat-square" alt="Optional Dependencies">
+        <img src="https://img.shields.io/npm/l/@nicky-lenaers/ngx-scroll-to.svg?style=flat-square" alt="License">
       </a>
     </td>
   </tr>
@@ -93,12 +105,25 @@ Current Angular Version
 [![npm version](https://img.shields.io/npm/v/%40angular%2Fcore.svg?style=flat-square)](https://www.npmjs.com/~angular)  
 
 ## Installation
+Angular 8 and 9
 ```sh
 $ npm install @nicky-lenaers/ngx-scroll-to
 ```
+Angular 7
+```sh
+$ npm install @nicky-lenaers/ngx-scroll-to@'2'
+```
+Angular 6
+```sh
+$ npm install @nicky-lenaers/ngx-scroll-to@'1'
+```
+Angular <= 5.x
+```sh
+$ npm install @nicky-lenaers/ngx-scroll-to@'<1'
+```
 
 ## Setup
-```js
+```typescript
 ...
 import { ScrollToModule } from '@nicky-lenaers/ngx-scroll-to';
 ...
@@ -114,25 +139,41 @@ import { ScrollToModule } from '@nicky-lenaers/ngx-scroll-to';
 export class AppModule { }
 ```
 
-## Basic Usage - Directive
+## Basic Usage - Directive to Target
 **my.component.html**
 
 ```html
 <!-- Works for including '#' -->
-<button [ngx-scroll-to]="'#destination'">Go to destination</button>
+<button [ngxScrollTo]="'#destination'">Go to destination</button>
 
 <!-- Works for excluding '#' -->
-<button [ngx-scroll-to]="'destination'">Go to destination</button>
+<button [ngxScrollTo]="'destination'">Go to destination</button>
 
-<div id="destination">
+<!-- Works for Angular ElementRef -->
+<button [ngxScrollTo]="destinationRef">Go to destination</button>
+
+<div id="destination" #destinationRef>
   You've reached your destination.
 </div>
 ```
 
-## Basic Usage - Service
+## Basic Usage - Directive to Offset Only
+Besides scrolling to a specific element, it is also possible to scroll a given offset only. This can be achieved by an empty target and an offset:
+
+**my.component.html**
+
+```html
+<button 
+  ngxScrollTo
+  [ngxScrollToOffset]="200">
+  Go down 200 pixels
+</button>
+```
+
+## Basic Usage - Service to Target
 **my.component.html**
 ```html
-<button (click)="triggerScrollTo($event)">Go to destination</button>
+<button (click)="triggerScrollTo()">Go to destination</button>
 
 <div id="destination">
   You've reached your destination.
@@ -141,44 +182,73 @@ export class AppModule { }
 
 **my.service.ts**
 
-```js
+```typescript
 import { Injectable } from '@angular/core';
-import { ScrollToService, ScrollToConfig } from '@nicky-lenaers/ngx-scroll-to';
+import { ScrollToService, ScrollToConfigOptions } from '@nicky-lenaers/ngx-scroll-to';
 
 @Injectable()
 export class MyService {
 
-  constructor(private _scrollToService: ScrollToService) { }
+  constructor(private scrollToService: ScrollToService) { }
 
-  public triggerScrollTo($event: Event) {
+  triggerScrollTo() {
     
-    const config: ScrollToConfig = {
+    const config: ScrollToConfigOptions = {
       target: 'destination'
-    }
+    };
 
-    this._scrollToService.scrollTo($event, config);
+    this.scrollToService.scrollTo(config);
   }
 }
+```
 
+## Basic Usage - Service to Offset Only
+Just like with the Directive, the Service can be used to scroll to an offset only instead of a given target element:
+
+**my.component.html**
+```html
+<button (click)="triggerScrollToOffsetOnly(200)">Go down 200 pixels</button>
+```
+
+**my.service.ts**
+
+```typescript
+import { Injectable } from '@angular/core';
+import { ScrollToService, ScrollToConfigOptions } from '@nicky-lenaers/ngx-scroll-to';
+
+@Injectable()
+export class MyService {
+
+  constructor(private scrollToService: ScrollToService) { }
+
+  triggerScrollToOffsetOnly(offset: number = 0) {
+    
+    const config: ScrollToConfigOptions = {
+      offset
+    };
+
+    this.scrollToService.scrollTo(config);
+  }
+}
 ```
 
 ## Advanced Usage - Directive
 **my.component.ts**
-```js
+```typescript
 import { ScrollToAnimationEasing, ScrollToEvent, ScrollToOffsetMap } from '@nicky-lenaers/ngx-scroll-to';
 
 @Component({
-  selector: 'my-component'
+  selector: 'my-component',
   templateUrl: './my.component.html'
 })
 export class MyComponent {
 
-  public ngxScrollToDestination: string;
-  public ngxScrollToEvent: ScrollToEvent;
-  public ngxScrollToDuration: number;
-  public ngxScrollToEasing: ScrollToAnimationEasing;
-  public ngxScrollToOffset: number;
-  public ngxScrollToOffsetMap: ScrollToOffsetMap;
+  ngxScrollToDestination: string;
+  ngxScrollToEvent: ScrollToEvent;
+  ngxScrollToDuration: number;
+  ngxScrollToEasing: ScrollToAnimationEasing;
+  ngxScrollToOffset: number;
+  ngxScrollToOffsetMap: ScrollToOffsetMap;
 
   constructor() {
 
@@ -196,7 +266,7 @@ export class MyComponent {
 
   }
 
-  public toggleDestination() {
+  toggleDestination() {
     this.ngxScrollToDestination = this.ngxScrollToDestination === 'destination-1' ? 'destination-2' : 'destination-1';
   }
 }
@@ -208,12 +278,12 @@ export class MyComponent {
 <button (click)="toggleDestination()">Toggle Destination</button>
 
 <button 
-  [ngx-scroll-to]="ngxScrollToDestination"
-  [ngx-scroll-to-event]="ngxScrollToEvent"
-  [ngx-scroll-to-duration]="ngxScrollToDuration"
-  [ngx-scroll-to-easing]="ngxScrollToEasing"
-  [ngx-scroll-to-offset]="ngxScrollToOffset"
-  [ngx-scroll-to-offset-map]="ngxScrollToOffsetMap">
+  [ngxScrollTo]="ngxScrollToDestination"
+  [ngxScrollToEvent]="ngxScrollToEvent"
+  [ngxScrollToDuration]="ngxScrollToDuration"
+  [ngxScrollToEasing]="ngxScrollToEasing"
+  [ngxScrollToOffset]="ngxScrollToOffset"
+  [ngxScrollToOffsetMap]="ngxScrollToOffsetMap">
   Go to destination
 </button>
 
@@ -226,21 +296,121 @@ export class MyComponent {
 </div>
 ```
 
-## Attributes Map
-| Options                                                       | Type                                   | Default         | Accepts                                            |
-|---------------------------------------------------------------|----------------------------------------|-----------------|----------------------------------------------------|
-| [ngx-scroll-to](#ngx-scroll-to-details)                       | `string` | `number` | `ElementRef`     | `''`            | Any `string`, `number` or `ElementRef` value       |
-| [ngx-scroll-to-event](#ngx-scroll-to-event-details)           | `ScrollToEvent`                        | `click`         | `ScrollToEvent`                                    |
-| [ngx-scroll-to-duration](#ngx-scroll-to-duration-details)     | `number`                               | `650`           | Any `number` value                                 |
-| [ngx-scroll-to-easing](#ngx-scroll-to-easing-details)         | `ScrollToAnimationEasing`              | `easeInOutQuad` | `ScrollToAnimationEasing`                          |
-| [ngx-scroll-to-offset](#ngx-scroll-to-offset-details)         | `number`                               | `0`             | Any `number` value                                 |
-| [ngx-scroll-to-offset-map](#ngx-scroll-to-offset-map-details) | `ScrollToOffsetMap`                    | `new Map()`     | `ScrollToOffsetMap`                                |
+## Advanced Usage - Service
+**my.component.html**
+```html
+<button (click)="triggerScrollTo()">Go to destination</button>
 
-## Attribue Map Details
-#### <a name="ngx-scroll-to-details"></a>`[ngx-scroll-to]`
+<div id="custom-container">
+  <div id="destination">
+    You've reached your destination.
+  </div>
+</div>
+```
+
+**my.service.ts**
+
+```typescript
+import { Injectable } from '@angular/core';
+import { ScrollToService, ScrollToConfigOptions } from '@nicky-lenaers/ngx-scroll-to';
+
+@Injectable()
+export class MyService {
+
+  constructor(private scrollToService: ScrollToService) { }
+
+  triggerScrollTo() {
+    
+    /**
+     * @see NOTE:1
+     */
+    const config: ScrollToConfigOptions = {
+      container: 'custom-container',
+      target: 'destination',
+      duration: 650,
+      easing: 'easeOutElastic',
+      offset: 20
+    };
+
+    this.scrollToService.scrollTo(config);
+  }
+}
+```
+**NOTE:1**
+
+*The `container` property is an optional property. By default, `ngxScrollTo` searches for the first scrollable parent `HTMLElement` with respect to the specified `target`. This should suffice in most cases. However, if multiple scrollable parents reside in the DOM tree, you have the degree of freedom the specify a specific container by using the `container` property, as used in the above example.*
+
+## Directive Attributes Map
+<table>
+  <tr>
+    <th align="left">Options</th>
+    <th align="left">Type</th>
+    <th align="left">Default</th>
+  </tr>
+  <tr>
+    <td><a href="#ngx-scroll-to-details">ngxScrollTo</a></td>
+    <td><code>string</code> | <code>number</code> | <code>ElementRef</code> | <code>HTMLElement</code></td>
+    <td><code>''</code></td>
+  </tr>
+  <tr>
+    <td><a href="#ngx-scroll-to-event-details">ngxScrollToEvent</a></td>
+    <td><code>ScrollToEvent</code></td>
+    <td><code>click</code></td>
+  </tr>
+  <tr>
+    <td><a href="#ngx-scroll-to-duration-details">ngxScrollToDuration</a></td>
+    <td><code>number</code></td>
+    <td><code>650</code></td>
+  </tr>
+  <tr>
+    <td><a href="#ngx-scroll-to-easing-details">ngxScrollToEasing</a></td>
+    <td><code>ScrollToAnimationEasing</code></td>
+    <td><code>easeInOutQuad</code></td>
+  </tr>
+  <tr>
+    <td><a href="#ngx-scroll-to-offset-details">ngxScrollToOffset</a></td>
+    <td><code>number</code></td>
+    <td><code>0</code></td>
+  </tr>
+  <tr>
+    <td><a href="#ngx-scroll-to-offset-map-details">ngxScrollToOffsetMap</a></td>
+    <td><code>ScrollToOffsetMap</code></td>
+    <td><code>new Map()</code></td>
+  </tr>
+</table>
+
+## Error Handling
+In some occasions, one might misspell a target or container selector string. Even though `ngx-scoll-to` will not be able to initiate the scrolling animation, you can catch the internally generated error and handle it as you please on the `Observable` chain returned from the `scrollTo` method.
+
+**faulty.service.ts**
+```typescript
+import { Injectable } from '@angular/core';
+import { ScrollToService } from '@nicky-lenaers/ngx-scroll-to';
+
+@Injectable()
+export class FaultyService {
+
+  constructor(private scrollToService: ScrollToService) { }
+
+  triggerScrollTo() {
+    
+    this.scrollToService
+      .scrollTo({
+        target: 'faulty-id'
+      })
+      .subscribe(
+        value => { console.log(value) },
+        err => console.error(err) // Error is caught and logged instead of thrown
+      );
+  }
+}
+```
+
+## Directive Attribute Map Details
+#### <a name="ngx-scroll-to-details"></a>`[ngxScrollTo]`
 This value specifies the ID of the HTML Element to scroll to. Note the outer double quotes `""` and the inner single quotes `''` in the above example(s). This enables you to dynamically set the string value based on a class property of your Component.
 
-#### <a name="ngx-scroll-to-event-details"></a>`[ngx-scroll-to-event]`
+#### <a name="ngx-scroll-to-event-details"></a>`[ngxScrollToEvent]`
 This value controls to event on which to trigger the scroll animation. Allowed values are:
 - `click`
 - `mouseenter`
@@ -253,10 +423,10 @@ This value controls to event on which to trigger the scroll animation. Allowed v
 - `mouseleave`
 - `mouseout`
 
-#### <a name="ngx-scroll-to-duration-details"></a>`[ngx-scroll-to-duration]`
+#### <a name="ngx-scroll-to-duration-details"></a>`[ngxScrollToDuration]`
 This value controls to duration of your scroll animation. Note that this value is in milliseconds.
 
-#### <a name="ngx-scroll-to-easing-details"></a>`[ngx-scroll-to-easing]`
+#### <a name="ngx-scroll-to-easing-details"></a>`[ngxScrollToEasing]`
 This value controls a named easing logic function to control your animation easing. Allowed values are:
 - `easeInQuad`
 - `easeOutQuad`
@@ -272,30 +442,17 @@ This value controls a named easing logic function to control your animation easi
 - `easeInOutQuint`
 - `easeOutElastic`
 
-#### <a name="ngx-scroll-to-offset-details"></a>`[ngx-scroll-to-offset]`
+#### <a name="ngx-scroll-to-offset-details"></a>`[ngxScrollToOffset]`
 This value controls the offset with respect to the top of the destination HTML element. Note that this value is in pixels.
 
-#### <a name="ngx-scroll-to-offset-map-details"></a>`[ngx-scroll-to-offset-map]`
+#### <a name="ngx-scroll-to-offset-map-details"></a>`[ngxScrollToOffsetMap]`
 This value allows you to control dynamic offsets based on the width of the device screen. The Map get's iterated over internally in a sequential fashion, meaning you need to supply key values in the order from low to high. The `key` of the `Map` defines the width treshold. The `value` of the `Map` defines the offset. Note that this value is in pixels.
 
-## Development
+# Contributing
+Please see [Contributing Guidelines](.github/CONTRIBUTING.md).
 
-### Install Peer Dependencies
-```sh
-$ npm run install:peers
-``` 
+# Code of Conduct
+Please see [Code of Conduct](.github/CODE_OF_CONDUCT.md).
 
 # License
  [MIT](/LICENSE)
-
-<!-- 
-
-TODO:
-- [ ] Guidelines
-- [ ] PR Template
-
-REFERENCES:
-- Library Starter
-  https://github.com/robisim74/angular-library-starter
-
--->
