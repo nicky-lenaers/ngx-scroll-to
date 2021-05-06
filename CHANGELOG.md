@@ -1,6 +1,8 @@
 <a name="11.0.0"></a>
-# Update packages to support Angular 11
-
+# 11.0.0 (2020-05-04)
+* Added support for Angular 11.
+* Updated outdated dependencies.
+* Changed package.json scripts.
 
 <a name="9.0.0"></a>
 # [9.0.0](https://github.com/nicky-lenaers/ngx-scroll-to/compare/3.0.1...9.0.0) (2020-04-22)

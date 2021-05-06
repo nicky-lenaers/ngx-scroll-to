@@ -1,0 +1,49 @@
+# File System
+.DS_Store
+.idea
+.Trash*
+
+# Logs
+*.log
+logs
+
+# Node/Javascript
+.env
+.env.test
+.eslintcache
+.grunt
+.lock-wscript
+.node_repl_history
+.npm
+.yarn-integrity
+*.tgz
+*.tsbuildinfo
+bower_components
+build/Release
+jspm_packages/
+lerna-debug.log*
+node_modules/
+npm-debug.log*
+report.[0-9]*.[0-9]*.[0-9]*.[0-9]*.json
+typings/
+yarn-debug.log*
+yarn-error.log*
+
+# Coverage
+.nyc_output
+*.lcov
+coverage
+lib-cov
+
+# CI-CD
+Jenkinsfile
+
+# Project files
+projects/
+.github
+angular.json
+dist/
+tsconfig.json
+tslint.json
+.editorconfig
+
