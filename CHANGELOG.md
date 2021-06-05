@@ -1,3 +1,8 @@
+<a name="11.0.1"></a>
+# 11.0.1 (2021-06-04)
+# Fixing dependency vulnerabilities
+# Updated package.json & package-lock.json 
+
 <a name="11.0.0"></a>
 # 11.0.0 (2020-05-04)
 * Added support for Angular 11.
