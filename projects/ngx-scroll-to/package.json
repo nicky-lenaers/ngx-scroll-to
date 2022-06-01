@@ -30,7 +30,15 @@
     "angular8",
     "angular 8",
     "angular9",
-    "angular 9"
+    "angular 9",
+    "angular10",
+    "angular 10",
+    "angular11",
+    "angular 11",
+    "angular12",
+    "angular 12",
+    "angular13",
+    "angular 13"
   ],
   "author": {
     "name": "Nicky Lenaers",
@@ -50,12 +58,14 @@
     "url": "https://github.com/nicky-lenaers/ngx-scroll-to/issues"
   },
   "engines": {
-    "node": ">=8.0.0",
-    "npm": ">=6.0.0"
+    "node": ">=16.15.0",
+    "yarn": ">=1.22.19"
+  },
+  "dependencies": {
+    "tslib": "^2.3.0"
   },
   "peerDependencies": {
-    "@angular/common": "^8.0.0 || ^9.0.0",
-    "@angular/core": "^8.0.0 || ^9.0.0",
-    "tslib": "^1.10.0"
+    "@angular/common": "^13.0.0",
+    "@angular/core": "^13.0.0"
   }
 }

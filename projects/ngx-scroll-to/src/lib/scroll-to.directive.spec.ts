@@ -1,4 +1,4 @@
-import { async, ComponentFixture, fakeAsync, TestBed, tick } from '@angular/core/testing';
+import { ComponentFixture, fakeAsync, TestBed, tick, waitForAsync } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { ScrollToModule } from './scroll-to.module';
 import { ScrollToDirective } from './scroll-to.directive';
@@ -11,7 +11,7 @@ import { ScrollToEvent } from './scroll-to-event.interface';
 
 describe('ScrollToDirective', () => {
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
 
     TestBed
       .configureTestingModule({
@@ -42,8 +42,6 @@ describe('ScrollToDirective', () => {
     const fixture: ComponentFixture<DummyComponent> = TestBed.createComponent(DummyComponent);
     const service: ScrollToService = TestBed.inject(ScrollToService);
     const component: DummyComponent = fixture.componentInstance;
-
-    component.ngOnInit();
 
     fixture.detectChanges();
 
@@ -76,8 +74,6 @@ describe('ScrollToDirective', () => {
       const service: ScrollToService = TestBed.inject(ScrollToService);
       const component: DummyComponent = fixture.componentInstance;
 
-      component.ngOnInit();
-
       fixture.detectChanges();
 
       spyOn(service, 'scrollTo');
@@ -95,12 +91,10 @@ describe('ScrollToDirective', () => {
         offset: DEFAULTS.offset,
         offsetMap: DEFAULTS.offsetMap
       });
-
     }));
   };
 
   EVENTS.forEach((event: ScrollToEvent) => {
     testMouseEvent(event);
   });
-
 });

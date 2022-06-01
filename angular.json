@@ -1,5 +1,9 @@
 {
   "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
+  "cli": {
+    "analytics": "90748fe0-c2f3-428a-a161-bde380a9383d",
+    "defaultCollection": "@angular-eslint/schematics"
+  },
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
@@ -10,16 +14,19 @@
       "prefix": "ngx",
       "architect": {
         "build": {
-          "builder": "@angular-devkit/build-ng-packagr:build",
+          "builder": "@angular-devkit/build-angular:ng-packagr",
           "options": {
-            "tsConfig": "projects/ngx-scroll-to/tsconfig.lib.json",
             "project": "projects/ngx-scroll-to/ng-package.json"
           },
           "configurations": {
             "production": {
               "tsConfig": "projects/ngx-scroll-to/tsconfig.lib.prod.json"
+            },
+            "development": {
+              "tsConfig": "projects/ngx-scroll-to/tsconfig.lib.json"
             }
-          }
+          },
+          "defaultConfiguration": "production"
         },
         "test": {
           "builder": "@angular-devkit/build-angular:karma",
@@ -30,14 +37,11 @@
           }
         },
         "lint": {
-          "builder": "@angular-devkit/build-angular:tslint",
+          "builder": "@angular-eslint/builder:lint",
           "options": {
-            "tsConfig": [
-              "projects/ngx-scroll-to/tsconfig.lib.json",
-              "projects/ngx-scroll-to/tsconfig.spec.json"
-            ],
-            "exclude": [
-              "**/node_modules/**"
+            "lintFilePatterns": [
+              "projects/ngx-scroll-to/**/*.ts",
+              "projects/ngx-scroll-to/**/*.html"
             ]
           }
         }
@@ -48,6 +52,9 @@
       "schematics": {
         "@schematics/angular:component": {
           "style": "scss"
+        },
+        "@schematics/angular:application": {
+          "strict": true
         }
       },
       "root": "projects/ngx-scroll-to-demo",
@@ -62,7 +69,6 @@
             "main": "projects/ngx-scroll-to-demo/src/main.ts",
             "polyfills": "projects/ngx-scroll-to-demo/src/polyfills.ts",
             "tsConfig": "projects/ngx-scroll-to-demo/tsconfig.app.json",
-            "aot": true,
             "assets": [
               "projects/ngx-scroll-to-demo/src/favicon.ico",
               "projects/ngx-scroll-to-demo/src/assets"
@@ -74,45 +80,48 @@
           },
           "configurations": {
             "production": {
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "500kb",
+                  "maximumError": "1mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "2kb",
+                  "maximumError": "4kb"
+                }
+              ],
               "fileReplacements": [
                 {
                   "replace": "projects/ngx-scroll-to-demo/src/environments/environment.ts",
                   "with": "projects/ngx-scroll-to-demo/src/environments/environment.prod.ts"
                 }
               ],
-              "optimization": true,
-              "outputHashing": "all",
-              "sourceMap": false,
-              "extractCss": true,
-              "namedChunks": false,
-              "extractLicenses": true,
-              "vendorChunk": false,
-              "buildOptimizer": true,
-              "budgets": [
-                {
-                  "type": "initial",
-                  "maximumWarning": "2mb",
-                  "maximumError": "5mb"
-                },
-                {
-                  "type": "anyComponentStyle",
-                  "maximumWarning": "6kb",
-                  "maximumError": "10kb"
-                }
-              ]
+              "outputHashing": "all"
+            },
+            "development": {
+              "buildOptimizer": false,
+              "optimization": false,
+              "vendorChunk": true,
+              "extractLicenses": false,
+              "sourceMap": true,
+              "namedChunks": true
             }
-          }
+          },
+          "defaultConfiguration": "production"
         },
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
-          "options": {
-            "browserTarget": "ngx-scroll-to-demo:build"
-          },
           "configurations": {
             "production": {
               "browserTarget": "ngx-scroll-to-demo:build:production"
+            },
+            "development": {
+              "browserTarget": "ngx-scroll-to-demo:build:development"
             }
-          }
+          },
+          "defaultConfiguration": "development"
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
@@ -137,35 +146,29 @@
             "scripts": []
           }
         },
-        "lint": {
-          "builder": "@angular-devkit/build-angular:tslint",
-          "options": {
-            "tsConfig": [
-              "projects/ngx-scroll-to-demo/tsconfig.app.json",
-              "projects/ngx-scroll-to-demo/tsconfig.spec.json",
-              "projects/ngx-scroll-to-demo/e2e/tsconfig.json"
-            ],
-            "exclude": [
-              "**/node_modules/**"
-            ]
-          }
-        },
         "e2e": {
-          "builder": "@angular-devkit/build-angular:protractor",
+          "builder": "@cypress/schematic:cypress",
           "options": {
-            "protractorConfig": "projects/ngx-scroll-to-demo/e2e/protractor.conf.js",
-            "devServerTarget": "ngx-scroll-to-demo:serve"
+            "devServerTarget": "ngx-scroll-to-demo:serve",
+            "configFile": "projects/ngx-scroll-to-demo/e2e/cypress.config.ts"
           },
           "configurations": {
             "production": {
               "devServerTarget": "ngx-scroll-to-demo:serve:production"
             }
           }
+        },
+        "lint": {
+          "builder": "@angular-eslint/builder:lint",
+          "options": {
+            "lintFilePatterns": [
+              "projects/ngx-scroll-to-demo/**/*.ts",
+              "projects/ngx-scroll-to-demo/**/*.html"
+            ]
+          }
         }
       }
-    }},
-  "cli": {
-    "analytics": "90748fe0-c2f3-428a-a161-bde380a9383d"
+    }
   },
   "defaultProject": "ngx-scroll-to"
 }

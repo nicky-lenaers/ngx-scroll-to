@@ -1,7 +1,12 @@
 import { Inject, Injectable, PLATFORM_ID } from '@angular/core';
 import { DOCUMENT, isPlatformBrowser } from '@angular/common';
 
-import { ScrollToConfigOptions, ScrollToConfigOptionsTarget, ScrollToListenerTarget, ScrollToTarget } from './scroll-to-config.interface';
+import {
+  ScrollToConfigOptions,
+  ScrollToConfigOptionsTarget,
+  ScrollToListenerTarget,
+  ScrollToTarget
+} from './scroll-to-config.interface';
 import { ScrollToAnimation } from './scroll-to-animation';
 import { DEFAULTS, isElementRef, isNativeElement, isNumber, isString, isWindow, stripHash } from './scroll-to-helpers';
 import { Observable, ReplaySubject, throwError } from 'rxjs';
@@ -87,12 +92,12 @@ export class ScrollToService {
 
     const targetNode = this.getNode(mergedConfigOptions.target);
     if (mergedConfigOptions.target && !targetNode) {
-      return throwError('Unable to find Target Element');
+      return throwError(() => new Error('Unable to find Target Element'));
     }
 
     const container: HTMLElement = this.getContainer(mergedConfigOptions, targetNode);
     if (mergedConfigOptions.container && !container) {
-      return throwError('Unable to find Container Element');
+      return throwError(() => new Error('Unable to find Container Element'));
     }
 
     const listenerTarget = this.getListenerTarget(container) || window;
@@ -141,13 +146,11 @@ export class ScrollToService {
   ) {
     const subscription = animation$
       .subscribe(
-        () => {
-        },
-        () => {
-        },
-        () => {
-          this.removeInterruptiveEventListeners(this.interruptiveEvents, listenerTarget, onInterrupt);
-          subscription.unsubscribe();
+        {
+          complete: () => {
+            this.removeInterruptiveEventListeners(this.interruptiveEvents, listenerTarget, onInterrupt);
+            subscription.unsubscribe();
+          }
         }
       );
   }
