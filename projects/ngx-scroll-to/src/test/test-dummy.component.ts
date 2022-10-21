@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 
 export const TARGET = 'destination';
 export const BUTTON_ID = 'btn-1';
@@ -8,7 +8,7 @@ export const BUTTON_ID = 'btn-1';
   selector: 'ngx-scroll-to',
   styles: [`
     #destination {
-    margin-top: 100vh;
+      margin-top: 100vh;
     }
   `],
   template: `
@@ -16,9 +16,5 @@ export const BUTTON_ID = 'btn-1';
     <div id="${TARGET}">You've reached your destination</div>
   `
 })
-export class DummyComponent implements OnInit {
-
-  constructor() { }
-
-  ngOnInit() { }
+export class DummyComponent {
 }
