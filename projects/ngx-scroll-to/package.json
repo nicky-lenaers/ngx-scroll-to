@@ -59,7 +59,7 @@
   },
   "engines": {
     "node": ">=16.18.0",
-    "yarn": ">=1.22.19"
+    "yarn": ">=1.22.18"
   },
   "dependencies": {
     "tslib": "^2.3.0"
