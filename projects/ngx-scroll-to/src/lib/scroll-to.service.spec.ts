@@ -1,6 +1,6 @@
-import { Inject, PLATFORM_ID } from '@angular/core';
+import { PLATFORM_ID } from '@angular/core';
 import { DOCUMENT } from '@angular/common';
-import { TestBed, waitForAsync } from '@angular/core/testing';
+import { TestBed } from '@angular/core/testing';
 import { ScrollToService } from './scroll-to.service';
 
 class MockDocument { }
@@ -10,8 +10,8 @@ describe('ScrollToService', () => {
 
   let service: ScrollToService;
 
-  beforeEach(waitForAsync(() => {
-    TestBed.configureTestingModule({
+  beforeEach(async () => {
+    await TestBed.configureTestingModule({
       providers: [
         {
           provide: DOCUMENT, useClass: MockDocument
@@ -24,7 +24,7 @@ describe('ScrollToService', () => {
     });
 
     service = TestBed.inject(ScrollToService);
-  }));
+  });
 
   it('should be created', () => {
     expect(service).toBeTruthy();
