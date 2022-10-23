@@ -1,9 +1,5 @@
 {
   "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
-  "cli": {
-    "analytics": "90748fe0-c2f3-428a-a161-bde380a9383d",
-    "defaultCollection": "@angular-eslint/schematics"
-  },
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
@@ -52,9 +48,6 @@
       "schematics": {
         "@schematics/angular:component": {
           "style": "scss"
-        },
-        "@schematics/angular:application": {
-          "strict": true
         }
       },
       "root": "projects/ngx-scroll-to-demo",
@@ -69,6 +62,7 @@
             "main": "projects/ngx-scroll-to-demo/src/main.ts",
             "polyfills": "projects/ngx-scroll-to-demo/src/polyfills.ts",
             "tsConfig": "projects/ngx-scroll-to-demo/tsconfig.app.json",
+            "inlineStyleLanguage": "scss",
             "assets": [
               "projects/ngx-scroll-to-demo/src/favicon.ico",
               "projects/ngx-scroll-to-demo/src/assets"
@@ -136,6 +130,7 @@
             "polyfills": "projects/ngx-scroll-to-demo/src/polyfills.ts",
             "tsConfig": "projects/ngx-scroll-to-demo/tsconfig.spec.json",
             "karmaConfig": "projects/ngx-scroll-to-demo/karma.conf.js",
+            "inlineStyleLanguage": "scss",
             "assets": [
               "projects/ngx-scroll-to-demo/src/favicon.ico",
               "projects/ngx-scroll-to-demo/src/assets"
@@ -170,5 +165,10 @@
       }
     }
   },
-  "defaultProject": "ngx-scroll-to"
+  "cli": {
+    "analytics": "90748fe0-c2f3-428a-a161-bde380a9383d",
+    "schematicCollections": [
+      "@angular-eslint/schematics"
+    ]
+  }
 }
