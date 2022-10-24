@@ -1,7 +1,7 @@
 {
   "name": "@nicky-lenaers/ngx-scroll-to-demo",
   "description": "Demo Application for @nicky-lenaers/ngx-scroll-to package.",
-  "version": "13.0.0",
+  "version": "14.0.0",
   "license": "MIT",
   "scripts": {
     "ng": "ng",
