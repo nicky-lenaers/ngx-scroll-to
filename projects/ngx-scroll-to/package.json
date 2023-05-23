@@ -40,16 +40,11 @@
     "angular13",
     "angular 13",
     "angular14",
-    "angular 14"
-  ],
-  "author": {
-    "name": "Nicky Lenaers",
-    "email": "nicky@newgameplus.online"
-  },
-  "contributors": [
-    {
-      "name": "Robbert van Caem"
-    }
+    "angular 14",
+    "angular15",
+    "angular 15",
+    "angular16",
+    "angular 16"
   ],
   "repository": {
     "type": "git",
@@ -59,15 +54,11 @@
   "bugs": {
     "url": "https://github.com/wizbii/ngx-scroll-to/issues"
   },
-  "engines": {
-    "node": ">=16.18.0",
-    "yarn": ">=1.22.18"
-  },
   "peerDependencies": {
-    "@angular/common": "^14.0.0",
-    "@angular/core": "^14.0.0"
+    "@angular/common": "<=16",
+    "@angular/core": "<=16"
   },
   "dependencies": {
-    "tslib": "^2.3.0"
+    "tslib": "^2.5.2"
   }
 }

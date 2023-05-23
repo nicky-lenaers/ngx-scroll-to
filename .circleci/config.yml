@@ -14,10 +14,10 @@ references:
     ~/app
 
   image_node: &image_node
-    image: cimg/node:16.18.0
+    image: cimg/node:18
 
   image_node_browsers: &image_node_browsers
-    image: cimg/node:16.18.0-browsers
+    image: cimg/node:18-browsers
 
   job_defaults: &job_defaults
     working_directory: *working_directory
