@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
-import { ScrollToModule } from '@nicky-lenaers/ngx-scroll-to';
+import { ScrollToModule } from '@wizbii/ngx-scroll-to';
 import { HomeRoutingModule } from './home-routing.module';
 import { HomeComponent } from './home.component';
 

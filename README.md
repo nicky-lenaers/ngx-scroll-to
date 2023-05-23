@@ -21,8 +21,8 @@
     <th align="left">CI / CD</th>
     <td align="left">Circle CI</td>
     <td align="left">
-      <a href="https://circleci.com/gh/nicky-lenaers/ngx-scroll-to" target="_blank">
-        <img src="https://img.shields.io/circleci/project/github/nicky-lenaers/ngx-scroll-to/master.svg?style=flat-square" alt="Circle CI">
+      <a href="https://circleci.com/gh/wizbii/ngx-scroll-to" target="_blank">
+        <img src="https://img.shields.io/circleci/project/github/wizbii/ngx-scroll-to/master.svg?style=flat-square" alt="Circle CI">
       </a>
     </td>
   </tr>
@@ -30,8 +30,8 @@
     <th align="left">Releases</th>
     <td align="left">GitHub</td>
     <td align="left">
-      <a href="https://github.com/nicky-lenaers/ngx-scroll-to/releases" target="_blank">
-        <img src="https://img.shields.io/github/release/nicky-lenaers/ngx-scroll-to.svg?style=flat-square" alt="GitHub Release">
+      <a href="https://github.com/wizbii/ngx-scroll-to/releases" target="_blank">
+        <img src="https://img.shields.io/github/release/wizbii/ngx-scroll-to.svg?style=flat-square" alt="GitHub Release">
       </a>
     </td>
   </tr>
@@ -39,8 +39,8 @@
     <td>&nbsp;</td>
     <td>NPM</td>
     <td align="left">
-      <a href="https://www.npmjs.com/package/@nicky-lenaers/ngx-scroll-to" target="_blank">
-        <img src="https://img.shields.io/npm/v/@nicky-lenaers/ngx-scroll-to.svg?style=flat-square" alt="NPM Release">
+      <a href="https://www.npmjs.com/package/@wizbii/ngx-scroll-to" target="_blank">
+        <img src="https://img.shields.io/npm/v/@wizbii/ngx-scroll-to.svg?style=flat-square" alt="NPM Release">
       </a>
     </td>
   </tr>
@@ -48,8 +48,8 @@
     <th align="left" valign="top">Dependencies</th>
     <td align="left">Production</td>
     <td align="left">
-      <a href="https://david-dm.org/nicky-lenaers/ngx-scroll-to" target="_blank">
-        <img src="https://img.shields.io/david/nicky-lenaers/ngx-scroll-to.svg?style=flat-square" alt="Production Dependencies">
+      <a href="https://david-dm.org/wizbii/ngx-scroll-to" target="_blank">
+        <img src="https://img.shields.io/david/wizbii/ngx-scroll-to.svg?style=flat-square" alt="Production Dependencies">
       </a>
     </td>
   </tr>
@@ -57,8 +57,8 @@
     <td>&nbsp;</td>
     <td align="left">Peer</td>
     <td align="left">
-      <a href="https://david-dm.org/nicky-lenaers/ngx-scroll-to?type=peer" target="_blank">
-        <img src="https://img.shields.io/david/peer/nicky-lenaers/ngx-scroll-to.svg?style=flat-square" alt="Peer Dependencies">
+      <a href="https://david-dm.org/wizbii/ngx-scroll-to?type=peer" target="_blank">
+        <img src="https://img.shields.io/david/peer/wizbii/ngx-scroll-to.svg?style=flat-square" alt="Peer Dependencies">
       </a>
     </td>
   </tr>
@@ -66,8 +66,8 @@
     <td>&nbsp;</td>
     <td align="left">Development</td>
     <td align="left">
-      <a href="https://david-dm.org/nicky-lenaers/ngx-scroll-to?type=dev" target="_blank">
-        <img src="https://img.shields.io/david/dev/nicky-lenaers/ngx-scroll-to.svg?style=flat-square" alt="Development Dependencies">
+      <a href="https://david-dm.org/wizbii/ngx-scroll-to?type=dev" target="_blank">
+        <img src="https://img.shields.io/david/dev/wizbii/ngx-scroll-to.svg?style=flat-square" alt="Development Dependencies">
       </a>
     </td>
   </tr>
@@ -75,8 +75,8 @@
     <td>&nbsp;</td>
     <td align="left">Optional</td>
     <td align="left">
-      <a href="https://david-dm.org/nicky-lenaers/ngx-scroll-to?type=optional" target="_blank">
-        <img src="https://img.shields.io/david/optional/nicky-lenaers/ngx-scroll-to.svg?style=flat-square" alt="Optional Dependencies">
+      <a href="https://david-dm.org/wizbii/ngx-scroll-to?type=optional" target="_blank">
+        <img src="https://img.shields.io/david/optional/wizbii/ngx-scroll-to.svg?style=flat-square" alt="Optional Dependencies">
       </a>
     </td>
   </tr>
@@ -84,7 +84,7 @@
     <th align="left" valign="top">Downloads</th>
     <td>NPM</td>
     <td>
-      <a href="https://npmjs.org/@nicky-lenaers/ngx-scroll-to" target="_blank">
+      <a href="https://npmjs.org/@wizbii/ngx-scroll-to" target="_blank">
         <img src="https://img.shields.io/npm/dm/%40nicky-lenaers%2Fngx-scroll-to.svg?style=flat-square" alt="NPM Monthly Downloads">
       </a>
     </td>
@@ -93,8 +93,8 @@
     <th align="left" valign="top">License</th>
     <td>MIT</td>
     <td>
-      <a href="https://github.com/nicky-lenaers/ngx-scroll-to/blob/master/LICENSE" target="_blank">
-        <img src="https://img.shields.io/npm/l/@nicky-lenaers/ngx-scroll-to.svg?style=flat-square" alt="License">
+      <a href="https://github.com/wizbii/ngx-scroll-to/blob/master/LICENSE" target="_blank">
+        <img src="https://img.shields.io/npm/l/@wizbii/ngx-scroll-to.svg?style=flat-square" alt="License">
       </a>
     </td>
   </tr>
@@ -107,33 +107,33 @@ Current Angular Version
 ## Installation
 Angular 14
 ```sh
-$ npm install @nicky-lenaers/ngx-scroll-to
+$ npm install @wizbii/ngx-scroll-to
 ```
 Angular 13
 ```sh
-$ npm install @nicky-lenaers/ngx-scroll-to@'13'
+$ npm install @wizbii/ngx-scroll-to@'13'
 ```
 Angular 8 and 9
 ```sh
-$ npm install @nicky-lenaers/ngx-scroll-to@'9'
+$ npm install @wizbii/ngx-scroll-to@'9'
 ```
 Angular 7
 ```sh
-$ npm install @nicky-lenaers/ngx-scroll-to@'2'
+$ npm install @wizbii/ngx-scroll-to@'2'
 ```
 Angular 6
 ```sh
-$ npm install @nicky-lenaers/ngx-scroll-to@'1'
+$ npm install @wizbii/ngx-scroll-to@'1'
 ```
 Angular <= 5.x
 ```sh
-$ npm install @nicky-lenaers/ngx-scroll-to@'<1'
+$ npm install @wizbii/ngx-scroll-to@'<1'
 ```
 
 ## Setup
 ```typescript
 ...
-import { ScrollToModule } from '@nicky-lenaers/ngx-scroll-to';
+import { ScrollToModule } from '@wizbii/ngx-scroll-to';
 ...
 
 @NgModule({
@@ -192,7 +192,7 @@ Besides scrolling to a specific element, it is also possible to scroll a given o
 
 ```typescript
 import { Injectable } from '@angular/core';
-import { ScrollToService, ScrollToConfigOptions } from '@nicky-lenaers/ngx-scroll-to';
+import { ScrollToService, ScrollToConfigOptions } from '@wizbii/ngx-scroll-to';
 
 @Injectable()
 export class MyService {
@@ -222,7 +222,7 @@ Just like with the Directive, the Service can be used to scroll to an offset onl
 
 ```typescript
 import { Injectable } from '@angular/core';
-import { ScrollToService, ScrollToConfigOptions } from '@nicky-lenaers/ngx-scroll-to';
+import { ScrollToService, ScrollToConfigOptions } from '@wizbii/ngx-scroll-to';
 
 @Injectable()
 export class MyService {
@@ -243,7 +243,7 @@ export class MyService {
 ## Advanced Usage - Directive
 **my.component.ts**
 ```typescript
-import { ScrollToAnimationEasing, ScrollToEvent, ScrollToOffsetMap } from '@nicky-lenaers/ngx-scroll-to';
+import { ScrollToAnimationEasing, ScrollToEvent, ScrollToOffsetMap } from '@wizbii/ngx-scroll-to';
 
 @Component({
   selector: 'my-component',
@@ -320,7 +320,7 @@ export class MyComponent {
 
 ```typescript
 import { Injectable } from '@angular/core';
-import { ScrollToService, ScrollToConfigOptions } from '@nicky-lenaers/ngx-scroll-to';
+import { ScrollToService, ScrollToConfigOptions } from '@wizbii/ngx-scroll-to';
 
 @Injectable()
 export class MyService {
@@ -393,7 +393,7 @@ In some occasions, one might misspell a target or container selector string. Eve
 **faulty.service.ts**
 ```typescript
 import { Injectable } from '@angular/core';
-import { ScrollToService } from '@nicky-lenaers/ngx-scroll-to';
+import { ScrollToService } from '@wizbii/ngx-scroll-to';
 
 @Injectable()
 export class FaultyService {

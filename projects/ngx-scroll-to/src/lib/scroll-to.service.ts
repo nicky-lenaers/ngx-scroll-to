@@ -56,7 +56,7 @@ export class ScrollToService {
    * by means of `*ngIf`, but ought to be scrolled to eventually.
    *
    * @todo type 'any' in Observable should become custom type like 'ScrollToEvent' (base class), see issue comment:
-   *  - https://github.com/nicky-lenaers/ngx-scroll-to/issues/10#issuecomment-317198481
+   *  - https://github.com/wizbii/ngx-scroll-to/issues/10#issuecomment-317198481
    *
    * @param options         Configuration Object
    * @returns               Observable

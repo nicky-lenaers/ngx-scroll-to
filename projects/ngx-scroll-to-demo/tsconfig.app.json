@@ -5,7 +5,7 @@
     "outDir": "../../out-tsc/app",
     "types": [],
     "paths": {
-      "@nicky-lenaers/ngx-scroll-to": [
+      "@wizbii/ngx-scroll-to": [
         "projects/ngx-scroll-to/src/public-api.ts"
       ]
     }

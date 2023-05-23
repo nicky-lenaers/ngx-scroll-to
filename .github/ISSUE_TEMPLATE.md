@@ -37,8 +37,8 @@ https://plnkr.co or similar (you can use this template as a starting point: http
 Angular version: X.Y.Z
 <!-- Check whether this is still an issue in the most recent Angular version -->
 
-Your version of `@nicky-lenaers/ngx-scroll-to`:
-<!-- Check whether this is still an issue in the most recent `@nicky-lenaers/ngx-scroll-to` version -->
+Your version of `@wizbii/ngx-scroll-to`:
+<!-- Check whether this is still an issue in the most recent `@wizbii/ngx-scroll-to` version -->
 
 Browser:
 - [ ] Chrome (desktop) version XX

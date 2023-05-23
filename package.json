@@ -1,6 +1,6 @@
 {
-  "name": "@nicky-lenaers/ngx-scroll-to-demo",
-  "description": "Demo Application for @nicky-lenaers/ngx-scroll-to package.",
+  "name": "@wizbii/ngx-scroll-to-demo",
+  "description": "FORK: Demo Application for @wizbii/ngx-scroll-to package.",
   "version": "14.0.0",
   "license": "MIT",
   "scripts": {
@@ -21,10 +21,9 @@
     "lib:package": "yarn build:lib && yarn copy:readme && cd ./dist/ngx-scroll-to && yarn pack",
     "prelib:publish": "yarn lib:package",
     "lib:publish": "cd ./dist/ngx-scroll-to && yarn publish --access=public",
-    "tags": "yarn tag list @nicky-lenaers/ngx-scroll-to",
+    "tags": "yarn tag list @wizbii/ngx-scroll-to",
     "prepare": "husky install"
   },
-  "private": false,
   "contributors": [
     {
       "name": "Robbert van Caem"
@@ -36,11 +35,11 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/nicky-lenaers/ngx-scroll-to.git"
+    "url": "git+https://github.com/wizbii/ngx-scroll-to.git"
   },
-  "homepage": "https://github.com/nicky-lenaers/ngx-scroll-to#readme",
+  "homepage": "https://github.com/wizbii/ngx-scroll-to#readme",
   "bugs": {
-    "url": "https://github.com/nicky-lenaers/ngx-scroll-to/issues"
+    "url": "https://github.com/wizbii/ngx-scroll-to/issues"
   },
   "dependencies": {
     "@angular/animations": "^14.2.7",
@@ -69,12 +68,13 @@
     "@commitlint/config-angular": "^17.1.0",
     "@cypress/schematic": "^2.2.0",
     "@types/jasmine": "~4.3.0",
-    "@types/node": "^16.11.45",
+    "@types/node": "^18.10.0",
     "@typescript-eslint/eslint-plugin": "^5.40.1",
     "@typescript-eslint/parser": "^5.40.1",
     "conventional-changelog-cli": "^2.2.2",
     "conventional-github-releaser": "^3.1.5",
     "copyfiles": "^2.4.1",
+    "cypress": "^10.10.0",
     "eslint": "^8.26.0",
     "husky": "^8.0.1",
     "jasmine-core": "~4.4.0",
@@ -84,11 +84,11 @@
     "karma-jasmine": "~5.1.0",
     "karma-jasmine-html-reporter": "^2.0.0",
     "ng-packagr": "^14.2.1",
-    "typescript": "~4.8.4",
-    "cypress": "^10.10.0"
+    "typescript": "~4.8.4"
   },
   "engines": {
-    "node": ">=16.18.0",
+    "node": ">=18.10.0",
     "yarn": ">=1.22.18"
-  }
+  },
+  "packageManager": "yarn@3.5.1"
 }

@@ -12,7 +12,7 @@
     "noFallthroughCasesInSwitch": true,
     "sourceMap": true,
     "paths": {
-      "@nicky-lenaers/ngx-scroll-to": [
+      "@wizbii/ngx-scroll-to": [
         "dist/ngx-scroll-to"
       ]
     },
